@@ -17,5 +17,10 @@
 	<br/>
 	<a href="test.action">注册</a><br/>
 	
+	<form action="testForm.action" method="post">
+  		<input type="text" name="username">
+  		<input type="submit" value="submit">
+ 	</form>
+	
 </body>
 </html>

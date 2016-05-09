@@ -7,6 +7,8 @@
 <title>success</title>
 </head>
 <body>
-	Success
+	Success<br/>
+	${username }
+	
 </body>
 </html>

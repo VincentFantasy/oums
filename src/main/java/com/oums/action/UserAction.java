@@ -24,6 +24,16 @@ public class UserAction {
 	
 	/* 加载logger */
 	private static Logger logger = LogManager.getLogger(UserAction.class.getName());
+	/* 可以这样获取参数，要有getset方法 */
+	public String username;
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	/**
 	 * 测试action
@@ -34,6 +44,16 @@ public class UserAction {
 		logger.info("进入testAction");
 		System.out.println("test()");
 		userServer.test();
+	}
+	
+	/**
+	 * 测试action
+	 * http://localhost:8080/OUMS/testForm
+	 */
+	@Action(value="testForm", results={@Result(name = "success", location = "/success.jsp")})
+	public String testForm() {
+		System.out.println("testForm(),username:" + username);
+		return "success";
 	}
 	
 }
