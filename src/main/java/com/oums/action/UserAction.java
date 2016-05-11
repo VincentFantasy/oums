@@ -8,6 +8,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.oums.bean.ReturnMessage;
 import com.oums.service.IUserService;
 
 /**
@@ -53,6 +54,15 @@ public class UserAction {
 	@Action(value="testForm", results={@Result(name = "success", location = "/success.jsp")})
 	public String testForm() {
 		System.out.println("testForm(),username:" + username);
+		return "success";
+	}
+	
+	@Action(value="register")
+	public String register() {
+		logger.info("进入register()方法");
+		
+//		ReturnMessage returnMessage = userServer.addUser(userVo);
+		
 		return "success";
 	}
 	

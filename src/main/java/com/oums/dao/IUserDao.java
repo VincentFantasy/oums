@@ -10,7 +10,7 @@ import com.oums.bean.po.UserPo;
 public interface IUserDao {
 
 	/**
-	 * 根据用户名查找用户
+	 * 鏍规嵁濮撳悕鑾峰緱UserPo
 	 * @param user
 	 * @return
 	 */

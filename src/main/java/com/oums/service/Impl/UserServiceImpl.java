@@ -22,27 +22,26 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public ReturnMessage addUser(UserVo userVo) {
-		System.out.println("µ÷ÓÃserver·½·¨");
+
 		ReturnMessage returnMessage = new ReturnMessage();
 
 		if (userVo.getUserName() != null || userVo.getPassword() != null)
 			try {
 				UserPo po = new UserPo();
 				po.setUserName(userVo.getUserName());
-				// ¼ÓÃÜ
+				// åŠ å¯†
 				po.setPassword(MD5Util.MD5(userVo.getPassword()));
 				basicDao.add(po);
 				returnMessage.setFlat(true);
-				returnMessage.setContent("×¢²á³É¹¦  " + userVo);
 			} catch (Exception e) {
 				e.printStackTrace();
 				returnMessage.setFlat(false);
-				returnMessage.setContent("×¢²áÊ§°Ü");
+				returnMessage.setContent("å¼‚å¸¸");
 			}
 
 		else {
 			returnMessage.setFlat(false);
-			returnMessage.setContent("ÕËºÅ»òÃÜÂëÎª¿Õ");
+			returnMessage.setContent("ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©º");
 		}
 
 		return returnMessage;
@@ -51,11 +50,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public ReturnMessage findUserByUserName(String userName) {
 		ReturnMessage returnMessage = new ReturnMessage();
-		System.out.println("µ÷ÓÃserver·½·¨");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½serverï¿½ï¿½ï¿½ï¿½");
 		if(userName != null)
 		try{
-			System.out.println("½øÈëtry");
-			//ĞèÒªÒ»¸öpo vo ×ª»»
+			System.out.println("ï¿½ï¿½ï¿½ï¿½try");
+			//ï¿½ï¿½ÒªÒ»ï¿½ï¿½po vo ×ªï¿½ï¿½
 			UserPo userPo = userDao.getUserByName(userName);
 			UserVo userVo = new UserVo();
 			userVo.setUserName(userPo.getUserName());
@@ -64,7 +63,7 @@ public class UserServiceImpl implements IUserService {
 			returnMessage.setFlat(true);
 			returnMessage.setObject(userVo);
 		}catch (Exception e){
-			System.out.println("½øÈëException");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Exception");
 			e.printStackTrace();
 		}
 		

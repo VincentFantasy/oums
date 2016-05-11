@@ -1,6 +1,10 @@
 package com.oums.bean.vo;
 
-//继承此Vo的都是Vo
+/**
+ * 
+ * @author 璋不
+ *
+ */
 public class BaseVo {
-
+	private static final long serialVersionUID = 1L;
 }

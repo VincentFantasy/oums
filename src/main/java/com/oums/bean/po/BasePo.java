@@ -3,10 +3,12 @@ package com.oums.bean.po;
 import java.io.Serializable;
 
 /**
- * 继承此Po的都是Po
- * @author Vincent
+ * 
+ * @author 璋不
  *
  */
 public class BasePo implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 }
