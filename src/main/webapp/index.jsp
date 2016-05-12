@@ -15,12 +15,14 @@
 		out.print("显示成功");
 	%>
 	<br/>
-	<a href="test.action">注册</a><br/>
+	<a href="test.action">test</a><br/>
 	
 	<form action="testForm.action" method="post">
   		<input type="text" name="username">
   		<input type="submit" value="submit">
- 	</form>
+ 	</form><br/>
+ 	
+ 	<a href="register.jsp">注册</a><br/>
 	
 </body>
 </html>
