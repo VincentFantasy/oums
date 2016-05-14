@@ -23,7 +23,7 @@ import com.oums.util.JsonUtil;
  * @author 谭治
  *
  */
-@ParentPackage("json")
+@ParentPackage("basePackage")
 @Namespace("/")
 public class UserAction {
 	
@@ -71,6 +71,23 @@ public class UserAction {
 	@Action(value="testForm", results={@Result(name = "success", location = "/success.jsp")})
 	public String testForm() {
 		System.out.println("testForm(),username:" + username);
+		return "success";
+	}
+	
+	/**
+	 * 注册 , 这种直接返回json对象，需要前端处理
+	 * @return
+	 * http://localhost:8080/OUMS/testJson
+	 */
+	@Action(value="testJson", results={@Result(name="success", type="json", params={"root","user"})})
+	public String testJson() {
+		logger.info("进入testJson()方法");
+		
+		System.out.println("testJson()");
+		System.out.println("username:" + user.getUserName());
+//		ReturnMessage returnMessage = userServer.addUser(user);
+		
+		logger.info("退出testJson()方法");
 		return "success";
 	}
 	
