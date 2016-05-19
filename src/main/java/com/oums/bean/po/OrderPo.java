@@ -18,10 +18,12 @@ import javax.persistence.Table;
  * @author 谭治
  *
  */
-@SuppressWarnings("deprecation")
 @Entity
 @Table(name="t_order")
 public class OrderPo extends BasePo {
+	
+	private static final long serialVersionUID = 1L;
+	
 	/* id */
 	private Integer orderId;
 	/* 订单号 */

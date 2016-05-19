@@ -3,6 +3,11 @@ package com.oums.util;
 import com.google.gson.Gson;
 import com.google.gson.JsonNull;
 
+/**
+ * Jsonè½¬æ¢å·¥å…·
+ * @author fantasy
+ *
+ */
 public class JsonUtil  
 {  
       
@@ -11,10 +16,10 @@ public class JsonUtil
   
     /** 
      * @MethodName : toJson 
-     * @Description : ½«¶ÔÏó×ªÎªJSON´®£¬´Ë·½·¨ÄÜ¹»Âú×ã´ó²¿·ÖĞèÇó 
+     * @Description : è½¬æ¢æˆJsonå­—ç¬¦ä¸² 
      * @param src 
-     *            :½«Òª±»×ª»¯µÄ¶ÔÏó 
-     * @return :×ª»¯ºóµÄJSON´® 
+     *            :ï¿½ï¿½Òªï¿½ï¿½×ªï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ 
+     * @return :×ªï¿½ï¿½ï¿½ï¿½ï¿½JSONï¿½ï¿½ 
      */  
     public static String toJson(Object src) {  
         if (src == null) {  

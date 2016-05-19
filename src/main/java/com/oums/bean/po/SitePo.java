@@ -1,5 +1,6 @@
 package com.oums.bean.po;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,12 +11,15 @@ import javax.persistence.Table;
  * @author 谭治
  *
  */
-@SuppressWarnings("deprecation")
 @Entity
 @Table(name="t_site")
 public class SitePo extends BasePo {
+
+	private static final long serialVersionUID = 1L;
 	/* 场地id */
 	private Integer siteId;
+	/* 场地名 */
+	private String siteName;
 	/* 场地类型 */
 	private Integer siteType;
 	/* 每小时费用 */
@@ -32,8 +36,15 @@ public class SitePo extends BasePo {
 	}
 	@Override
 	public String toString() {
-		return "SitePo [siteId=" + siteId + ", siteType=" + siteType + ", siteCost=" + siteCost + ", isUsing=" + isUsing
-				+ ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
+		return "SitePo [siteId=" + siteId + ", siteName=" + siteName + ", siteType=" + siteType + ", siteCost="
+				+ siteCost + ", isUsing=" + isUsing + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
+	}
+	@Column(nullable = false)
+	public String getSiteName() {
+		return siteName;
+	}
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
 	@Id
 	@GeneratedValue

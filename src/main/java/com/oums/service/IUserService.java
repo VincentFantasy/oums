@@ -3,22 +3,27 @@ package com.oums.service;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.vo.UserVo;
 
+/**
+ * 
+ * @author è°­æ²»
+ *
+ */
 public interface IUserService {
 
 	/**
-	 * ²âÊÔ
+	 * æµ‹è¯•æ–¹æ³•
 	 * @return
 	 */
 	ReturnMessage test();
 	
 	/**
-	 * ×¢²á
+	 * æ·»åŠ ç”¨æˆ·
 	 * @return
 	 */
 	ReturnMessage addUser(UserVo userVo);
 	
 	/**
-	 * ¸ù¾İÓÃ»§Ãû²éÕÒÓÃ»§
+	 * æ ¹æ®ç”¨æˆ·åæŸ¥æ‰¾ç”¨æˆ·
 	 * @param userName
 	 * @return
 	 */

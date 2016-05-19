@@ -12,10 +12,12 @@ import javax.persistence.Table;
  * @author Fantasy
  *
  */
-@SuppressWarnings("deprecation")
 @Entity
 @Table(name="t_user")
 public class UserPo extends BasePo {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Integer userId;
 	// 用户名
 	private String userName;

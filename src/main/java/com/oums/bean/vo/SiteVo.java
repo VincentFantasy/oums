@@ -8,6 +8,8 @@ package com.oums.bean.vo;
 public class SiteVo extends BaseVo{
 	/* 场地id */
 	private Integer siteId;
+	/* 场地名 */
+	private String siteName;
 	/* 场地类型 */
 	private Integer siteType;
 	/* 每小时费用 */
@@ -21,8 +23,16 @@ public class SiteVo extends BaseVo{
 	
 	@Override
 	public String toString() {
-		return "SiteVo [siteId=" + siteId + ", siteType=" + siteType + ", siteCost=" + siteCost + ", isUsing=" + isUsing
-				+ ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
+		return "SiteVo [siteId=" + siteId + ", siteName=" + siteName + ", siteType=" + siteType + ", siteCost="
+				+ siteCost + ", isUsing=" + isUsing + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
+	}
+
+	public String getSiteName() {
+		return siteName;
+	}
+
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
 
 	public Integer getSiteId() {
