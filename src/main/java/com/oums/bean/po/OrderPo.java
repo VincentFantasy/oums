@@ -112,7 +112,6 @@ public class OrderPo extends BasePo {
 		this.user = user;
 	}
 	@OneToMany
-	@JoinColumn(name="siteId") 
 	public List<SitePo> getSiteList() {
 		return siteList;
 	}

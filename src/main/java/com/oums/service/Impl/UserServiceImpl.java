@@ -15,7 +15,7 @@ import com.oums.util.MD5Util;
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	IBaseDao basicDao;
+	IBaseDao baseDao;
 	
 	@Autowired
 	IUserDao userDao;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements IUserService {
 				po.setUserName(userVo.getUserName());
 				// 加密
 				po.setPassword(MD5Util.MD5(userVo.getPassword()));
-				basicDao.add(po);
+				baseDao.add(po);
 				returnMessage.setFlat(true);
 			} catch (Exception e) {
 				e.printStackTrace();

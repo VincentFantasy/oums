@@ -59,9 +59,9 @@ public class UserAction {
 	 */
 	@Action(value="test", results={@Result(name = "success", location = "/success.jsp")})	
 	public void test() {
-		logger.info("进入testAction");
-		System.out.println("test()");
-		userServer.test();
+		logger.info("进入test()");
+		
+		userServer.addUser(new UserVo("123","123"));
 	}
 	
 	/**

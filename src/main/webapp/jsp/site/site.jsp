@@ -7,6 +7,6 @@
 <title>site</title>
 </head>
 <body>
-	
+	<a href="http://localhost:8080/OUMS/testAddSite.action">測試</a>
 </body>
 </html>
