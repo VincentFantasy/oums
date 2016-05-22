@@ -71,7 +71,7 @@ public class TestSiteService {
 		vo.setSiteType(1);
 		SitePo po = new SitePo();
 		
-		BeanUtil.voToPo(po, vo);
+		BeanUtil.voToPo(vo, po);
 		
 		System.out.println(po);
 	}
@@ -88,7 +88,7 @@ public class TestSiteService {
 		po.setSiteType(1);
 		SiteVo vo = new SiteVo();
 		
-		BeanUtil.poToVo(vo, po);
+		BeanUtil.poToVo(po, vo);
 		
 		System.out.println(vo);
 	}

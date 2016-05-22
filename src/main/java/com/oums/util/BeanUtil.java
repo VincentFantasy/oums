@@ -23,11 +23,11 @@ public class BeanUtil {
 	 * @param t
 	 * @param x
 	 */
-	public static <T extends BasePo, X extends BaseVo> void voToPo(T vo, X po) {
+	public static <T extends BaseVo, X extends BasePo> void voToPo(T vo, X po) {
 		logger.info("进入voToPo方法");
 		
 		try {
-			BeanUtils.copyProperties(vo, po);
+			BeanUtils.copyProperties(po, vo);
 			logger.info("转换成功");
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
@@ -48,11 +48,11 @@ public class BeanUtil {
 	 * @param t
 	 * @param x
 	 */
-	public static <T extends BaseVo, X extends BasePo> void poToVo(T po, X vo) {
+	public static <T extends BasePo, X extends BaseVo> void poToVo(T po, X vo) {
 		logger.info("进入voToPo方法");
 		
 		try {
-			BeanUtils.copyProperties(po, vo);
+			BeanUtils.copyProperties(vo, po);
 			logger.info("转换成功");
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();

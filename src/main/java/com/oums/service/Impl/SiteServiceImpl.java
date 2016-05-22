@@ -8,6 +8,7 @@ import com.oums.bean.po.SitePo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
 import com.oums.service.ISiteService;
+import com.oums.util.BeanUtil;
 
 @Service("siteService")
 public class SiteServiceImpl implements ISiteService {	
@@ -20,15 +21,9 @@ public class SiteServiceImpl implements ISiteService {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
 		try{
-			SitePo po = new SitePo();
 			//SiteName需要查重
-			po.setSiteName(vo.getSiteName());
-			po.setSiteType(vo.getSiteType());
-			po.setSiteCost(vo.getSiteCost());
-			po.setSiteDtail(vo.getSiteDtail());
-			po.setIsUsing(false);
-			po.setIsDelete(false);
-			
+			SitePo po = new SitePo();			
+			BeanUtil.voToPo(vo, po);			
 			baseDao.add(po);
 			
 			returnMessage.setFlat(true);
