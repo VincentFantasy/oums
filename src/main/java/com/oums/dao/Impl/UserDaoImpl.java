@@ -13,11 +13,11 @@ public class UserDaoImpl implements IUserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	//ÒªÇóÓÃ»§Ãû²»ÖØ¸´
+	//Òªï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½
 	@Override
 	public UserPo getUserByName(String userName) {		
 		return (UserPo) sessionFactory.getCurrentSession()
-				.createQuery("from UserPo u where u.userName=:userName")
+				.createQuery("from UserPo u where u.userName=:userName and u.isDelete = false")
 				.setString("userName", userName)
 				.uniqueResult();
 	}

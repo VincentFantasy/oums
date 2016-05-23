@@ -19,14 +19,14 @@ import com.oums.service.ISiteService;
  *
  */
 @ParentPackage("basePackage")
-@Namespace("/")
+@Namespace("/site")
 public class SiteAction {
 	
 	@Autowired
 	ISiteService siteService;
 	
 	/* 加载logger */
-	private static Logger logger = LogManager.getLogger(UserAction.class.getName());
+	private static Logger logger = LogManager.getLogger(SiteAction.class.getName());
 	
 	private SiteVo site;
 
@@ -51,13 +51,23 @@ public class SiteAction {
 	/**
 	 * 添加场地
 	 * @return
-	 * http://localhost:8080/OUMS/addSite
+	 * http://localhost:8080/OUMS/site/addSite
 	 */
 	@Action(value="addSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String addSite() {
 		logger.info("进入addSite()方法");
 		
-		returnMessage = siteService.addSite(site);
+		//查看用戶名是否重複
+		returnMessage = siteService.findSiteByName(site.getSiteName());
+		if(!returnMessage.isFlat()) {
+			returnMessage = siteService.addSite(site);
+		} else {
+			returnMessage.setFlat(false);
+			returnMessage.setContent("用戶名重複");
+			returnMessage.setObject(null);
+		}
+		//在控制台查看
+		System.out.println(returnMessage);
 		
 		logger.info("退出addSite()方法");
 		return "success";
@@ -66,7 +76,7 @@ public class SiteAction {
 	/**
 	 * 添加场地
 	 * @return
-	 * http://localhost:8080/OUMS/testAddSite
+	 * http://localhost:8080/OUMS/site/testAddSite
 	 */
 	@Action(value="testAddSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String testAddSite() {
@@ -82,6 +92,21 @@ public class SiteAction {
 		System.out.println(returnMessage);
 		
 		logger.info("退出addSite()方法");
+		return "success";
+	}
+	
+	/**
+	 * 添加场地
+	 * @return
+	 * http://localhost:8080/OUMS/site/findSite
+	 */
+	@Action(value="findSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findSite() {
+		logger.info("进入findSite()方法");
+		
+		returnMessage = siteService.findSiteByName(site.getSiteName());
+		
+		logger.info("退出findSite方法");
 		return "success";
 	}
 

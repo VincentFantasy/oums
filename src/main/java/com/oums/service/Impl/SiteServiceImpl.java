@@ -7,6 +7,7 @@ import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
+import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteService;
 import com.oums.util.BeanUtil;
 
@@ -16,14 +17,20 @@ public class SiteServiceImpl implements ISiteService {
 	@Autowired
 	IBaseDao baseDao;
 	
+	@Autowired
+	ISiteDao siteDao;
+	
 	@Override
 	public ReturnMessage addSite(SiteVo vo) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
 		try{
 			//SiteName需要查重
-			SitePo po = new SitePo();			
-			BeanUtil.voToPo(vo, po);			
+			SitePo po = new SitePo();		
+			BeanUtil.voToPo(vo, po);
+			//設置某些屬性為false
+			po.setIsUsing(false);
+			po.setIsDelete(false);
 			baseDao.add(po);
 			
 			returnMessage.setFlat(true);
@@ -51,8 +58,26 @@ public class SiteServiceImpl implements ISiteService {
 
 	@Override
 	public ReturnMessage findSiteByName(String siteName) {
-		// TODO Auto-generated method stub
-		return null;
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			SitePo po = siteDao.findSitePoBySiteName(siteName);
+			
+			if(po != null) {
+				returnMessage.setFlat(true);
+				returnMessage.setContent("查找成功");
+				returnMessage.setObject(po);
+			} else {
+				returnMessage.setFlat(false);
+				returnMessage.setContent("查找失敗 沒有此ID");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("查找失败" + e);
+		}
+		
+		return returnMessage;
 	}
 
 	@Override

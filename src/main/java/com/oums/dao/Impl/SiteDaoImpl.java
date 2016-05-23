@@ -16,7 +16,7 @@ public class SiteDaoImpl implements ISiteDao {
 	@Override
 	public SitePo findSitePoBySiteName(String siteName) {
 		return (SitePo) sessionFactory.getCurrentSession()
-				.createQuery("from SitePo s where s.siteName = :siteName")
+				.createQuery("from SitePo s where s.siteName = :siteName and s.isDelete = false")
 				.setString("siteName", siteName)
 				.uniqueResult();
 	}

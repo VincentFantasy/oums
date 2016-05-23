@@ -24,7 +24,7 @@ import com.oums.util.JsonUtil;
  *
  */
 @ParentPackage("basePackage")
-@Namespace("/")
+@Namespace("/user")
 public class UserAction {
 	
 	@Autowired
@@ -55,7 +55,7 @@ public class UserAction {
 
 	/**
 	 * 测试action
-	 * http://localhost:8080/OUMS/test
+	 * http://localhost:8080/OUMS/user/test
 	 */
 	@Action(value="test", results={@Result(name = "success", location = "/success.jsp")})	
 	public void test() {
@@ -66,7 +66,7 @@ public class UserAction {
 	
 	/**
 	 * 测试action
-	 * http://localhost:8080/OUMS/testForm
+	 * http://localhost:8080/OUMS/user/testForm
 	 */
 	@Action(value="testForm", results={@Result(name = "success", location = "/success.jsp")})
 	public String testForm() {
@@ -77,7 +77,7 @@ public class UserAction {
 	/**
 	 * 注册 , 这种直接返回json对象，需要前端处理
 	 * @return
-	 * http://localhost:8080/OUMS/testJson
+	 * http://localhost:8080/OUMS/user/testJson
 	 */
 	@Action(value="testJson", results={@Result(name="success", type="json", params={"root","user"})})
 	public String testJson() {
@@ -94,7 +94,7 @@ public class UserAction {
 	/**
 	 * 注册 , 这种直接返回json对象，需要前端处理
 	 * @return
-	 * http://localhost:8080/OUMS/register
+	 * http://localhost:8080/OUMS/user/register
 	 */
 	@Action(value="register", results={@Result(name="success", type="json", params={"root","user"})})
 	public String register() {
@@ -111,7 +111,7 @@ public class UserAction {
 	/**
 	 * 注册 这种返回json字符串
 	 * @return
-	 * http://localhost:8080/OUMS/register
+	 * http://localhost:8080/OUMS/user/register2
 	 */
 	@Action(value="register2")
 	public void register2() {
