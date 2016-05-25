@@ -50,31 +50,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public ReturnMessage findUserByUserName(String userName) {
 		ReturnMessage returnMessage = new ReturnMessage();
-		System.out.println("����server����");
-		if(userName != null)
-		try{
-			System.out.println("����try");
-			//��Ҫһ��po vo ת��
-			UserPo userPo = userDao.getUserByName(userName);
-			UserVo userVo = new UserVo();
-			userVo.setUserName(userPo.getUserName());
-			userVo.setPassword(userPo.getPassword());
-						
-			returnMessage.setFlat(true);
-			returnMessage.setObject(userVo);
-		}catch (Exception e){
-			System.out.println("����Exception");
-			e.printStackTrace();
-		}
 		
 		return returnMessage;
-	}
-
-	@Override
-	public ReturnMessage test() {
-		System.out.println("testService");
-		userDao.test();
-		return null;
 	}
 
 }

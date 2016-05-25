@@ -16,9 +16,4 @@ public interface IUserDao {
 	 */
 	abstract UserPo getUserByName(String userName);
 	
-	/**
-	 * 
-	 */
-	void test();
-	
 }

@@ -70,10 +70,8 @@ public class SiteManagerAction {
 			returnMessage.setContent("场地名重複");
 			returnMessage.setObject(null);
 		}
-		//在控制台查看
-		System.out.println(returnMessage);
 		
-		logger.info("退出addSite()方法");
+		logger.info("退出addSite()方法	" + returnMessage);
 		return "success";
 	}
 
@@ -93,9 +91,7 @@ public class SiteManagerAction {
 		vo.setSiteDtail("詳細");
 		returnMessage = siteManagerService.addSite(vo);
 		
-		System.out.println(returnMessage);
-		
-		logger.info("退出addSite()方法");
+		logger.info("退出addSite()方法	" + returnMessage);
 		return "success";
 	}
 	

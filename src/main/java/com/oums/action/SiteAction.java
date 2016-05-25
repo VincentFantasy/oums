@@ -59,7 +59,7 @@ public class SiteAction {
 		
 		returnMessage = siteService.findSiteByName(site.getSiteName());
 		
-		logger.info("退出findSite方法");
+		logger.info("退出findSite方法	" + returnMessage);
 		return "success";
 	}
 
