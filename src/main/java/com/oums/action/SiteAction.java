@@ -47,56 +47,9 @@ public class SiteAction {
 	public void setReturnMessage(ReturnMessage returnMessage) {
 		this.returnMessage = returnMessage;
 	}
-
-	/**
-	 * 添加场地
-	 * @return
-	 * http://localhost:8080/OUMS/site/addSite
-	 */
-	@Action(value="addSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String addSite() {
-		logger.info("进入addSite()方法");
-		
-		//查看用戶名是否重複
-		returnMessage = siteService.findSiteByName(site.getSiteName());
-		if(!returnMessage.isFlat()) {
-			returnMessage = siteService.addSite(site);
-		} else {
-			returnMessage.setFlat(false);
-			returnMessage.setContent("用戶名重複");
-			returnMessage.setObject(null);
-		}
-		//在控制台查看
-		System.out.println(returnMessage);
-		
-		logger.info("退出addSite()方法");
-		return "success";
-	}
-
-	/**
-	 * 添加场地
-	 * @return
-	 * http://localhost:8080/OUMS/site/testAddSite
-	 */
-	@Action(value="testAddSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String testAddSite() {
-		logger.info("进入addSite()方法");
-		
-		SiteVo vo = new SiteVo();
-		vo.setSiteName("球場1");
-		vo.setSiteType(SiteType.SITETYPE_BADMINTON);
-		vo.setSiteCost(10.0f);
-		vo.setSiteDtail("詳細");
-		returnMessage = siteService.addSite(vo);
-		
-		System.out.println(returnMessage);
-		
-		logger.info("退出addSite()方法");
-		return "success";
-	}
 	
 	/**
-	 * 添加场地
+	 * 查找场地
 	 * @return
 	 * http://localhost:8080/OUMS/site/findSite
 	 */

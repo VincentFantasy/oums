@@ -7,9 +7,9 @@
 <title>site</title>
 </head>
 <body>
-	<a href="http://localhost:8080/OUMS/site/testAddSite.action">測試</a>
+	<a href="http://localhost:8080/OUMS/siteManager/testAddSite.action">測試</a>
 
-    <form action="http://localhost:8080/OUMS/site/addSite.action" method="post">
+    <form action="http://localhost:8080/OUMS/siteManager/addSite.action" method="post">
         场地名：<input name="site.siteName" type="text" /><br/>
         价格（小时）:<input name="site.siteCost" type="text" /><br/>
         场地类型:<select name="site.siteType">
@@ -28,6 +28,6 @@
                        场地名:<input name="site.siteName" type="text" /><br/>
         <input type="submit" value="查找" />
     </form>
-	
+    
 </body>
 </html>
