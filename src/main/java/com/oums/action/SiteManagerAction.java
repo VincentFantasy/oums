@@ -53,7 +53,7 @@ public class SiteManagerAction {
 	}
 
 	/**
-	 * 添加场地
+	 * 添加场地，费用填了字符串就会变成空值？
 	 * @return
 	 * http://localhost:8080/OUMS/siteManager/addSite
 	 */
@@ -92,6 +92,36 @@ public class SiteManagerAction {
 		returnMessage = siteManagerService.addSite(vo);
 		
 		logger.info("退出addSite()方法	" + returnMessage);
+		return "success";
+	}
+	
+	/**
+	 * 添加场地,需要提供场地的名字
+	 * @return
+	 * http://localhost:8080/OUMS/siteManager/deleteSite
+	 */
+	@Action(value="deleteSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String deleteSite() {
+		logger.info("进入deleteSite()方法");
+		
+		returnMessage = siteManagerService.deleteSite(site);
+		
+		logger.info("退出deleteSite()方法	" + returnMessage);
+		return "success";
+	}
+	
+	/**
+	 * 更新场地
+	 * @return
+	 * http://localhost:8080/OUMS/siteManager/updateSite
+	 */
+	@Action(value="updateSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String updateSite() {
+		logger.info("进入updateSite()方法");
+		
+		returnMessage = siteManagerService.updateSite(site);
+		
+		logger.info("退出updateSite()方法	" + returnMessage);
 		return "success";
 	}
 	

@@ -62,5 +62,20 @@ public class SiteAction {
 		logger.info("退出findSite方法	" + returnMessage);
 		return "success";
 	}
+	
+	/**
+	 * 根据场地类型查找场地
+	 * @return
+	 * http://localhost:8080/OUMS/site/findSite
+	 */
+	@Action(value="findSiteType", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findSiteType() {
+		logger.info("进入findSiteType()方法");
+		
+		
+		
+		logger.info("退出findSiteType()方法	" + returnMessage);
+		return "success";
+	}
 
 }

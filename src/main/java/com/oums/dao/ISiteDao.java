@@ -1,5 +1,7 @@
 package com.oums.dao;
 
+import java.util.List;
+
 import com.oums.bean.po.SitePo;
 
 /**
@@ -14,5 +16,12 @@ public interface ISiteDao {
 	 * @return
 	 */
 	SitePo findSitePoBySiteName(String siteName);
+	
+	/**
+	 * 根据场地类型获取场地
+	 * @param type
+	 * @return
+	 */
+	List<SitePo> findSitePoBySiteType(Integer type);
 	
 }

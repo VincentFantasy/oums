@@ -46,14 +46,61 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 
 	@Override
 	public ReturnMessage deleteSite(SiteVo vo) {
-		// TODO Auto-generated method stub
-		return null;
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());	
+			//不是真的删除
+			po.setIsDelete(true);
+			
+			baseDao.update(po);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("添加场地成功");
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("没有此场地或场地已删除");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("异常");
+		}
+		
+		return returnMessage;
 	}
 
 	@Override
 	public ReturnMessage updateSite(SiteVo vo) {
-		// TODO Auto-generated method stub
-		return null;
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{			
+			//获取到po,vo的id要为null
+			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());
+			vo.setSiteId(po.getSiteId());
+			vo.setIsUsing(po.getIsUsing());
+			vo.setIsDelete(po.getIsDelete());
+			BeanUtil.voToPo(vo, po);
+			
+			baseDao.update(po);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("添加场地成功");
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("没有此场地或场地已删除");
+		} catch(IllegalArgumentException e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("没有此场地或场地已删除");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("异常");
+		}
+		
+		return returnMessage;
 	}
 
 }
