@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @author 谭治
  *
  */
+@SuppressWarnings("serial")
 public class BasePo implements Serializable{
 
 }

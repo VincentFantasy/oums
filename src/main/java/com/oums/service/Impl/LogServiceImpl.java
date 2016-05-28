@@ -46,7 +46,6 @@ public class LogServiceImpl implements ILogService {
 		}
 		
 		String methodName = joinPoint.getSignature().getName();
-		List<Object> args = Arrays.asList(joinPoint.getArgs());
 
 		logger.error("The method " + methodName + " occurs excetion with : " + e);
 	}

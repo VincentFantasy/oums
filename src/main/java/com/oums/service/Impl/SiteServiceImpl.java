@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.SitePo;
-import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
 import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteService;
-import com.oums.util.BeanUtil;
 
 @Service("siteService")
 public class SiteServiceImpl implements ISiteService {	

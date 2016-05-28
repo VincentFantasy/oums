@@ -1,7 +1,5 @@
 package com.oums.action;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -9,7 +7,6 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
-import com.oums.bean.type.SiteType;
 import com.oums.bean.vo.SiteVo;
 import com.oums.service.ISiteService;
 
@@ -24,10 +21,7 @@ public class SiteAction {
 	
 	@Autowired
 	ISiteService siteService;
-	
-	/* 加载logger */
-	private static Logger logger = LogManager.getLogger(SiteAction.class.getName());
-	
+		
 	private SiteVo site;
 
 	public SiteVo getSite() {
@@ -54,13 +48,12 @@ public class SiteAction {
 	 * http://localhost:8080/OUMS/site/findSite
 	 */
 	@Action(value="findSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String findSite() {
-		logger.info("进入findSite()方法");
+	public String findSite() {		
 		
 		returnMessage = siteService.findSiteByName(site.getSiteName());
 		
-		logger.info("退出findSite方法	" + returnMessage);
 		return "success";
+	
 	}
 	
 	/**
@@ -69,12 +62,7 @@ public class SiteAction {
 	 * http://localhost:8080/OUMS/site/findSite
 	 */
 	@Action(value="findSiteType", results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String findSiteType() {
-		logger.info("进入findSiteType()方法");
-		
-		
-		
-		logger.info("退出findSiteType()方法	" + returnMessage);
+	public String findSiteType() {		
 		return "success";
 	}
 

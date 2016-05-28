@@ -1,7 +1,5 @@
 package com.oums.action;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -28,10 +26,7 @@ public class SiteManagerAction {
 	
 	@Autowired
 	ISiteManagerService siteManagerService;
-	
-	/* 加载logger */
-	private static Logger logger = LogManager.getLogger(SiteAction.class.getName());
-	
+		
 	private SiteVo site;
 
 	public SiteVo getSite() {
@@ -59,7 +54,6 @@ public class SiteManagerAction {
 	 */
 	@Action(value="addSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String addSite() {
-		logger.info("进入addSite()方法");
 		
 		//查看用戶名是否重複
 		returnMessage = siteService.findSiteByName(site.getSiteName());
@@ -71,7 +65,6 @@ public class SiteManagerAction {
 			returnMessage.setObject(null);
 		}
 		
-		logger.info("退出addSite()方法	" + returnMessage);
 		return "success";
 	}
 
@@ -82,7 +75,6 @@ public class SiteManagerAction {
 	 */
 	@Action(value="testAddSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String testAddSite() {
-		logger.info("进入addSite()方法");
 		
 		SiteVo vo = new SiteVo();
 		vo.setSiteName("球場1");
@@ -91,7 +83,6 @@ public class SiteManagerAction {
 		vo.setSiteDtail("詳細");
 		returnMessage = siteManagerService.addSite(vo);
 		
-		logger.info("退出addSite()方法	" + returnMessage);
 		return "success";
 	}
 	
@@ -102,11 +93,9 @@ public class SiteManagerAction {
 	 */
 	@Action(value="deleteSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String deleteSite() {
-		logger.info("进入deleteSite()方法");
 		
 		returnMessage = siteManagerService.deleteSite(site);
 		
-		logger.info("退出deleteSite()方法	" + returnMessage);
 		return "success";
 	}
 	
@@ -117,11 +106,9 @@ public class SiteManagerAction {
 	 */
 	@Action(value="updateSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String updateSite() {
-		logger.info("进入updateSite()方法");
 		
 		returnMessage = siteManagerService.updateSite(site);
 		
-		logger.info("退出updateSite()方法	" + returnMessage);
 		return "success";
 	}
 	

@@ -10,7 +10,7 @@ import com.oums.bean.po.BasePo;
 import com.oums.bean.vo.BaseVo;
 
 /**
- * Bean装换工具
+ * Bean装换工具，注意null值也会复制过去
  * @author 谭治
  *
  */

@@ -1,7 +1,5 @@
 package com.oums.action;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,6 @@ public class UserManagerAction {
 	@Autowired
 	IUserService userServer;
 	
-	/* 加载logger */
-	private static Logger logger = LogManager.getLogger(UserManagerAction.class.getName());
 	/* 可以这样获取参数，要有getset方法 */	
 	private UserVo user;
 

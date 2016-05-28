@@ -1,7 +1,5 @@
 package com.oums.action;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -23,8 +21,6 @@ public class UserAction {
 	@Autowired
 	IUserService userServer;
 	
-	/* 加载logger */
-	private static Logger logger = LogManager.getLogger(UserAction.class.getName());
 	/* 可以这样获取参数，要有getset方法 */	
 	private UserVo user;
 
@@ -53,14 +49,12 @@ public class UserAction {
 	 */
 	@Action(value="register")
 	public void register() {
-		logger.info("进入register()方法");		
 
 		returnMessage = userServer.addUser(user);    
         
 		//打印
 		System.out.println(returnMessage);
-		
-		logger.info("退出register()方法" + returnMessage);
+
 	}
 	
 }

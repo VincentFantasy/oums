@@ -6,5 +6,5 @@ package com.oums.bean.vo;
  *
  */
 public class BaseVo {
-	private static final long serialVersionUID = 1L;
+	
 }
