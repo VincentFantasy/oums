@@ -21,15 +21,15 @@
 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
 		<!-- 每60秒检查空闲 -->
 		<property name="idleConnectionTestPeriod" value="60" />
-		<!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->  
-		<property name="maxIdleTime" value="1800" />  
+		<!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime" value="1800" />
 		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
 		<property name="acquireIncrement" value="3" />
-		
+
 	</bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 
 		<property name="dataSource" ref="dataSource" />
 
@@ -41,19 +41,19 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-		
+
 		<property name="packagesToScan">
-            <list>
-                <value>com.oums.bean.po</value>
-            </list>
-        </property>
+			<list>
+				<value>com.oums.bean.po</value>
+			</list>
+		</property>
 
 		<!-- <property name="mappingLocations" -->
 		<!-- value="classpath:com/tz/spring/hibernate/entities/*.hbm.xml" /> -->
 	</bean>
 
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -63,24 +63,36 @@
 			<tx:method name="add*" />
 			<tx:method name="save*" />
 			<tx:method name="update*" />
-			<tx:method name="delete*" />		
+			<tx:method name="delete*" />
 			<tx:method name="purchase" propagation="REQUIRES_NEW" />
 			<tx:method name="*" />
 			<!-- 以如下关键字开头的方法不使用事物 -->
-            <tx:method name="get*" read-only="true" propagation="SUPPORTS" />
-            <tx:method name="find*" read-only="true" propagation="SUPPORTS" />
-            <tx:method name="load*" read-only="true" propagation="SUPPORTS" />
-            <tx:method name="search*" read-only="true" propagation="SUPPORTS" />
-            <tx:method name="datagrid*" read-only="true" propagation="SUPPORTS" />
-            <!-- 其他方法不使用事物 -->
-            <tx:method name="*" propagation="SUPPORTS" />
+			<tx:method name="get*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="find*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="load*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="search*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="datagrid*" read-only="true" propagation="SUPPORTS" />
+			<!-- 其他方法不使用事物 -->
+			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
 
 	<aop:config>
 		<aop:pointcut id="txPointcut"
-			expression="execution(* com.oums.server..*Impl.*(..))" />
+			expression="execution(* com.oums.service..*Impl.*(..))" />
+		<aop:pointcut id="LogPointcut"
+			expression="execution(* com.oums.service.*.*(..)) 
+        												or execution(* com.oums.dao.*.*(..))
+        												or execution(* com.oums.interceptor.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+
+		<!-- 配置日志的作用域 -->
+		<aop:aspect id="logpointcut" ref="logService">
+			<aop:before method="beforeMethod" pointcut-ref="LogPointcut" />
+			<aop:after method="afterMethod" pointcut-ref="LogPointcut" />
+			<aop:after-throwing method="afterThrowing" pointcut-ref="LogPointcut" throwing="e"/>
+			<aop:after-returning method="afterReturning" pointcut-ref="LogPointcut" returning="result"/>
+		</aop:aspect>
 	</aop:config>
 </beans>
 
