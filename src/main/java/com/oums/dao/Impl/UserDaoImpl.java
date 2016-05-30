@@ -13,18 +13,12 @@ public class UserDaoImpl implements IUserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	//要求用户名不重复
 	@Override
 	public UserPo getUserByName(String userName) {		
 		return (UserPo) sessionFactory.getCurrentSession()
-				.createQuery("from UserPo u where u.userName=:userName")
+				.createQuery("from UserPo u where u.userName=:userName and u.isDelete = false")
 				.setString("userName", userName)
 				.uniqueResult();
-	}
-
-	@Override
-	public void test() {
-		System.out.println("testDao");
 	}
 
 }

@@ -16,7 +16,7 @@ public class SiteType {
 	/* 桌球场 */
 	public final static Integer SITETYPE_TABLETENNI = 0x03;
 	
-	/* 桌球场 */
+	/* 篮球场 */
 	public final static Integer SITETYPE_BASKETBALL = 0x04;
 	
 	/* 网球场 */

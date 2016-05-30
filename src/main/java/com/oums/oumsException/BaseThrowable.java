@@ -5,26 +5,26 @@ package com.oums.oumsException;
  * @author 谭治
  *
  */
-public class BaseException extends Exception {
+public class BaseThrowable extends Throwable {
 
 	/**
     * 序列化ID
     */
     private static final long serialVersionUID = 1L;
 	
-    public BaseException() {
+    public BaseThrowable() {
         super();
     }
     
-    public BaseException(String msg) {
+    public BaseThrowable(String msg) {
         super(msg);
     }
     
-    public BaseException(String msg, Throwable cause) {
+    public BaseThrowable(String msg, Throwable cause) {
         super(msg, cause);
     }
     
-    public BaseException(Throwable cause) {
+    public BaseThrowable(Throwable cause) {
         super(cause);
     }
 }

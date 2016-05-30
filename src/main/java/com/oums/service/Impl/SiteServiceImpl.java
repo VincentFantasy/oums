@@ -7,7 +7,9 @@ import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
+import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteService;
+import com.oums.util.BeanUtil;
 
 @Service("siteService")
 public class SiteServiceImpl implements ISiteService {	
@@ -15,49 +17,31 @@ public class SiteServiceImpl implements ISiteService {
 	@Autowired
 	IBaseDao baseDao;
 	
-	@Override
-	public ReturnMessage addSite(SiteVo vo) {
-		ReturnMessage returnMessage = new ReturnMessage();
-		
-		try{
-			SitePo po = new SitePo();
-			//SiteName需要查重
-			po.setSiteName(vo.getSiteName());
-			po.setSiteType(vo.getSiteType());
-			po.setSiteCost(vo.getSiteCost());
-			po.setSiteDtail(vo.getSiteDtail());
-			po.setIsUsing(false);
-			po.setIsDelete(false);
-			
-			baseDao.add(po);
-			
-			returnMessage.setFlat(true);
-			returnMessage.setContent("添加场地成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnMessage.setFlat(false);
-			returnMessage.setContent("异常");
-		}
-		
-		return returnMessage;
-	}
-
-	@Override
-	public ReturnMessage deleteSite(SiteVo vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ReturnMessage updateSite(SiteVo vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@Autowired
+	ISiteDao siteDao;
 
 	@Override
 	public ReturnMessage findSiteByName(String siteName) {
-		// TODO Auto-generated method stub
-		return null;
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			SitePo po = siteDao.findSitePoBySiteName(siteName);
+			
+			if(po != null) {
+				returnMessage.setFlat(true);
+				returnMessage.setContent("查找成功");
+				returnMessage.setObject(po);
+			} else {
+				returnMessage.setFlat(false);
+				returnMessage.setContent("查找失敗 沒有此ID");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("查找失败" + e);
+		}
+		
+		return returnMessage;
 	}
 
 	@Override

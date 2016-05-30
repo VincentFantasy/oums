@@ -1,29 +1,18 @@
-package com.oums.bean.po;
+package com.oums.bean.vo;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.oums.bean.po.SitePo;
+import com.oums.bean.po.UserPo;
 
 /**
  * 订单表，需要加东西的说下
  * @author 谭治
  *
  */
-@Entity
-@Table(name="t_order")
-public class OrderPo extends BasePo {
-	
-	private static final long serialVersionUID = 1L;
-	
+public class OrderVo extends BaseVo {	
 	/* id */
 	private Integer orderId;
 	/* 订单号 */
@@ -48,8 +37,6 @@ public class OrderPo extends BasePo {
 //	private List<RacePo> raceList = new ArrayList<>();
 	/* 还要加管理员的Po */
 	
-	@Id
-	@GeneratedValue
 	public Integer getOrderId() {
 		return orderId;
 	}
@@ -103,15 +90,12 @@ public class OrderPo extends BasePo {
 	public void setTimeOut(Integer timeOut) {
 		this.timeOut = timeOut;
 	}
-	@OneToOne(optional=false, fetch=FetchType.LAZY)
-	@JoinColumn(name="userId",unique=true)
 	public UserPo getUser() {
 		return user;
 	}
 	public void setUser(UserPo user) {
 		this.user = user;
 	}
-	@OneToMany
 	public List<SitePo> getSiteList() {
 		return siteList;
 	}
@@ -124,7 +108,7 @@ public class OrderPo extends BasePo {
 				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", startTime=" + startTime + ", timeOut="
 				+ timeOut + ", isDelete=" + isDelete + ", user=" + user + ", siteList=" + siteList + "]";
 	}
-	public OrderPo() {
+	public OrderVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
