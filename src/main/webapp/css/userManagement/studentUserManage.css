@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+.box{
+	border:2px solid #000000;
+	width:600px;
+	height:450px;
+	margin:0 auto;
+}
+
+hr{
+	align: center;
+	height: 400px;
+	width: 2px;
+	color: #18cde7;
+}
