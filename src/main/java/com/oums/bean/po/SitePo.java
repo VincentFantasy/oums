@@ -25,7 +25,7 @@ public class SitePo extends BasePo {
 	/* 每小时费用 */
 	private Float siteCost;
 	/* 是否被占用 */
-	private Boolean isUsing;
+	private Integer itemState;
 	/* 是否被删除 */
 	private Boolean isDelete;
 	/* 场地描述或备注 */
@@ -37,8 +37,9 @@ public class SitePo extends BasePo {
 	@Override
 	public String toString() {
 		return "SitePo [siteId=" + siteId + ", siteName=" + siteName + ", siteType=" + siteType + ", siteCost="
-				+ siteCost + ", isUsing=" + isUsing + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
+				+ siteCost + ", itemState=" + itemState + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
 	}
+
 	@Column(nullable = false)
 	public String getSiteName() {
 		return siteName;
@@ -66,11 +67,11 @@ public class SitePo extends BasePo {
 	public void setSiteCost(Float siteCost) {
 		this.siteCost = siteCost;
 	}
-	public Boolean getIsUsing() {
-		return isUsing;
+	public Integer getItemState() {
+		return itemState;
 	}
-	public void setIsUsing(Boolean isUsing) {
-		this.isUsing = isUsing;
+	public void setItemState(Integer itemState) {
+		this.itemState = itemState;
 	}
 	public Boolean getIsDelete() {
 		return isDelete;

@@ -78,7 +78,7 @@ public class SiteManagerAction {
 		
 		SiteVo vo = new SiteVo();
 		vo.setSiteName("球場1");
-		vo.setSiteType(SiteType.SITETYPE_BADMINTON);
+		vo.setSiteType(SiteType.BADMINTON);
 		vo.setSiteCost(10.0f);
 		vo.setSiteDtail("詳細");
 		returnMessage = siteManagerService.addSite(vo);

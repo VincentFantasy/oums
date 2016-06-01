@@ -8,11 +8,11 @@ package com.oums.bean.type;
 public class OrderClass {
 	
 	/* 场地  */
-	public final static Integer ORDERCLASS_SITE = 0x01;
+	public final static Integer SITE = 0x01;
 	
 	/* 器材  */
-	public final static Integer ORDERCLASS_EQUIPMENT = 0x02;
+	public final static Integer EQUIPMENT = 0x02;
 	
 	/* 赛事  */
-	public final static Integer ORDERCLASS_RACE = 0x03;
+	public final static Integer RACE = 0x03;
 }

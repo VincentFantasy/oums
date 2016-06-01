@@ -15,17 +15,11 @@ public class SiteVo extends BaseVo{
 	/* 每小时费用 */
 	private Float siteCost;
 	/* 是否被占用 */
-	private Boolean isUsing;
+	private Integer itemState;
 	/* 是否被删除 */
 	private Boolean isDelete;
 	/* 场地描述或备注 */
 	private String siteDtail;
-	
-	@Override
-	public String toString() {
-		return "SiteVo [siteId=" + siteId + ", siteName=" + siteName + ", siteType=" + siteType + ", siteCost="
-				+ siteCost + ", isUsing=" + isUsing + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
-	}
 
 	public String getSiteName() {
 		return siteName;
@@ -59,12 +53,18 @@ public class SiteVo extends BaseVo{
 		this.siteCost = siteCost;
 	}
 
-	public Boolean getIsUsing() {
-		return isUsing;
+	@Override
+	public String toString() {
+		return "SiteVo [siteId=" + siteId + ", siteName=" + siteName + ", siteType=" + siteType + ", siteCost="
+				+ siteCost + ", itemState=" + itemState + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
 	}
 
-	public void setIsUsing(Boolean isUsing) {
-		this.isUsing = isUsing;
+	public Integer getItemState() {
+		return itemState;
+	}
+
+	public void setItemState(Integer itemState) {
+		this.itemState = itemState;
 	}
 
 	public Boolean getIsDelete() {

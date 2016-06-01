@@ -22,14 +22,7 @@ public class TestSiteService {
 	
 	@Test
 	public void test() {
-		SiteVo vo = new SiteVo();
-		vo.setSiteName("球場1");
-		vo.setSiteType(SiteType.SITETYPE_BADMINTON);
-		vo.setSiteCost(10.0f);
-		vo.setSiteDtail("詳細");
-		/*ReturnMessage returnMessage = siteService.addSite(vo);*/
 		
-		/*assertTrue(returnMessage.isFlat());*/
 	}
 	
 	@Test
@@ -38,7 +31,7 @@ public class TestSiteService {
 		vo.setSiteId(123);
 		vo.setSiteName("123");
 		vo.setIsDelete(false);
-		vo.setIsUsing(false);
+//		vo.setIsUsing(false);
 		vo.setSiteCost(123f);
 		vo.setSiteDtail("123");
 		vo.setSiteType(1);
@@ -65,7 +58,7 @@ public class TestSiteService {
 		vo.setSiteId(123);
 		vo.setSiteName("123");
 		vo.setIsDelete(false);
-		vo.setIsUsing(false);
+//		vo.setIsUsing(false);
 		vo.setSiteCost(123f);
 		vo.setSiteDtail("123");
 		vo.setSiteType(1);
@@ -82,7 +75,7 @@ public class TestSiteService {
 		po.setSiteId(123);
 		po.setSiteName("123");
 		po.setIsDelete(false);
-		po.setIsUsing(false);
+//		po.setIsUsing(false);
 		po.setSiteCost(123f);
 		po.setSiteDtail("123");
 		po.setSiteType(1);

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.SitePo;
+import com.oums.bean.type.ItemState;
 import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
 import com.oums.dao.ISiteDao;
@@ -29,7 +30,7 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			SitePo po = new SitePo();		
 			BeanUtil.voToPo(vo, po);
 			//設置某些屬性為false
-			po.setIsUsing(false);
+			po.setItemState(ItemState.FREE);
 			po.setIsDelete(false);
 			baseDao.add(po);
 			
@@ -78,7 +79,7 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			//获取到po,vo的id要为null
 			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());
 			vo.setSiteId(po.getSiteId());
-			vo.setIsUsing(po.getIsUsing());
+			vo.setItemState(po.getItemState());
 			vo.setIsDelete(po.getIsDelete());
 			BeanUtil.voToPo(vo, po);
 			
