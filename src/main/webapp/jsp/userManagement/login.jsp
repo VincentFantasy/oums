@@ -27,9 +27,9 @@
 	         style="background-color: #dedef8;
 	         box-shadow: inset 1px -1px 1px #444, 
 	         inset -1px 1px 1px #444;">
-			<form action="studentLogin.action" method="post">
-				用户名：<input id="username" name="studentUserVo.studentNumber" type="text" /><br /> 
-				密码：<input id="password" name="studentUserVo.password" type="text" /><br /> 
+			<form action="../../user/userLogin.action" method="post">
+				证件号：<input id="certificateNumber" name="userVo.certificateNumber" type="text" /><br /> 
+				密码：<input id="password" name="userVo.password" type="text" /><br /> 
 				<tr>
 					<td>
 						<input name="RadioButtonList1" tabindex="4" id="RadioButtonList1_0" type="radio" value="student">

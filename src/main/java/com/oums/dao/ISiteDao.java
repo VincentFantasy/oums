@@ -22,6 +22,6 @@ public interface ISiteDao {
 	 * @param type
 	 * @return
 	 */
-	List<SitePo> findSitePoBySiteType(Integer type);
+	List<SitePo> findSitePoBySiteType(int type);
 	
 }

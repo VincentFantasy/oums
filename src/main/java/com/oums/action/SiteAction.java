@@ -62,8 +62,12 @@ public class SiteAction {
 	 * http://localhost:8080/OUMS/site/findSite
 	 */
 	@Action(value="findSiteType", results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String findSiteType() {		
+	public String findSiteType() {
+		
+		returnMessage = siteService.findSiteByType(site.getSiteType());
+		
 		return "success";
 	}
 
+	
 }

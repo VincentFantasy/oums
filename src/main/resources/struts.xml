@@ -40,9 +40,7 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		
-		
-		
+				
 		<!-- 改变系统默认的拦截器,改成自己的默认拦截器,并且一个系统只能有一个默认的拦截器,这样这个拦截器栈会默认应用到所有的Action上去 -->
        	<default-interceptor-ref name="myStack" />
 	</package>

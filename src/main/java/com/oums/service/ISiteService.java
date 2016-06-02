@@ -21,4 +21,10 @@ public interface ISiteService {
 	 */
 	ReturnMessage updataSiteUsingByName(String siteName);
 	
+	/**
+	 * 根据类型返回场地
+	 * @param siteType
+	 * @return
+	 */
+	ReturnMessage findSiteByType(int siteType);
 }

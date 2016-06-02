@@ -23,10 +23,14 @@ public class SiteDaoImpl implements ISiteDao {
 				.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<SitePo> findSitePoBySiteType(Integer type) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<SitePo> findSitePoBySiteType(int type) {
+		List<SitePo> list = sessionFactory.getCurrentSession()
+				.createQuery("from SitePo s where s.siteType = :siteType and s.isDelete = false")
+				.setInteger("siteType", type)
+				.list();
+		return list;
 	}
 
 }

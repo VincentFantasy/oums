@@ -32,7 +32,6 @@ public class SitePo extends BasePo {
 	private String siteDtail;
 	public SitePo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {

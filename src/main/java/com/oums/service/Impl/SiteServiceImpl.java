@@ -1,5 +1,7 @@
 package com.oums.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +46,27 @@ public class SiteServiceImpl implements ISiteService {
 
 	@Override
 	public ReturnMessage updataSiteUsingByName(String siteName) {
-		// TODO Auto-generated method stub
+				
 		return null;
+	}
+
+	@Override
+	public ReturnMessage findSiteByType(int siteType) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			List<SitePo> pos = siteDao.findSitePoBySiteType(siteType);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("查找成功");
+			returnMessage.setObject(pos);
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("查找失败");
+		}
+		
+		return returnMessage;
 	}
 
 }
