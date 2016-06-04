@@ -112,4 +112,17 @@ public class SiteManagerAction {
 		return "success";
 	}
 	
+	/**
+	 * 更改场地类型
+	 * @return
+	 * http://localhost:8080/OUMS/siteManager/updateSiteType
+	 */
+	@Action(value="updateSiteType", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String updateSiteType() {
+		
+		returnMessage = siteManagerService.updateSiteType(site);
+		
+		return "success";
+	}
+	
 }

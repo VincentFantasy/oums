@@ -62,7 +62,19 @@
         <input type="submit" value="类型查找" />
     </form>
     
+    <br>
     
+    <form action="../../siteManager/updateSiteType.action" method="post">
+       	场地名：<input name="site.siteName" type="text" />
+                      场地类型:<select name="site.itemState">
+                    <option value="111">正在被使用</option>
+                    <option value="222">空闲</option>
+                    <option value="333">维修</option>
+                    <option value="444">教学使用</option>
+                    <option value="555">暂停使用</option>
+                </select><br/>
+        <input type="submit" value="改变" />
+    </form>
     
 </body>
 </html>

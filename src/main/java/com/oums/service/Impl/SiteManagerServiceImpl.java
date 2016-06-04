@@ -98,7 +98,33 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnMessage.setFlat(false);
-			returnMessage.setContent("异常");
+			returnMessage.setContent("更新异常");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage updateSiteType(SiteVo vo) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());
+			po.setItemState(vo.getItemState());
+			
+			baseDao.update(po);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+			
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("没有此场地");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("更新异常");
 		}
 		
 		return returnMessage;

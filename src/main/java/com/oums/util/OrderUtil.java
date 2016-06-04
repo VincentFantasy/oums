@@ -33,7 +33,7 @@ public class OrderUtil {
 	 * 生成4位数据数
 	 * @return
 	 */
-	public static int createRandomNumber() {
+	private static int createRandomNumber() {
 		int num = (int) (Math.random() * 9000 + 1000);
 		return num;
 	}

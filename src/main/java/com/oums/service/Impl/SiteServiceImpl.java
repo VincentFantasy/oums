@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
+import com.oums.bean.vo.OrderVo;
 import com.oums.dao.IBaseDao;
 import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteService;
+import com.oums.util.BeanUtil;
 
 @Service("siteService")
 public class SiteServiceImpl implements ISiteService {	
@@ -45,12 +48,6 @@ public class SiteServiceImpl implements ISiteService {
 	}
 
 	@Override
-	public ReturnMessage updataSiteUsingByName(String siteName) {
-				
-		return null;
-	}
-
-	@Override
 	public ReturnMessage findSiteByType(int siteType) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
@@ -64,6 +61,33 @@ public class SiteServiceImpl implements ISiteService {
 			e.printStackTrace();
 			returnMessage.setFlat(false);
 			returnMessage.setContent("查找失败");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage addSiteOrder(OrderVo vo) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			OrderPo po = new OrderPo();
+			BeanUtil.voToPo(vo, po);
+//			po.setOrderNumber(OrderUtil.createOrderNumber());
+//			po.setBuildTime(buildTime);
+//			po.setOrderClass(OrderClass.SITE);
+//			po.setOrderType(OrderType.NOPAY);
+//			po.setIsDelete(false);
+			
+			baseDao.add(po);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("发生异常， 操作失败");
 		}
 		
 		return returnMessage;

@@ -22,9 +22,15 @@ public interface ISiteManagerService {
 	ReturnMessage deleteSite(SiteVo vo);
 	
 	/**
-	 * 更新场地
+	 * 更新场地信息
 	 * @return
 	 */
 	ReturnMessage updateSite(SiteVo vo);
-		
+	
+	/**
+	 * 改变场地状态
+	 * @param vo
+	 * @return
+	 */
+	ReturnMessage updateSiteType(SiteVo vo);
 }

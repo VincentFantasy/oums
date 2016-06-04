@@ -7,8 +7,14 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.type.OrderClass;
+import com.oums.bean.type.OrderType;
+import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
+import com.oums.bean.vo.UserVo;
 import com.oums.service.ISiteService;
+import com.oums.service.IUserService;
+import com.oums.util.OrderUtil;
 
 /**
  * 
@@ -21,8 +27,25 @@ public class SiteAction {
 	
 	@Autowired
 	ISiteService siteService;
+	
+	@Autowired
+	IUserService userService;
 		
 	private SiteVo site;
+	
+	private ReturnMessage returnMessage;
+		
+	private OrderVo order;
+	
+	private UserVo user;
+
+	public UserVo getUser() {
+		return user;
+	}
+
+	public void setUser(UserVo user) {
+		this.user = user;
+	}
 
 	public SiteVo getSite() {
 		return site;
@@ -30,9 +53,7 @@ public class SiteAction {
 
 	public void setSite(SiteVo site) {
 		this.site = site;
-	}
-	
-	private ReturnMessage returnMessage;
+	}	
 	
 	public ReturnMessage getReturnMessage() {
 		return returnMessage;
@@ -41,7 +62,15 @@ public class SiteAction {
 	public void setReturnMessage(ReturnMessage returnMessage) {
 		this.returnMessage = returnMessage;
 	}
-	
+
+	public OrderVo getOrder() {
+		return order;
+	}
+
+	public void setOrder(OrderVo order) {
+		this.order = order;
+	}
+
 	/**
 	 * 查找场地
 	 * @return
@@ -68,6 +97,28 @@ public class SiteAction {
 		
 		return "success";
 	}
-
+	
+	
+	/**
+	 * 新的场地订单
+	 * @return
+	 * http://localhost:8080/OUMS/site/findSite
+	 */
+	@Action(value="newSiteOrder", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String newSiteOrder() {
+		
+		order.setOrderNumber(OrderUtil.createOrderNumber());
+		order.setIsDelete(false);
+		order.setOrderType(OrderType.NOPAY);
+		order.setOrderClass(OrderClass.SITE);
+		
+		//设置用户
+//		
+//		order.setUser((UserPo) userService.findUserByName(user).getObejt());
+		
+		returnMessage = siteService.addSiteOrder(order);
+		
+		return "success";
+	}
 	
 }
