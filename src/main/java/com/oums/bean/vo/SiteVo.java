@@ -14,12 +14,12 @@ public class SiteVo extends BaseVo{
 	private Integer siteType;
 	/* 每小时费用 */
 	private Float siteCost;
-	/* 是否被占用 */
-	private Integer itemState;
 	/* 是否被删除 */
 	private Boolean isDelete;
 	/* 场地描述或备注 */
 	private String siteDtail;
+	/* 一周时间表 */
+	private WeekVo weekVo;
 
 	public String getSiteName() {
 		return siteName;
@@ -56,15 +56,15 @@ public class SiteVo extends BaseVo{
 	@Override
 	public String toString() {
 		return "SiteVo [siteId=" + siteId + ", siteName=" + siteName + ", siteType=" + siteType + ", siteCost="
-				+ siteCost + ", itemState=" + itemState + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
+				+ siteCost + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + ", weekVo=" + weekVo + "]";
 	}
 
-	public Integer getItemState() {
-		return itemState;
+	public WeekVo getWeekVo() {
+		return weekVo;
 	}
 
-	public void setItemState(Integer itemState) {
-		this.itemState = itemState;
+	public void setWeekVo(WeekVo weekVo) {
+		this.weekVo = weekVo;
 	}
 
 	public Boolean getIsDelete() {

@@ -68,11 +68,11 @@ public class SiteManagerAction {
 		return "success";
 	}
 
-	/**
+/*	*//**
 	 * 添加场地
 	 * @return
 	 * http://localhost:8080/OUMS/siteManager/testAddSite
-	 */
+	 *//*
 	@Action(value="testAddSite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String testAddSite() {
 		
@@ -84,7 +84,7 @@ public class SiteManagerAction {
 		returnMessage = siteManagerService.addSite(vo);
 		
 		return "success";
-	}
+	}*/
 	
 	/**
 	 * 添加场地,需要提供场地的名字

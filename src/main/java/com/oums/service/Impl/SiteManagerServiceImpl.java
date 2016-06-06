@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.SitePo;
+import com.oums.bean.po.WeekPo;
 import com.oums.bean.type.ItemState;
 import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
@@ -30,8 +31,9 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			SitePo po = new SitePo();		
 			BeanUtil.voToPo(vo, po);
 			//設置某些屬性為false
-			po.setItemState(ItemState.FREE);
+			WeekPo week = new WeekPo(ItemState.FREE);
 			po.setIsDelete(false);
+			po.setWeek(week);
 			baseDao.add(po);
 			
 			returnMessage.setFlat(true);
@@ -79,7 +81,6 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			//获取到po,vo的id要为null
 			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());
 			vo.setSiteId(po.getSiteId());
-			vo.setItemState(po.getItemState());
 			vo.setIsDelete(po.getIsDelete());
 			BeanUtil.voToPo(vo, po);
 			
@@ -108,9 +109,8 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 	public ReturnMessage updateSiteType(SiteVo vo) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
-		try{
+		/*try{
 			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());
-			po.setItemState(vo.getItemState());
 			
 			baseDao.update(po);
 			
@@ -125,7 +125,7 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			e.printStackTrace();
 			returnMessage.setFlat(false);
 			returnMessage.setContent("更新异常");
-		}
+		}*/
 		
 		return returnMessage;
 	}

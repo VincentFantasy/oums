@@ -1,9 +1,13 @@
 package com.oums.bean.po;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,19 +28,27 @@ public class SitePo extends BasePo {
 	private Integer siteType;
 	/* 每小时费用 */
 	private Float siteCost;
-	/* 是否被占用 */
-	private Integer itemState;
 	/* 是否被删除 */
 	private Boolean isDelete;
 	/* 场地描述或备注 */
 	private String siteDtail;
+	/* 一周安排  */
+	private WeekPo week;
+	@OneToOne(optional=false, cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
+	@JoinColumn(name="weekId",unique=true)
+	public WeekPo getWeek() {
+		return week;
+	}
+	public void setWeek(WeekPo week) {
+		this.week = week;
+	}
 	public SitePo() {
 		super();
 	}
 	@Override
 	public String toString() {
 		return "SitePo [siteId=" + siteId + ", siteName=" + siteName + ", siteType=" + siteType + ", siteCost="
-				+ siteCost + ", itemState=" + itemState + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + "]";
+				+ siteCost + ", isDelete=" + isDelete + ", siteDtail=" + siteDtail + ", week=" + week + "]";
 	}
 
 	@Column(nullable = false)
@@ -65,12 +77,6 @@ public class SitePo extends BasePo {
 	}
 	public void setSiteCost(Float siteCost) {
 		this.siteCost = siteCost;
-	}
-	public Integer getItemState() {
-		return itemState;
-	}
-	public void setItemState(Integer itemState) {
-		this.itemState = itemState;
 	}
 	public Boolean getIsDelete() {
 		return isDelete;
