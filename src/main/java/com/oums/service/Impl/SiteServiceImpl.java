@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
+import com.oums.bean.po.WeekPo;
 import com.oums.bean.vo.OrderVo;
+import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
 import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteService;
@@ -88,6 +90,26 @@ public class SiteServiceImpl implements ISiteService {
 			e.printStackTrace();
 			returnMessage.setFlat(false);
 			returnMessage.setContent("发生异常， 操作失败");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage findWeekBySite(SiteVo vo) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			SitePo site = siteDao.findSitePoBySiteName(vo.getSiteName());
+			WeekPo week = site.getWeek();
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+			returnMessage.setObject(week);
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setContent("查找失败");
+			returnMessage.setFlat(false);
 		}
 		
 		return returnMessage;

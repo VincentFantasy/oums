@@ -121,4 +121,17 @@ public class SiteAction {
 		return "success";
 	}
 	
+	/**
+	 * 更加场地名查找场地的周表
+	 * @return
+	 * http://localhost:8080/OUMS/site/findWeekBySite
+	 */
+	@Action(value="findWeekBySite", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findWeekBySite() {
+		
+		returnMessage = siteService.findWeekBySite(site);
+		
+		return "success";
+	}
+	
 }

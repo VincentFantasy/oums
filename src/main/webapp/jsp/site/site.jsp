@@ -75,6 +75,11 @@
                 </select><br/>
         <input type="submit" value="改变" />
     </form>
-    
+    <br/>
+    <form action="../../site/findWeekBySite.action" method="post">
+       	场地名：<input name="site.siteName" type="text" />         
+        <input type="submit" value="查找周表" />
+    </form>
+    <br/>
 </body>
 </html>
