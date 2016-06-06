@@ -12,5 +12,6 @@ import com.oums.bean.vo.UserVo;
 public interface IUserService {
 	public ReturnMessage login(UserVo UserVo);
 	
+	public ReturnMessage getUserPoByCerNum(String cerNum);
 
 }

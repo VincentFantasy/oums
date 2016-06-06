@@ -21,21 +21,37 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public ReturnMessage login(UserVo userVo){
 		ReturnMessage returnMessage = new ReturnMessage();
-		UserPo stdPo = userDao.getUserByCerNum(userVo.getCertificateNumber());
+
+		UserPo userPo = userDao.getUserByCerNum(userVo.getCertificateNumber());
 		
-		if(stdPo == null){
+		if(userPo == null || userPo.getIsDelete() == true){
 			returnMessage.setFlat(false);
 			returnMessage.setContent("该用户不存在");
 			return returnMessage;
 		}
 		
-		if(stdPo.getPassword() == userVo.getPassword()){
+		if(userPo.getPassword() == userVo.getPassword()){
 			returnMessage.setFlat(true);
 		}else{
 			returnMessage.setFlat(false);
 			returnMessage.setContent("密码错误");
 		}
 
+		return returnMessage;
+	}
+	
+	@Override
+	public ReturnMessage getUserPoByCerNum(String cerNum){
+		UserPo userPo = userDao.getUserByCerNum(cerNum);
+		ReturnMessage returnMessage = new ReturnMessage();
+		if(userPo == null || userPo.getIsDelete() == true){
+			returnMessage.setFlat(false);
+			returnMessage.setContent("该用户不存在");
+			return returnMessage;
+		}
+		returnMessage.setFlat(true);
+		returnMessage.setObject(userPo);
+		
 		return returnMessage;
 	}
 	

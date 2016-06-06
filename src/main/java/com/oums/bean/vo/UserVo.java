@@ -5,8 +5,7 @@ import java.util.Date;
 public class UserVo {
 
 		private Integer userId;
-		// 用户名
-		private String userName;
+
 		// 密码
 		private String password;
 		// 真实姓名
@@ -22,23 +21,19 @@ public class UserVo {
 		// 是否删除
 		private Boolean isDelete;
 
-		@Override
-		public String toString() {
-			return "UserVo [userId=" + userId + ", userName=" + userName + ", password=" + password + ", realName="
-					+ realName + ", IDCardNumber=" + IDCardNumber + ", certificateNumber=" + certificateNumber + ", phone=" + phone
-					+ ", lastLoginTime=" + lastLoginTime + ", isDelete=" + isDelete + "]";
-		}
+
 		public Integer getUserId() {
 			return userId;
 		}
 		public void setUserId(Integer userId) {
 			this.userId = userId;
 		}
-		public String getUserName() {
-			return userName;
-		}
-		public void setUserName(String userName) {
-			this.userName = userName;
+
+    	@Override
+		public String toString() {
+			return "UserVo [userId=" + userId + ", password=" + password + ", realName=" + realName + ", IDCardNumber="
+					+ IDCardNumber + ", certificateNumber=" + certificateNumber + ", phone=" + phone
+					+ ", lastLoginTime=" + lastLoginTime + ", isDelete=" + isDelete + "]";
 		}
 		public String getPassword() {
 			return password;
