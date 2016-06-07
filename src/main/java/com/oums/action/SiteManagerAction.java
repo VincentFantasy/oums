@@ -7,8 +7,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
-import com.oums.bean.type.SiteType;
+import com.oums.bean.vo.DayVo;
 import com.oums.bean.vo.SiteVo;
+import com.oums.bean.vo.WeekVo;
 import com.oums.service.ISiteManagerService;
 import com.oums.service.ISiteService;
 
@@ -28,6 +29,28 @@ public class SiteManagerAction {
 	ISiteManagerService siteManagerService;
 		
 	private SiteVo site;
+	
+	private WeekVo week;
+	
+	private DayVo day;
+
+	private ReturnMessage returnMessage;
+		
+	public DayVo getDay() {
+		return day;
+	}
+
+	public void setDay(DayVo day) {
+		this.day = day;
+	}
+	
+	public WeekVo getWeek() {
+		return week;
+	}
+
+	public void setWeek(WeekVo week) {
+		this.week = week;
+	}
 
 	public SiteVo getSite() {
 		return site;
@@ -36,9 +59,7 @@ public class SiteManagerAction {
 	public void setSite(SiteVo site) {
 		this.site = site;
 	}
-	
-	private ReturnMessage returnMessage;
-	
+
 	public ReturnMessage getReturnMessage() {
 		return returnMessage;
 	}
@@ -120,7 +141,7 @@ public class SiteManagerAction {
 	@Action(value="updateSiteType", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String updateSiteType() {
 		
-		returnMessage = siteManagerService.updateSiteType(site);
+		returnMessage = siteManagerService.updateSiteType(site, week, day);
 		
 		return "success";
 	}

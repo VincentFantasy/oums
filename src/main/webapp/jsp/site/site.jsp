@@ -66,7 +66,16 @@
     
     <form action="../../siteManager/updateSiteType.action" method="post">
        	场地名：<input name="site.siteName" type="text" />
-                      场地类型:<select name="site.itemState">
+       	星期:<select name="day.dayOfWeek">
+                    <option value="0">星期天</option>
+                    <option value="1">星期一</option>
+                    <option value="2">星期二</option>
+                    <option value="3">星期三</option>
+                    <option value="4">星期四</option>
+                    <option value="5">星期五</option>
+                    <option value="6">星期六</option>
+                </select><br/>
+                      场地状态:<select name="day.time1">
                     <option value="111">正在被使用</option>
                     <option value="222">空闲</option>
                     <option value="333">维修</option>
