@@ -69,18 +69,14 @@ public class SiteServiceImpl implements ISiteService {
 	}
 
 	@Override
-	public ReturnMessage addSiteOrder(OrderVo vo) {
+	public ReturnMessage addSiteOrder(OrderVo vo, SitePo sitePo) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
 		try{
 			OrderPo po = new OrderPo();
 			BeanUtil.voToPo(vo, po);
-//			po.setOrderNumber(OrderUtil.createOrderNumber());
-//			po.setBuildTime(buildTime);
-//			po.setOrderClass(OrderClass.SITE);
-//			po.setOrderType(OrderType.NOPAY);
-//			po.setIsDelete(false);
 			
+			baseDao.update(sitePo);
 			baseDao.add(po);
 			
 			returnMessage.setFlat(true);

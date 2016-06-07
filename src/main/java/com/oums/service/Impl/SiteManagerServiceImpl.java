@@ -83,8 +83,8 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 		try{			
 			//获取到po,vo的id要为null
 			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());
-			vo.setSiteId(po.getSiteId());
-			vo.setIsDelete(po.getIsDelete());
+//			vo.setSiteId(po.getSiteId());
+//			vo.setIsDelete(po.getIsDelete());
 			BeanUtil.voToPo(vo, po);
 			
 			baseDao.update(po);

@@ -1,6 +1,7 @@
 package com.oums.service;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.po.SitePo;
 import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
 
@@ -28,7 +29,7 @@ public interface ISiteService {
 	 * 预约场地
 	 * @return
 	 */
-	ReturnMessage addSiteOrder(OrderVo vo);
+	ReturnMessage addSiteOrder(OrderVo vo, SitePo sitePo);
 	
 	/**
 	 * 查找此场地的周表

@@ -81,6 +81,7 @@
                     <option value="333">维修</option>
                     <option value="444">教学使用</option>
                     <option value="555">暂停使用</option>
+                    <option value="666">被预约</option>
                 </select><br/>
         <input type="submit" value="改变" />
     </form>
@@ -88,6 +89,29 @@
     <form action="../../site/findWeekBySite.action" method="post">
        	场地名：<input name="site.siteName" type="text" />         
         <input type="submit" value="查找周表" />
+    </form>
+    <br/>
+    <form action="../../site/newSiteOrder.action" method="post">
+       	场地名：<input name="site.siteName" type="text" /> 
+       	用户名：<input name="user.certificateNumber" type="text" />
+       	星期:<select name="dayOfWeek">
+                    <option value="0">星期天</option>
+                    <option value="1">星期一</option>
+                    <option value="2">星期二</option>
+                    <option value="3">星期三</option>
+                    <option value="4">星期四</option>
+                    <option value="5">星期五</option>
+                    <option value="6">星期六</option>
+                </select><br/>
+                         时间段：<select name="timeInDay">
+                    <option value="0">8:00 - 9:50</option>
+                    <option value="1">10:00 - 11:50</option>
+                    <option value="2">12:00 - 13:50</option>
+                    <option value="3">14:00 - 15:50</option>
+                    <option value="4">16:00 - 17:50</option>
+                    <option value="5">18:00 - 19:50</option>
+                </select><br/>
+        <input type="submit" value="预约" />
     </form>
     <br/>
 </body>

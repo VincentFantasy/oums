@@ -21,4 +21,7 @@ public class ItemState {
 	
 	/* 暂停使用 */
 	public final static int CLOSEING = 555;
+	
+	/* 被预约 */
+	public final static int ORDERED = 666;
 }

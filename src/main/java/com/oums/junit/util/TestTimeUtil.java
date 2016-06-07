@@ -2,6 +2,8 @@ package com.oums.junit.util;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+
 import org.junit.Test;
 
 import com.oums.util.OrderUtil;
@@ -14,4 +16,11 @@ public class TestTimeUtil {
 		System.out.println(TimeUtil.dayOfWeek());
 	}
 
+	@Test
+	public void testNowTime() {
+		
+		System.out.println(TimeUtil.getNowTime());
+		
+	}
+	
 }
