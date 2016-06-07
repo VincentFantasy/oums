@@ -23,10 +23,6 @@ public class OrderVo extends BaseVo {
 	private Integer orderType;
 	/* 订单生成时间 */
 	private Date buildTime;
-	/* 预定开始时间 */
-	private Date startTime;
-	/* 时长 (小时) */
-	private Integer timeOut;
 	/* 是否删除  */
 	private Boolean isDelete;
 	/* 用户 */
@@ -78,18 +74,6 @@ public class OrderVo extends BaseVo {
 	public void setBuildTime(Date buildTime) {
 		this.buildTime = buildTime;
 	}
-	public Date getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-	public Integer getTimeOut() {
-		return timeOut;
-	}
-	public void setTimeOut(Integer timeOut) {
-		this.timeOut = timeOut;
-	}
 	public UserPo getUser() {
 		return user;
 	}
@@ -104,9 +88,9 @@ public class OrderVo extends BaseVo {
 	}
 	@Override
 	public String toString() {
-		return "OrderPo [orderId=" + orderId + ", orderNumber=" + orderNumber + ", orderClass=" + orderClass
-				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", startTime=" + startTime + ", timeOut="
-				+ timeOut + ", isDelete=" + isDelete + ", user=" + user + ", siteList=" + siteList + "]";
+		return "OrderVo [orderId=" + orderId + ", orderNumber=" + orderNumber + ", orderClass=" + orderClass
+				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", isDelete=" + isDelete + ", user=" + user
+				+ ", siteList=" + siteList + "]";
 	}
 	public OrderVo() {
 		super();
