@@ -1,7 +1,9 @@
 package com.oums.service;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.vo.AdminUserVo;
 import com.oums.bean.vo.DayVo;
+import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.bean.vo.WeekVo;
 
@@ -35,4 +37,19 @@ public interface ISiteManagerService {
 	 * @return
 	 */
 	ReturnMessage updateSiteType(SiteVo vo, WeekVo weekVo, DayVo dayVo);
+	
+	/**
+	 * 获取全部场地的信息
+	 * @return
+	 */
+	ReturnMessage findAllOrderForSite();
+	
+	/**
+	 * 根据订单号改变订单状态
+	 * @param vo
+	 * @param adminUserVo
+	 * @param state
+	 * @return
+	 */
+	ReturnMessage updateSiteOrderStateByNumber(OrderVo vo, AdminUserVo adminUserVo, int state);
 }

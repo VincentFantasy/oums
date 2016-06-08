@@ -7,6 +7,7 @@ import com.oums.bean.po.UserPo;
 import com.oums.bean.vo.UserVo;
 import com.oums.dao.IUserDao;
 import com.oums.service.IUserService;
+import com.oums.util.BeanUtil;
 /**
  * 
  * @author Ou
@@ -52,6 +53,33 @@ public class UserServiceImpl implements IUserService{
 		returnMessage.setFlat(true);
 		returnMessage.setObject(userPo);
 		
+		return returnMessage;
+	}
+	
+	public ReturnMessage regist(UserVo userVo){
+		ReturnMessage returnMessage = new ReturnMessage();
+		//检查是否已经存在
+		UserPo testPo = userDao.getUserByCerNum(userVo.getCertificateNumber());
+		if(testPo != null){
+			returnMessage.setFlat(false);
+			returnMessage.setContent("existed");
+			System.out.println("regist: user already existed!");
+			return returnMessage;
+		}
+		
+		UserPo userPo = new UserPo();
+		BeanUtil.voToPo(userVo, userPo);
+		try{
+			userDao.userRegist(userPo);
+		}catch(Exception e){
+			returnMessage.setFlat(false);
+			returnMessage.setContent("failed");
+			System.out.println("regist: failed!");
+			return returnMessage;
+		}
+		returnMessage.setFlat(true);
+		returnMessage.setContent("succeed");
+		System.out.println("regist: succeed!");
 		return returnMessage;
 	}
 	

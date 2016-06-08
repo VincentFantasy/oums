@@ -114,5 +114,14 @@
         <input type="submit" value="预约" />
     </form>
     <br/>
+    <form action="../../siteManager/findAllSiteOrder.action" method="post">       
+        <input type="submit" value="查找所有的场地的订单" />
+    </form>
+    <br/>
+    <form action="../../site/findUserSiteOrder.action" method="post">
+    	用户名（证件号）：<input name="user.certificateNumber" type="text" />
+        <input type="submit" value="查找所有的场地的订单" />
+    </form>
+    <br/>
 </body>
 </html>

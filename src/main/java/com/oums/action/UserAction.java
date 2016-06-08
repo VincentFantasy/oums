@@ -48,12 +48,25 @@ public class UserAction {
 	 * 
 	 */
 	@Action(value="userLogin", results={@Result(name = "success", location = "/jsp/userManagement/userHome.jsp"), @Result(name = "fail", location = "/jsp/userManagement/login.jsp")})	
-	public String studentLogin() {
+	public String userLogin() {
 		returnMessage = userService.login(userVo);
 		if(returnMessage.isFlat()){
 			return "success";
 		}
 		System.out.println(UserAction.class.getName() + "fail");
 			return "fail";
+	}
+	
+
+	public String userRegist() {
+		returnMessage = userService.regist(userVo);
+		if(returnMessage.isFlat()){
+			return "success";
+		}else if(returnMessage.getContent().equals("existed")){
+			return "existed";
+		}else{
+			return "fail";
+		}
+		
 	}
 }

@@ -2,6 +2,7 @@ package com.oums.service;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.SitePo;
+import com.oums.bean.po.UserPo;
 import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
 
@@ -37,4 +38,10 @@ public interface ISiteService {
 	 * @return
 	 */
 	ReturnMessage findWeekBySite(SiteVo vo);
+	
+	/**
+	 * 查找自己的场地订单
+	 * @return
+	 */
+	ReturnMessage findUserOrder(UserPo user);
 }

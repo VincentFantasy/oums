@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
+import com.oums.bean.po.UserPo;
 import com.oums.bean.po.WeekPo;
+import com.oums.bean.type.OrderClass;
 import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.dao.IBaseDao;
+import com.oums.dao.IOrderDao;
 import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteService;
 import com.oums.util.BeanUtil;
@@ -24,6 +27,9 @@ public class SiteServiceImpl implements ISiteService {
 	
 	@Autowired
 	ISiteDao siteDao;
+	
+	@Autowired
+	IOrderDao orderDao;
 
 	@Override
 	public ReturnMessage findSiteByName(String siteName) {
@@ -102,10 +108,33 @@ public class SiteServiceImpl implements ISiteService {
 			returnMessage.setFlat(true);
 			returnMessage.setContent("操作成功");
 			returnMessage.setObject(week);
+		} catch(NullPointerException e){
+			e.printStackTrace();
+			returnMessage.setContent("没有此场地");
+			returnMessage.setFlat(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnMessage.setContent("查找失败");
 			returnMessage.setFlat(false);
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage findUserOrder(UserPo user) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			List<OrderPo> orders = orderDao.findOrderByUserAndClass(user.getUserId(), OrderClass.SITE);
+			
+			returnMessage.setObject(orders);
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("查询异常");
 		}
 		
 		return returnMessage;

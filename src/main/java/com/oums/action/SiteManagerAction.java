@@ -146,4 +146,16 @@ public class SiteManagerAction {
 		return "success";
 	}
 	
+	 /** 
+	  * 查询全部场地订单
+	 * @return
+	 * http://localhost:8080/OUMS/siteManager/findAllSiteOrder
+	 */
+	@Action(value="findAllSiteOrder", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findAllSiteOrder() {
+		
+		returnMessage = siteManagerService.findAllOrderForSite();
+		
+		return "success";
+	}
 }

@@ -182,4 +182,24 @@ public class SiteAction {
 		return "success";
 	}
 
+	/**
+	 * 更加场地名查找场地的周表
+	 * 
+	 * @return http://localhost:8080/OUMS/site/findWeekBySite
+	 */
+	@Action(value = "findUserSiteOrder", results = {
+			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
+	public String findUserSiteOrder() {
+
+		//查找出用户
+		returnMessage = userService.getUserPoByCerNum(user.getCertificateNumber());
+		
+		if(returnMessage.isFlat()) {
+			UserPo userPo = (UserPo) returnMessage.getObject();
+			returnMessage = siteService.findUserOrder(userPo);
+		}
+		
+		return "success";
+	}
+	
 }

@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script src="../../js/jquery-2.2.3.min.js"></script>
-	<script src="../../bootstrap-3.3.5/js/bootstrap.min.js"></script>
-	<link href="../../bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script src="../../js/bootstrap.min.js"></script>
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/userManagement/studentHome.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>

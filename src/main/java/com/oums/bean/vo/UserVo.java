@@ -2,7 +2,7 @@ package com.oums.bean.vo;
 
 import java.util.Date;
 
-public class UserVo {
+public class UserVo extends BaseVo{
 
 		private Integer userId;
 

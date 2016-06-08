@@ -10,8 +10,9 @@ import com.oums.bean.vo.UserVo;
  * service for studentUser login, 
  */
 public interface IUserService {
-	public ReturnMessage login(UserVo UserVo);
+	abstract ReturnMessage login(UserVo UserVo);
 	
-	public ReturnMessage getUserPoByCerNum(String cerNum);
+	abstract ReturnMessage getUserPoByCerNum(String cerNum);
 
+	abstract ReturnMessage regist(UserVo userVo);
 }

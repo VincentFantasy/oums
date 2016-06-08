@@ -1,17 +1,24 @@
 package com.oums.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.DayPo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.WeekPo;
 import com.oums.bean.type.ItemState;
+import com.oums.bean.type.OrderClass;
+import com.oums.bean.vo.AdminUserVo;
 import com.oums.bean.vo.DayVo;
+import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.bean.vo.WeekVo;
 import com.oums.dao.IBaseDao;
+import com.oums.dao.IOrderDao;
 import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteManagerService;
 import com.oums.util.BeanUtil;
@@ -24,6 +31,9 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 	
 	@Autowired
 	ISiteDao siteDao;
+	
+	@Autowired
+	IOrderDao orderDao;
 	
 	@Override
 	public ReturnMessage addSite(SiteVo vo) {
@@ -158,6 +168,46 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			e.printStackTrace();
 			returnMessage.setFlat(false);
 			returnMessage.setContent("更新异常");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage findAllOrderForSite() {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			List<OrderPo> orders = orderDao.findOrderByClass(OrderClass.SITE);
+			returnMessage.setObject(orders);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("操作异常");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage updateSiteOrderStateByNumber(OrderVo vo, AdminUserVo adminUserVo, int state) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			OrderPo po = orderDao.findOrderByNumber(vo.getOrderNumber());
+			//设置最后操作管理员
+			po.setOrderType(state);
+			baseDao.update(po);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作异常");
 		}
 		
 		return returnMessage;
