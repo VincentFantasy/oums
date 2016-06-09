@@ -111,6 +111,7 @@
                     <option value="4">16:00 - 17:50</option>
                     <option value="5">18:00 - 19:50</option>
                 </select><br/>
+             备注：   <textarea name="order.remark" rows="5" cols="10"></textarea>
         <input type="submit" value="预约" />
     </form>
     <br/>
@@ -121,6 +122,28 @@
     <form action="../../site/findUserSiteOrder.action" method="post">
     	用户名（证件号）：<input name="user.certificateNumber" type="text" />
         <input type="submit" value="查找所有的场地的订单" />
+    </form>
+    <br/>
+    <form action="../../siteManager/findSiteOrderByType.action" method="post">
+    	订单状态:<select name="order.orderType">
+                    <option value="1">未付款</option>
+                    <option value="2">等待确认</option>
+                    <option value="3">已确认</option>
+                    <option value="4">已取消</option>
+                    <option value="5">已退款</option>
+                    <option value="6">已拒绝</option>
+                </select><br/>
+        <input type="submit" value="查找订单" />
+    </form>
+    <br/>
+     <form action="../../site/payOrder.action" method="post">
+    	订单号：<input name="order.orderNumber" type="text" />
+        <input type="submit" value="付款" />
+    </form>
+    <br/>
+    <form action="../../site/cancelOrder.action" method="post">
+    	订单号：<input name="order.orderNumber" type="text" />
+        <input type="submit" value="取消订单" />
     </form>
     <br/>
 </body>

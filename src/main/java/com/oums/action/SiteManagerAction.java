@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.vo.DayVo;
+import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.bean.vo.WeekVo;
 import com.oums.service.ISiteManagerService;
@@ -35,7 +36,17 @@ public class SiteManagerAction {
 	private DayVo day;
 
 	private ReturnMessage returnMessage;
-		
+	
+	private OrderVo order;
+	
+	public OrderVo getOrder() {
+		return order;
+	}
+
+	public void setOrder(OrderVo order) {
+		this.order = order;
+	}
+
 	public DayVo getDay() {
 		return day;
 	}
@@ -154,7 +165,20 @@ public class SiteManagerAction {
 	@Action(value="findAllSiteOrder", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String findAllSiteOrder() {
 		
-		returnMessage = siteManagerService.findAllOrderForSite();
+		returnMessage = siteManagerService.findAllSiteOrder();
+		
+		return "success";
+	}
+
+	 /** 
+	  * 按类型查询场地订单
+	 * @return
+	 * http://localhost:8080/OUMS/siteManager/findSiteOrderByType
+	 */
+	@Action(value="findSiteOrderByType", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findSiteOrderByType() {
+		
+		returnMessage = siteManagerService.findSiteOrderByType(order);
 		
 		return "success";
 	}

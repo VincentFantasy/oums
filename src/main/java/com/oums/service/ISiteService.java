@@ -1,6 +1,7 @@
 package com.oums.service;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.UserPo;
 import com.oums.bean.vo.OrderVo;
@@ -40,8 +41,15 @@ public interface ISiteService {
 	ReturnMessage findWeekBySite(SiteVo vo);
 	
 	/**
-	 * 查找自己的场地订单
+	 * 查找 用户自己的订单
+	 * @param user
 	 * @return
 	 */
 	ReturnMessage findUserOrder(UserPo user);
+	
+	/**
+	 * 改变场地订单状态，如付款，取消等
+	 * @return
+	 */
+	ReturnMessage updateSiteOrder(OrderPo po);
 }

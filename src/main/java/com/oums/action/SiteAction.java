@@ -7,6 +7,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.UserPo;
 import com.oums.bean.type.ItemState;
@@ -15,6 +16,7 @@ import com.oums.bean.type.OrderType;
 import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
 import com.oums.bean.vo.UserVo;
+import com.oums.service.IOrderService;
 import com.oums.service.ISiteService;
 import com.oums.service.IUserService;
 import com.oums.util.OrderUtil;
@@ -34,6 +36,9 @@ public class SiteAction {
 
 	@Autowired
 	IUserService userService;
+
+	@Autowired
+	IOrderService orderService;
 
 	private int dayOfWeek;
 
@@ -191,15 +196,70 @@ public class SiteAction {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String findUserSiteOrder() {
 
-		//查找出用户
+		// 查找出用户
 		returnMessage = userService.getUserPoByCerNum(user.getCertificateNumber());
-		
-		if(returnMessage.isFlat()) {
+
+		if (returnMessage.isFlat()) {
 			UserPo userPo = (UserPo) returnMessage.getObject();
 			returnMessage = siteService.findUserOrder(userPo);
 		}
-		
+
 		return "success";
 	}
-	
+
+	/**
+	 * 付款
+	 * 
+	 * @return http://localhost:8080/OUMS/site/payOrder
+	 */
+	@Action(value = "payOrder", results = {
+			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
+	public String payOrder() {
+		// 獲取訂單
+		returnMessage = orderService.findOrderByNumber(order);
+
+		if (returnMessage.isFlat()) {
+			OrderPo po = (OrderPo) returnMessage.getObject();
+			if (po.getOrderType() == OrderType.NOPAY) {
+				// 设为等待确认状态
+				po.setOrderType(OrderType.WAITSURE);
+				returnMessage = siteService.updateSiteOrder(po);
+			} else {
+				returnMessage.setObject(null);
+				returnMessage.setFlat(false);
+				returnMessage.setContent("订单状态不是等待付款");
+			}
+		}
+
+		return "success";
+	}
+
+	/**
+	 * 付款
+	 * 
+	 * @return http://localhost:8080/OUMS/site/cancelOrder
+	 */
+	@Action(value = "cancelOrder", results = {
+			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
+	public String cancelOrder() {
+
+		// 獲取訂單
+		returnMessage = orderService.findOrderByNumber(order);
+
+		if (returnMessage.isFlat()) {
+			OrderPo po = (OrderPo) returnMessage.getObject();
+			if (po.getOrderType() == OrderType.NOPAY) {
+				// 设为取消状态
+				po.setOrderType(OrderType.CANCEL);
+				returnMessage = siteService.updateSiteOrder(po);
+			} else {
+				returnMessage.setObject(null);
+				returnMessage.setFlat(false);
+				returnMessage.setContent("订单状态不是等待付款");
+			}
+		} 
+
+		return "success";
+	}
+
 }

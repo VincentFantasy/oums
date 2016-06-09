@@ -23,6 +23,20 @@ public interface IOrderDao {
 	List<OrderPo> findOrderByClass(int orderClass);
 	
 	/**
+	 * 根据订单状态获取订单
+	 * @param orderType
+	 * @return
+	 */
+	List<OrderPo> findOrderByType(int orderType);
+	
+	/**
+	 * 根据订单状态获取订单
+	 * @param orderType
+	 * @return
+	 */
+	List<OrderPo> findOrderByTypeAndClass(int orderType, int orderClass);
+	
+	/**
 	 * 按用户查找订单
 	 * @param orderClass
 	 * @return

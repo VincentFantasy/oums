@@ -25,6 +25,10 @@ public class OrderVo extends BaseVo {
 	private Date buildTime;
 	/* 是否删除  */
 	private Boolean isDelete;
+	/* 备注 */
+	private String remark;
+	/* 回复 */
+	private String reply;
 	/* 用户 */
 	private UserPo user;
 	/* 场地 */
@@ -37,6 +41,22 @@ public class OrderVo extends BaseVo {
 		return orderId;
 	}
 	
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getReply() {
+		return reply;
+	}
+
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+
 	public Integer getOrderClass() {
 		return orderClass;
 	}
@@ -89,12 +109,11 @@ public class OrderVo extends BaseVo {
 	@Override
 	public String toString() {
 		return "OrderVo [orderId=" + orderId + ", orderNumber=" + orderNumber + ", orderClass=" + orderClass
-				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", isDelete=" + isDelete + ", user=" + user
-				+ ", siteList=" + siteList + "]";
+				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", isDelete=" + isDelete + ", remark="
+				+ remark + ", reply=" + reply + ", user=" + user + ", siteList=" + siteList + "]";
 	}
 	public OrderVo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 }

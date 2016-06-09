@@ -1,7 +1,6 @@
 package com.oums.service.Impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -174,7 +173,7 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 	}
 
 	@Override
-	public ReturnMessage findAllOrderForSite() {
+	public ReturnMessage findAllSiteOrder() {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
 		try{
@@ -207,6 +206,26 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnMessage.setFlat(true);
+			returnMessage.setContent("操作异常");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage findSiteOrderByType(OrderVo vo) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			
+			List<OrderPo> orders = orderDao.findOrderByTypeAndClass(vo.getOrderType(), OrderClass.SITE);
+			
+			returnMessage.setObject(orders);
+			returnMessage.setFlat(true);
+			returnMessage.setContent("查询成功");
+		} catch(Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
 			returnMessage.setContent("操作异常");
 		}
 		

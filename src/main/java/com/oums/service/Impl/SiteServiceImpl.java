@@ -140,4 +140,22 @@ public class SiteServiceImpl implements ISiteService {
 		return returnMessage;
 	}
 
+	@Override
+	public ReturnMessage updateSiteOrder(OrderPo po) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			baseDao.update(po);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("查询异常");
+		}
+		
+		return returnMessage;
+	}
+
 }

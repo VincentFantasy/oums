@@ -43,4 +43,23 @@ public class OrderDaoImpl implements IOrderDao {
 				.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderPo> findOrderByType(int orderType) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("from OrderPo o where o.orderType = :orderType and o.isDelete = false")
+				.setInteger("orderType", orderType)
+				.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderPo> findOrderByTypeAndClass(int orderType, int orderClass) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("from OrderPo o where o.orderType = :orderType and o.orderClass = :orderClass and o.isDelete = false")
+				.setInteger("orderType", orderType)
+				.setInteger("orderClass", orderClass)
+				.list();
+	}
+
 }

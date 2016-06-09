@@ -42,7 +42,7 @@ public interface ISiteManagerService {
 	 * 获取全部场地的信息
 	 * @return
 	 */
-	ReturnMessage findAllOrderForSite();
+	ReturnMessage findAllSiteOrder();
 	
 	/**
 	 * 根据订单号改变订单状态
@@ -52,4 +52,11 @@ public interface ISiteManagerService {
 	 * @return
 	 */
 	ReturnMessage updateSiteOrderStateByNumber(OrderVo vo, AdminUserVo adminUserVo, int state);
+	
+	/**
+	 * 根据订单状态获取订单
+	 * @param vo
+	 * @return
+	 */
+	ReturnMessage findSiteOrderByType(OrderVo vo);
 }
