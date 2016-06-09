@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.UserPo;
+import com.oums.junit.BaseUnit;
 import com.oums.service.IUserService;
-import com.oums.service.Impl.UserServiceImpl;
 
-public class UserServiceTest {
+public class UserServiceTest extends BaseUnit{
+	@Autowired
 	IUserService userService;
 	@Before
 	public void before(){
-		 userService = new UserServiceImpl();
 	}
 	
 	@Test
