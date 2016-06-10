@@ -27,7 +27,7 @@ public class UserServiceImpl implements IUserService{
 		
 		if(userPo == null || userPo.getIsDelete() == true){
 			returnMessage.setFlat(false);
-			returnMessage.setContent("该用户不存在");
+			returnMessage.setContent("user does not exist");
 			return returnMessage;
 		}
 		
@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService{
 			returnMessage.setFlat(true);
 		}else{
 			returnMessage.setFlat(false);
-			returnMessage.setContent("密码错误");
+			returnMessage.setContent("password error");
 		}
 
 		return returnMessage;
@@ -47,7 +47,7 @@ public class UserServiceImpl implements IUserService{
 		ReturnMessage returnMessage = new ReturnMessage();
 		if(userPo == null || userPo.getIsDelete() == true){
 			returnMessage.setFlat(false);
-			returnMessage.setContent("该用户不存在");
+			returnMessage.setContent("user does not exist");
 			return returnMessage;
 		}
 		returnMessage.setFlat(true);
@@ -58,12 +58,11 @@ public class UserServiceImpl implements IUserService{
 	
 	public ReturnMessage regist(UserVo userVo){
 		ReturnMessage returnMessage = new ReturnMessage();
-		//检查是否已经存在
+		//check exist
 		UserPo testPo = userDao.getUserByCerNum(userVo.getCertificateNumber());
 		if(testPo != null){
 			returnMessage.setFlat(false);
-			returnMessage.setContent("existed");
-			System.out.println("regist: user already existed!");
+			returnMessage.setContent("user already exists");
 			return returnMessage;
 		}
 		
@@ -74,12 +73,10 @@ public class UserServiceImpl implements IUserService{
 		}catch(Exception e){
 			returnMessage.setFlat(false);
 			returnMessage.setContent("failed");
-			System.out.println("regist: failed!");
 			return returnMessage;
 		}
 		returnMessage.setFlat(true);
 		returnMessage.setContent("succeed");
-		System.out.println("regist: succeed!");
 		return returnMessage;
 	}
 	

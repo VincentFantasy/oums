@@ -5,9 +5,9 @@ import com.oums.bean.vo.UserVo;
 
 
 /**
- * 
- * @author Ou
- * service for studentUser login, 
+ * user service
+ * @author Zhenghui Ou
+ *  
  */
 public interface IUserService {
 	/**

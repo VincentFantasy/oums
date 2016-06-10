@@ -2,10 +2,8 @@ package com.oums.bean.vo;
 
 import java.util.Date;
 
-public class AdminUserVo {
+public class AdminUserVo extends BaseVo{
 	private Integer userId;
-//	// 用户名
-//	private String userName;
 	// 密码
 	private String password;
 	// 真实姓名
@@ -21,12 +19,12 @@ public class AdminUserVo {
 	// 是否删除
 	private Boolean isDelete;
 	//权限
-	private String permission;
+	private int permission;
 	
-	public String getPermission() {
+	public int getPermission() {
 		return permission;
 	}
-	public void setPermission(String permission) {
+	public void setPermission(int permission) {
 		this.permission = permission;
 	}
 	public AdminUserVo(String employeeNumber, String password) {
@@ -50,12 +48,6 @@ public class AdminUserVo {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-//	public String getUserName() {
-//		return userName;
-//	}
-//	public void setUserName(String userName) {
-//		this.userName = userName;
-//	}
 	public String getPassword() {
 		return password;
 	}

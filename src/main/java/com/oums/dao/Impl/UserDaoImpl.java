@@ -30,11 +30,4 @@ public class UserDaoImpl implements IUserDao{
 		tran.commit();	
 	}
 	
-//	public UserPo getUserByUsername(String username){
-//		Session session = sessionFactory.openSession();
-//		Query query = session.createQuery("from UserPo u where u.realName=:userName");
-//		query.setString("userName", username);
-//		
-//	}
-
 }
