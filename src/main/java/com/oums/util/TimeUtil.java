@@ -47,8 +47,10 @@ public class TimeUtil {
 	 * @param day
 	 * @param time
 	 * @param itemState
+	 * @param reitemState 原来状态为这个就才返回true
 	 */
-	public static SitePo changeSiteDayOfWeekState(SitePo sitePo, int day, int time, int itemState) {
+	public static boolean changeSiteDayOfWeekState(SitePo sitePo, int day, int time, int itemState, int reItemState) {
+		int timeInDay = -1;
 		DayPo dayPo = null;
 		WeekPo weekPo = sitePo.getWeek();
 		
@@ -81,21 +83,27 @@ public class TimeUtil {
 		
 		switch (time) {
 		case 0:
+			timeInDay = dayPo.getTime0();
 			dayPo.setTime0(itemState);
 			break;
 		case 1:
+			timeInDay = dayPo.getTime1();
 			dayPo.setTime1(itemState);
 			break;
 		case 2:
+			timeInDay = dayPo.getTime2();
 			dayPo.setTime2(itemState);
 			break;
 		case 3:
+			timeInDay = dayPo.getTime3();
 			dayPo.setTime3(itemState);
 			break;
 		case 4:
+			timeInDay = dayPo.getTime4();
 			dayPo.setTime4(itemState);
 			break;
 		case 5:
+			timeInDay = dayPo.getTime5();
 			dayPo.setTime5(itemState);
 			break;
 
@@ -103,7 +111,10 @@ public class TimeUtil {
 			break;
 		}
 		
-		return sitePo;
+		if(timeInDay == reItemState)
+			return true;
+		else
+			return false;
 	}
 	
 }

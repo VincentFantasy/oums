@@ -137,8 +137,7 @@ public class SiteAction {
 	@Action(value = "newSiteOrder", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String newSiteOrder() {
-
-		order = new OrderVo();
+		// order = new OrderVo();
 		order.setOrderNumber(OrderUtil.createOrderNumber());
 		order.setIsDelete(false);
 		order.setOrderType(OrderType.NOPAY);
@@ -156,14 +155,19 @@ public class SiteAction {
 			if (returnMessage.isFlat()) {
 				SitePo sitePo = (SitePo) returnMessage.getObject();
 
-				// 改变场地周表状态
+				// 判断时间范围且改变场地周表状态
 				if (dayOfWeek < 7 && dayOfWeek > -1 && timeInDay < 6 && timeInDay > -1) {
-					sitePo = TimeUtil.changeSiteDayOfWeekState(sitePo, dayOfWeek, timeInDay, ItemState.ORDERED);
+					if(TimeUtil.changeSiteDayOfWeekState(sitePo, dayOfWeek, timeInDay, ItemState.ORDERED, ItemState.FREE)){
 					order.getSiteList().add(sitePo);
-
 					// 添加场地
 					returnMessage = siteService.addSiteOrder(order, sitePo);
+					}else{
+						returnMessage.setObject(null);
+						returnMessage.setFlat(false);
+						returnMessage.setContent("此场地不是空闲状态");
+					}
 				} else {
+					returnMessage.setObject(null);
 					returnMessage.setFlat(false);
 					returnMessage.setContent("时间范围不对");
 				}
@@ -257,7 +261,7 @@ public class SiteAction {
 				returnMessage.setFlat(false);
 				returnMessage.setContent("订单状态不是等待付款");
 			}
-		} 
+		}
 
 		return "success";
 	}

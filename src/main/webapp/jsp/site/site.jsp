@@ -146,5 +146,17 @@
         <input type="submit" value="取消订单" />
     </form>
     <br/>
+    <form action="../../siteManager/sureSiteOrder.action" method="post">
+    	订单号：<input name="order.orderNumber" type="text" />
+    	管理员号:<input name="adminUser.employeeNumber" type="text" />
+        <input type="submit" value="确认" />
+    </form>
+    <br/>
+    <form action="../../siteManager/rejectOrder.action" method="post">
+    	订单号：<input name="order.orderNumber" type="text" />
+    	管理员号:<input name="adminUser.employeeNumber" type="text" />
+        <input type="submit" value="拒绝" />
+    </form>
+    <br/>
 </body>
 </html>

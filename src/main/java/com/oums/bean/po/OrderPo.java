@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -42,11 +43,23 @@ public class OrderPo extends BasePo {
 	private String reply;
 	/* 用户 */
 	private UserPo user;
+	/* 操作的管理员 */
+	private AdminUserPo adminUser;
 	/* 场地 */
 	private List<SitePo> siteList = new ArrayList<>();
 	/* 赛事 */
 //	private List<RacePo> raceList = new ArrayList<>();
 	/* 还要加管理员的Po */
+	
+	@ManyToOne(optional=true, fetch=FetchType.LAZY)
+	@JoinColumn(name="adminUserId")
+	public AdminUserPo getAdminUser() {
+		return adminUser;
+	}
+
+	public void setAdminUser(AdminUserPo adminUser) {
+		this.adminUser = adminUser;
+	}
 	
 	public String getRemark() {
 		return remark;
@@ -126,7 +139,8 @@ public class OrderPo extends BasePo {
 	public String toString() {
 		return "OrderPo [orderId=" + orderId + ", orderNumber=" + orderNumber + ", orderClass=" + orderClass
 				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", isDelete=" + isDelete + ", remark="
-				+ remark + ", reply=" + reply + ", user=" + user + ", siteList=" + siteList + "]";
+				+ remark + ", reply=" + reply + ", user=" + user + ", adminUser=" + adminUser + ", siteList=" + siteList
+				+ "]";
 	}
 	public OrderPo() {
 		super();

@@ -1,7 +1,8 @@
 package com.oums.service;
 
 import com.oums.bean.ReturnMessage;
-import com.oums.bean.vo.AdminUserVo;
+import com.oums.bean.po.AdminUserPo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.vo.DayVo;
 import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
@@ -45,13 +46,12 @@ public interface ISiteManagerService {
 	ReturnMessage findAllSiteOrder();
 	
 	/**
-	 * 根据订单号改变订单状态
-	 * @param vo
+	 * 更新场地订单的状态，设置最后操作管理员
 	 * @param adminUserVo
 	 * @param state
 	 * @return
 	 */
-	ReturnMessage updateSiteOrderStateByNumber(OrderVo vo, AdminUserVo adminUserVo, int state);
+	ReturnMessage updateSiteOrderType(OrderPo po, AdminUserPo adminUserPo);
 	
 	/**
 	 * 根据订单状态获取订单

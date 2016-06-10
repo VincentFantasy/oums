@@ -1,17 +1,18 @@
 package com.oums.service.Impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.po.DayPo;
 import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.WeekPo;
 import com.oums.bean.type.ItemState;
 import com.oums.bean.type.OrderClass;
-import com.oums.bean.vo.AdminUserVo;
 import com.oums.bean.vo.DayVo;
 import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
@@ -192,13 +193,12 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 	}
 
 	@Override
-	public ReturnMessage updateSiteOrderStateByNumber(OrderVo vo, AdminUserVo adminUserVo, int state) {
+	public ReturnMessage updateSiteOrderType(OrderPo po, AdminUserPo adminUserPo) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
 		try{
-			OrderPo po = orderDao.findOrderByNumber(vo.getOrderNumber());
 			//设置最后操作管理员
-			po.setOrderType(state);
+			po.setAdminUser(adminUserPo);
 			baseDao.update(po);
 			
 			returnMessage.setFlat(true);
