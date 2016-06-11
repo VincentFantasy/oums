@@ -24,9 +24,15 @@ public interface IUserService {
 	abstract ReturnMessage getUserPoByCerNum(String cerNum);
 
 	/**
-	 * regist service
+	 * register service
 	 * @param userVo
 	 * @return
 	 */
 	abstract ReturnMessage regist(UserVo userVo);
+	/**
+	 * users modify password of themselves
+	 * @param uservo
+	 * @return
+	 */
+	abstract ReturnMessage modifyPassword(String oldPassword, String newPassword, String cerNum);
 }

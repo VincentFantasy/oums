@@ -1,12 +1,14 @@
 package com.oums.junit.userManagement;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
+import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.type.AdminUserType;
 import com.oums.bean.vo.AdminUserVo;
 import com.oums.junit.BaseUnit;
@@ -35,5 +37,15 @@ public class AdminServiceTest extends BaseUnit{
 		
 		returnMessage = adminService.regist(adminVo);
 		assertEquals(returnMessage.isFlat(),true);
+	}
+	
+	@Test
+	public void modifyPasswordTest(){
+		AdminUserPo adminPo = (AdminUserPo)adminService.getAdminPoByEmplNum("10001").getObject();
+		assertEquals(adminPo.getPassword(),"1234");
+		ReturnMessage returnMessage = adminService.modifyPassword("1234", "12345", "10001");
+		assertTrue(returnMessage.isFlat());
+		adminPo = (AdminUserPo)adminService.getAdminPoByEmplNum("10001").getObject();
+		assertEquals(adminPo.getPassword(),"12345");
 	}
 }

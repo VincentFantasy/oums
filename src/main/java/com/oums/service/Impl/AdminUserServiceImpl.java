@@ -46,6 +46,10 @@ public class AdminUserServiceImpl implements IAdminUserService {
 			case AdminUserType.SUPER_ADMIN_USER:
 				returnMessage.setContent("SUPER_ADMIN_USER");
 				return returnMessage;
+			default:
+				returnMessage.setFlat(false);
+				returnMessage.setContent("unknowed type of admin user");
+				return returnMessage;
 			}
 		}else{
 			returnMessage.setFlat(false);
@@ -93,6 +97,30 @@ public class AdminUserServiceImpl implements IAdminUserService {
 		returnMessage.setFlat(true);
 		returnMessage.setContent("succeed");
 		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage modifyPassword(String oldPassword, String newPassword, String emplNum) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		AdminUserPo adminPo = adminDao.getAdminByEmplNum(emplNum);
+		if (adminPo == null){
+			returnMessage.setFlat(false);
+			return returnMessage;
+		}
+		if(oldPassword.equals(adminPo.getPassword())){
+			adminPo.setPassword(newPassword);
+			adminDao.modifyPassword(adminPo);
+		}
+		adminPo = adminDao.getAdminByEmplNum(emplNum);
+		if(adminPo.getPassword() == newPassword){
+			returnMessage.setFlat(true);
+			returnMessage.setContent("modify succeed");
+			return returnMessage;
+		}else{
+			returnMessage.setFlat(false);
+			returnMessage.setContent("modify failed");
+			return returnMessage;
+		}
 	}
 
 }

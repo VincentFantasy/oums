@@ -79,5 +79,31 @@ public class UserServiceImpl implements IUserService{
 		returnMessage.setContent("succeed");
 		return returnMessage;
 	}
+
+	@Override
+	public ReturnMessage modifyPassword(String oldPassword, String newPassword, String cerNum){
+		ReturnMessage returnMessage = new ReturnMessage();
+		UserPo userPo = userDao.getUserByCerNum(cerNum);
+		if (userPo == null){
+			returnMessage.setFlat(false);
+			return returnMessage;
+		}
+		if(oldPassword.equals(userPo.getPassword())){
+			userPo.setPassword(newPassword);
+			userDao.modifyPassword(userPo);
+		}
+		userPo = userDao.getUserByCerNum(cerNum);
+		if(userPo.getPassword() == newPassword){
+			returnMessage.setFlat(true);
+			returnMessage.setContent("modify succeed");
+			return returnMessage;
+		}else{
+			returnMessage.setFlat(false);
+			returnMessage.setContent("modify failed");
+			return returnMessage;
+		}
+	}
+	
+	
 	
 }

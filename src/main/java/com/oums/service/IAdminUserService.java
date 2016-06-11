@@ -24,9 +24,18 @@ public interface IAdminUserService {
 	 */
 	abstract ReturnMessage getAdminPoByEmplNum(String emplNum);
 	/**
-	 * regist service
+	 * register service
 	 * @param adminUserPo
 	 * @return
 	 */
 	abstract ReturnMessage regist(AdminUserVo adminVo);
+	/**
+	 * admin modify password of themselves
+	 * @param oldPassword
+	 * @param newPassword
+	 * @param emplNum
+	 * @return
+	 */
+	abstract ReturnMessage modifyPassword(String oldPassword, String newPassword, String emplNum);
+
 }

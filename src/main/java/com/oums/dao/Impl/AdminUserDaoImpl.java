@@ -18,7 +18,7 @@ public class AdminUserDaoImpl implements IAdminUserDao {
 	private SessionFactory sessionFactory;
 	@Override
 	public AdminUserPo getAdminByEmplNum(String emplNum) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from AdminUserPo u where u.employeeNumber=:emplNum");
 		query.setString("emplNum",emplNum);
 		return (AdminUserPo)query.uniqueResult();
@@ -26,11 +26,19 @@ public class AdminUserDaoImpl implements IAdminUserDao {
 
 	@Override
 	public void userRegist(AdminUserPo adminPo) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Transaction tran = session.beginTransaction();
 		session.save(adminPo);
 		tran.commit();
 		
+	}
+
+	@Override
+	public void modifyPassword(AdminUserPo adminPo) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tran = session.beginTransaction();
+		session.update(adminPo);
+		tran.commit();
 	}
 
 }

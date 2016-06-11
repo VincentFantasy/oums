@@ -30,4 +30,14 @@ public class UserServiceTest extends BaseUnit{
 		assertEquals(userPo2, null);
 	}
 	
+	@Test
+	public void modifyPasswordTest(){
+		UserPo userPo1 = (UserPo)userService.getUserPoByCerNum("201311911217").getObject();
+		assertEquals(userPo1.getPassword(),"1234abcd");
+		ReturnMessage returnMessage = userService.modifyPassword("1234abcd", "12345", "201311911217");
+		assertTrue(returnMessage.isFlat());
+		userPo1 = (UserPo)userService.getUserPoByCerNum("201311911217").getObject();
+		assertEquals(userPo1.getPassword(),"12345");
+	}
+	
 }
