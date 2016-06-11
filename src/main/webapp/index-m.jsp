@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>海大体育馆管理系统</title>
+	<title>海大体育馆管理系统-管理员版</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 </head>
 
@@ -29,8 +29,10 @@
 					<li><a href="index.jsp" class="active"><span>首页</span></a></li>
 					<li><a href="jsp/site/site.jsp"><span>场地</span></a>
 						<ul>
-							<li><a href="#">预约场地</a></li>
 							<li><a href="jsp/site/checksite.html">查看场地</a></li>
+							<li><a href="#">添加场地</a></li>
+							<li><a href="#">删除场地</a></li>
+							<li><a href="#">更改场地</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>器材</span></a>

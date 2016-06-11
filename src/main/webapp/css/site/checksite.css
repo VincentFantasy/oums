@@ -1,0 +1,48 @@
+/* searchsite */
+#searchsite{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+}
+
+.site-button{
+    width: 80px;
+    height: 20px;
+    background: url("../../images/button.jpg");
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}
+/* ---------------------------------------------------------------------------- */
+
+/* searchsite */
+#sitelist{
+    border: 1px solid;
+    width: 100%;
+    height: 600px;
+}
+/* ---------------------------------------------------------------------------- */
+
+/* main-footer */
+#main-footer{
+    text-align: center;
+    margin-top: 5px;
+}
+#page-last{
+    width: 17px;
+    height: 25px;
+    background: deepskyblue;
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}
+#page-next{
+    width: 17px;
+    height: 25px;
+    background: deepskyblue;
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}

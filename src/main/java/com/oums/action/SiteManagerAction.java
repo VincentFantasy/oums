@@ -112,7 +112,7 @@ public class SiteManagerAction {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String addSite() {
 
-		// 查看用戶名是否重複
+		// 查看场地名是否重複
 		returnMessage = siteService.findSiteByName(site.getSiteName());
 		if (!returnMessage.isFlat()) {
 			returnMessage = siteManagerService.addSite(site);

@@ -158,8 +158,9 @@ p { padding-bottom: 18px; }
 	height: 41px; 
 	background: url(../images/footer.gif) no-repeat 0 0; 
 	line-height: 41px; 
-	padding: 10px 10px 10px 22px; 
-	color: #fff; 
+	padding: 10px 10px 10px 22px;
+	color: #fff;
+	margin: 10px;
 }
 #footer p { padding-bottom: 0; }
 #footer a { 
