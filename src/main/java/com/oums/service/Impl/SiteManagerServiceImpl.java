@@ -72,9 +72,8 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			baseDao.update(po);
 			
 			returnMessage.setFlat(true);
-			returnMessage.setContent("添加场地成功");
+			returnMessage.setContent("删除场地成功");
 		} catch(NullPointerException e) {
-			e.printStackTrace();
 			returnMessage.setFlat(false);
 			returnMessage.setContent("没有此场地或场地已删除");
 		} catch (Exception e) {
@@ -87,20 +86,18 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 	}
 
 	@Override
-	public ReturnMessage updateSite(SiteVo vo) {
+	public ReturnMessage updateSite(SiteVo vo, String rSiteName) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
 		try{			
-			//获取到po,vo的id要为null
-			SitePo po = siteDao.findSitePoBySiteName(vo.getSiteName());
-//			vo.setSiteId(po.getSiteId());
-//			vo.setIsDelete(po.getIsDelete());
+			SitePo po = siteDao.findSitePoBySiteName(rSiteName);
+			
 			BeanUtil.voToPo(vo, po);
 			
 			baseDao.update(po);
 			
 			returnMessage.setFlat(true);
-			returnMessage.setContent("添加场地成功");
+			returnMessage.setContent("更改场地成功");
 		} catch(NullPointerException e) {
 			e.printStackTrace();
 			returnMessage.setFlat(false);
@@ -119,7 +116,7 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 	}
 
 	@Override
-	public ReturnMessage updateSiteType(SiteVo vo, WeekVo weekVo, DayVo dayVo) {
+	public ReturnMessage updateSiteType(SiteVo vo, DayVo dayVo) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		
 		try{
@@ -154,7 +151,7 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			}
 			
 			BeanUtil.voToPo(dayVo, dayPo);
-			System.out.println(dayPo);
+
 			baseDao.update(dayPo);
 			
 			returnMessage.setFlat(true);

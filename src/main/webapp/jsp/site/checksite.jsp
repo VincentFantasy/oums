@@ -6,6 +6,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>海大体育馆管理系统-查看场地</title>
     <link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../../css/site/basesite.css" type="text/css" />
     <link rel="stylesheet" href="../../css/site/checksite.css" type="text/css" />
 </head>
 <body>
@@ -104,7 +105,7 @@
                 <option value="4">篮球场</option>
                 <option value="5">网球场</option>
                 </select>
-                <input class="site-button" type="button" value="查找场地" onclick="sitesearch()" />
+                <input id="sumbtn" type="button" value="查找场地" onclick="sitesearch()" />
             </form>
             <!-- 显示状态信息 -->
             <div id="data"></div>

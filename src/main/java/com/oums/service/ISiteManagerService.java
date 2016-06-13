@@ -30,14 +30,14 @@ public interface ISiteManagerService {
 	 * 更新场地信息
 	 * @return
 	 */
-	ReturnMessage updateSite(SiteVo vo);
+	ReturnMessage updateSite(SiteVo vo, String rSiteName);
 	
 	/**
 	 * 改变场地状态
 	 * @param vo
 	 * @return
 	 */
-	ReturnMessage updateSiteType(SiteVo vo, WeekVo weekVo, DayVo dayVo);
+	ReturnMessage updateSiteType(SiteVo vo, DayVo dayVo);
 	
 	/**
 	 * 获取全部场地的信息

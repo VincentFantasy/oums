@@ -21,6 +21,7 @@ import com.oums.service.IAdminUserService;
 import com.oums.service.IOrderService;
 import com.oums.service.ISiteManagerService;
 import com.oums.service.ISiteService;
+import com.oums.util.TimeUtil;
 
 /**
  * 
@@ -44,16 +45,46 @@ public class SiteManagerAction {
 	IAdminUserService adminUserService;
 
 	private SiteVo site;
+	
+	private String rSiteName;
 
 	private WeekVo week;
 
 	private DayVo day;
+	
+	private int timeInDay;
+	
+	private int itemType;
 
 	private ReturnMessage returnMessage;
 
 	private OrderVo order;
 
 	private AdminUserVo adminUser;
+
+	public int getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(int itemType) {
+		this.itemType = itemType;
+	}
+	
+	public int getTimeInDay() {
+		return timeInDay;
+	}
+
+	public void setTimeInDay(int timeInDay) {
+		this.timeInDay = timeInDay;
+	}
+
+	public String getrSiteName() {
+		return rSiteName;
+	}
+
+	public void setrSiteName(String rSiteName) {
+		this.rSiteName = rSiteName;
+	}
 
 	public AdminUserVo getAdminUser() {
 		return adminUser;
@@ -164,9 +195,21 @@ public class SiteManagerAction {
 	@Action(value = "updateSite", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String updateSite() {
-
-		returnMessage = siteManagerService.updateSite(site);
-
+		returnMessage = new ReturnMessage();
+		returnMessage.setFlat(false);
+		
+		//与原场地名对比，不相同则查找
+		if(!site.getSiteName().equals(rSiteName)) 
+			returnMessage = siteService.findSiteByName(site.getSiteName());
+		
+		if(!returnMessage.isFlat())
+			returnMessage = siteManagerService.updateSite(site, rSiteName);
+		else {
+			returnMessage.setObject(null);
+			returnMessage.setFlat(false);
+			returnMessage.setContent("场地名重复");
+		}
+		
 		return "success";
 	}
 
@@ -178,8 +221,10 @@ public class SiteManagerAction {
 	@Action(value = "updateSiteType", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String updateSiteType() {
-
-		returnMessage = siteManagerService.updateSiteType(site, week, day);
+		
+		TimeUtil.setDayVoTime(day, timeInDay, itemType);
+		
+		returnMessage = siteManagerService.updateSiteType(site, day);
 
 		return "success";
 	}

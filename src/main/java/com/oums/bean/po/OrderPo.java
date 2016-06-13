@@ -51,9 +51,16 @@ public class OrderPo extends BasePo {
 	private List<SitePo> siteList = new ArrayList<>();
 	/* 赛事 */
 	private RacePo race;
-	/* 器材 */
+	/* 器材 */	
 	private List<EquipmentPo> equipmentList = new ArrayList<>();
-	
+	@Override
+	public String toString() {
+		return "OrderPo [orderId=" + orderId + ", orderNumber=" + orderNumber + ", orderClass=" + orderClass
+				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", isDelete=" + isDelete + ", remark="
+				+ remark + ", reply=" + reply + ", user=" + user + ", adminUser=" + adminUser + ", siteList=" + siteList
+				+ ", race=" + race + ", equipmentList=" + equipmentList + "]";
+	}
+
 	public List<EquipmentPo> getEquipmentList() {
 		return equipmentList;
 	}
@@ -61,8 +68,7 @@ public class OrderPo extends BasePo {
 	public void setEquipmentList(List<EquipmentPo> equipmentList) {
 		this.equipmentList = equipmentList;
 	}
-	
-	
+
 	@ManyToOne(optional=true, fetch=FetchType.LAZY)
 	@JoinColumn(name="adminUserId")
 	public AdminUserPo getAdminUser() {

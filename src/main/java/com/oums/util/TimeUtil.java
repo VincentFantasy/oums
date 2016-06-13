@@ -8,6 +8,7 @@ import java.util.Date;
 import com.oums.bean.po.DayPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.WeekPo;
+import com.oums.bean.vo.DayVo;
 
 /**
  * 时间工具
@@ -115,6 +116,37 @@ public class TimeUtil {
 			return true;
 		else
 			return false;
+	}
+	
+	public static void setDayVoTime(DayVo vo, int timeInDay, int itemType) {
+		switch (timeInDay) {
+		case 0:
+			vo.setTime0(itemType);
+			break;
+		
+		case 1:
+			vo.setTime1(itemType);
+			break;
+			
+		case 2:
+			vo.setTime2(itemType);
+			break;
+
+		case 3:
+			vo.setTime3(itemType);
+			break;
+			
+		case 4:
+			vo.setTime4(itemType);
+			break;
+			
+		case 5:
+			vo.setTime5(itemType);
+			break;
+		
+		default:
+			break;
+		}
 	}
 	
 }

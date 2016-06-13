@@ -5,13 +5,13 @@ public class ReturnMessage {
 	private String messageType;
 	private String content;
 	private Object object;
+	private boolean flat;	
 	public Object getObject() {
 		return object;
 	}
 	public void setObject(Object object) {
 		this.object = object;
 	}
-	private boolean flat;	
 	public ReturnMessage() {
 		super();
 		// TODO Auto-generated constructor stub

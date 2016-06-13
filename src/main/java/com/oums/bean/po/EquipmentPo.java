@@ -1,91 +1,102 @@
 package com.oums.bean.po;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 器材类,也是订单类
+ * 器材,订单项: 器材ID,名字,状态,
  * @author pzh
  * TODO
  * 2016年6月4日
  */
 @Entity
-@Table(name="t_equipment")
+@Table(name="t_equipmentItem")
 public class EquipmentPo extends BasePo{
 	
 	private static final long serialVersionUID = 1L;
 	
-	/*器材种类ID*/
-	private String  equipTypeId; 
+	/*器材ID*/
+	private String  equipId;
 	/*器材名称*/
-	private String equipName; 
-	/*器材总数量*/
-	private String totalNum; 
-	/*器材剩余数量*/
-	private String leftNum;
+	private String equipName;
+	/*器品牌名称*/
+	private String equipBrand;
+	/*器材状态*/
+	private Integer itemState;
+	/* 是否被删除 */
+	private Boolean isDelete; 
 	/*器材收购价格*/
-	private Float price;
+	private Float equipPrice;
+	/*器材出租价格*/
+	private Float rentPrice;
 	/* 器材描述或备注 */
 	private String equipDtail;
+	/*添加时间*/
+	private Date addTime;
 	
-	
-	@Override
-	public String toString() {
-		return "EquipmentPo [equipId=" + equipTypeId + ", equipName=" + equipName + ", totalNum=" + totalNum + ", leftNum="
-				+ leftNum +", price=" + price + "]";
-	}
-
 	@Id
 	@GeneratedValue
-	public String getEquipTypeId() {
-		return equipTypeId;
+	public String getEquipId() {
+		return equipId;
 	}
-
-
 	public String getEquipName() {
 		return equipName;
 	}
-
-
-	public String getTotalNum() {
-		return totalNum;
+	public Integer getItemState() {
+		return itemState;
+	}
+	public Float getRentPrice() {
+		return rentPrice;
+	}
+	public String getEquipBrand() {
+		return equipBrand;
+	}
+	public Float getEquipPrice() {
+		return equipPrice;
+	}
+	public String getEquipDtail() {
+		return equipDtail;
+	}
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+	public Date getAddTime() {
+		return addTime;
+	}
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+	public void setEquipBrand(String equipBrand) {
+		this.equipBrand = equipBrand;
+	}
+	public void setEquipPrice(Float equipPrice) {
+		this.equipPrice = equipPrice;
+	}
+	public void setEquipDtail(String equipDtail) {
+		this.equipDtail = equipDtail;
 	}
 
-
-	public String getLeftNum() {
-		return leftNum;
+	
+	public void setRentPrice(Float rentPrice) {
+		this.rentPrice = rentPrice;
 	}
-
-
-	public Float getPrice() {
-		return price;
+	
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
 	}
-
-
-	public void setEquipTypeId(String equipTypeId) {
-		this.equipTypeId = equipTypeId;
+	public void setEquipId(String equipId) {
+		this.equipId = equipId;
 	}
-
-
 	public void setEquipName(String equipName) {
 		this.equipName = equipName;
 	}
-
-
-	public void setTotalNum(String totalNum) {
-		this.totalNum = totalNum;
+	public void setItemState(Integer itemState) {
+		this.itemState = itemState;
 	}
-
-
-	public void setLeftNum(String leftNum) {
-		this.leftNum = leftNum;
-	}
-
-
-	public void setPrice(Float price) {
-		this.price = price;
-	}
+	
 	
 }
