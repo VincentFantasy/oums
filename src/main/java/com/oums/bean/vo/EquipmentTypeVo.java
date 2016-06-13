@@ -1,4 +1,4 @@
-package com.oums.bean.po;
+package com.oums.bean.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +11,9 @@ import javax.persistence.Table;
  * TODO
  * 2016年6月4日
  */
-@Entity
-@Table(name="t_equipmentOrderItem")
-public class EquipmentTypePo extends BasePo{
+
+public class EquipmentTypeVo extends BaseVo{
 	
-	private static final long serialVersionUID = 1L;
 
 	/*器材种类ID*/
 	private String  equipTypeId;
@@ -27,9 +25,24 @@ public class EquipmentTypePo extends BasePo{
 	private Integer equipNum;
 	/*器材租借价格*/
 	private Float rentPrice;
+	/*租借天数*/
+	private Integer day;
+	/*租借小时*/
+	private Integer hour;
 	
-	@Id
-	@GeneratedValue
+
+	public Integer getDay() {
+		return day;
+	}
+	public Integer getHour() {
+		return hour;
+	}
+	public void setDay(Integer day) {
+		this.day = day;
+	}
+	public void setHour(Integer hour) {
+		this.hour = hour;
+	}
 	public String getEquipTypeId() {
 		return equipTypeId;
 	}

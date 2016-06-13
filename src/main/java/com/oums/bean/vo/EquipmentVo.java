@@ -1,6 +1,6 @@
-package com.oums.bean.po;
+package com.oums.bean.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,16 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 器材,订单项: 器材ID,名字,状态,
+ * 器材种类类
  * @author pzh
  * TODO
  * 2016年6月4日
  */
-@Entity
-@Table(name="t_equipmentItem")
-public class EquipmentPo extends BasePo{
-	
-	private static final long serialVersionUID = 1L;
+
+public class EquipmentVo extends BaseVo{
 	
 	/*器材ID*/
 	private String  equipId;
@@ -25,29 +22,34 @@ public class EquipmentPo extends BasePo{
 	private String equipName;
 	/*器品牌名称*/
 	private String equipBrand;
-	/*器材状态*/
-	private Integer itemState;
-	/* 是否被删除 */
-	private Boolean isDelete; 
 	/*器材收购价格*/
 	private Float equipPrice;
 	/*器材出租价格*/
 	private Float rentPrice;
 	/* 器材描述或备注 */
 	private String equipDtail;
-	/*添加时间*/
+	/* 器材数量 */
+	private Integer equipNum;
+	/*器材添加时间*/
 	private Date addTime;
 	
-	@Id
-	@GeneratedValue
+	public Date getAddTime() {
+		return addTime;
+	}
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+	public Integer getEquipNum() {
+		return equipNum;
+	}
+	public void setEquipNum(Integer equipNum) {
+		this.equipNum = equipNum;
+	}
 	public String getEquipId() {
 		return equipId;
 	}
 	public String getEquipName() {
 		return equipName;
-	}
-	public Integer getItemState() {
-		return itemState;
 	}
 	public Float getRentPrice() {
 		return rentPrice;
@@ -60,15 +62,6 @@ public class EquipmentPo extends BasePo{
 	}
 	public String getEquipDtail() {
 		return equipDtail;
-	}
-	public Boolean getIsDelete() {
-		return isDelete;
-	}
-	public Date getAddTime() {
-		return addTime;
-	}
-	public void setAddTime(Date addTime) {
-		this.addTime = addTime;
 	}
 	public void setEquipBrand(String equipBrand) {
 		this.equipBrand = equipBrand;
@@ -85,18 +78,11 @@ public class EquipmentPo extends BasePo{
 		this.rentPrice = rentPrice;
 	}
 	
-	public void setIsDelete(Boolean isDelete) {
-		this.isDelete = isDelete;
-	}
 	public void setEquipId(String equipId) {
 		this.equipId = equipId;
 	}
 	public void setEquipName(String equipName) {
 		this.equipName = equipName;
 	}
-	public void setItemState(Integer itemState) {
-		this.itemState = itemState;
-	}
-	
 	
 }

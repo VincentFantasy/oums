@@ -50,7 +50,16 @@ public class OrderPo extends BasePo {
 	/* 赛事 */
 //	private List<RacePo> raceList = new ArrayList<>();
 	/* 还要加管理员的Po */
-	
+	/* 器材 */
+	private List<EquipmentPo> equipmentList = new ArrayList<>();
+	public List<EquipmentPo> getEquipmentList() {
+		return equipmentList;
+	}
+
+	public void setEquipmentList(List<EquipmentPo> equipmentList) {
+		this.equipmentList = equipmentList;
+	}
+
 	@ManyToOne(optional=true, fetch=FetchType.LAZY)
 	@JoinColumn(name="adminUserId")
 	public AdminUserPo getAdminUser() {
