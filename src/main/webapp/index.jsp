@@ -30,7 +30,7 @@
 					<li><a href="jsp/site/site.jsp"><span>场地</span></a>
 						<ul>
 							<li><a href="#">预约场地</a></li>
-							<li><a href="jsp/site/checksite.html">查看场地</a></li>
+							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>器材</span></a>

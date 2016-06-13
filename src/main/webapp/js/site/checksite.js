@@ -62,7 +62,7 @@ function sitesearch(){
                 $.each(site[key], function (i, v){
                     switch (i){
                         case "siteName":
-                            $("#site-name"+key).html("<a href='checksitedetail.html?sitename=" + v + "'>" + v + "</a>");
+                            $("#site-name"+key).html("<a href='checksitedetail.jsp?sitename=" + v + "'>" + v + "</a>");
                             break;
                         case "siteType":
                             $("#site-type"+key).html(sitetype(v));

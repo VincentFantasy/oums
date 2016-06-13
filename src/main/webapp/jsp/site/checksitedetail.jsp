@@ -1,8 +1,10 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>海大体育馆管理系统-查看场地</title>
+    <title>海大体育馆管理系统-查看场地详细</title>
     <link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="../../css/site/checksitedetail.css" type="text/css" />
 </head>
@@ -29,11 +31,7 @@
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
                         <li><a href="#">预约场地</a></li>
-                        <li><a href="#">查看场地</a></li>
-                        <li><a href="#">添加场地</a></li>
-                        <li><a href="#">删除场地</a></li>
-                        <li><a href="#">更改场地</a></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="checksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>

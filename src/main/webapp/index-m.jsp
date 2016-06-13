@@ -29,10 +29,12 @@
 					<li><a href="index.jsp" class="active"><span>首页</span></a></li>
 					<li><a href="jsp/site/site.jsp"><span>场地</span></a>
 						<ul>
-							<li><a href="jsp/site/checksite.html">查看场地</a></li>
-							<li><a href="#">添加场地</a></li>
+							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
+							<li><a href="jsp/site/addsite.html">添加场地</a></li>
 							<li><a href="#">删除场地</a></li>
 							<li><a href="#">更改场地</a></li>
+							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
+							<li><a href="#">改变场地状态</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>器材</span></a>

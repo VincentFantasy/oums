@@ -1,3 +1,5 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +31,7 @@
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
                         <li><a href="#">预约场地</a></li>
-                        <li><a href="#">查看场地</a></li>
-                        <li><a href="#">添加场地</a></li>
-                        <li><a href="#">删除场地</a></li>
-                        <li><a href="#">更改场地</a></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="checksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
@@ -93,6 +91,10 @@
     <hr/>
     <!-- Main 在这里编辑正文内容-->
     <div id="main">
+        <div id="title">
+            <h2>查看场地</h2>
+        </div>
+
         <div id="searchsite">
             <form action="" method="post">
                 场地类型：<select id="siteType">
@@ -110,7 +112,7 @@
 
         <div id="sitelist">
             <table id="site-table">
-                <tr id="title">
+                <tr id="sitetitle">
                     <td class="site-name">场地名称</td>
                     <td class="site-type">场地类型</td>
                     <td class="site-cost">费用（元）</td>
@@ -180,8 +182,8 @@
         </div>
 
         <div id="main-footer">
-            <input class="list-button" id="page-last" type="button" value="<" />
-            <input class="list-button" id="page-next" type="button" value=">" />
+            <input class="list-button" id="page-last" type="button" value="&lt" />
+            <input class="list-button" id="page-next" type="button" value="&gt" />
         </div>
     </div>
     <!-- END Main -->
