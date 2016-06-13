@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -48,13 +50,33 @@ public class OrderPo extends BasePo {
 	/* 场地 */
 	private List<SitePo> siteList = new ArrayList<>();
 	/* 赛事 */
-//	private List<RacePo> raceList = new ArrayList<>();
-	/* 还要加管理员的Po */
+	private RacePo race;
+	/* 器材 */
+	private List<EquipmentPo> equipmentList = new ArrayList<>();
+	
+	public List<EquipmentPo> getEquipmentList() {
+		return equipmentList;
+	}
+
+	public void setEquipmentList(List<EquipmentPo> equipmentList) {
+		this.equipmentList = equipmentList;
+	}
+	
 	
 	@ManyToOne(optional=true, fetch=FetchType.LAZY)
 	@JoinColumn(name="adminUserId")
 	public AdminUserPo getAdminUser() {
 		return adminUser;
+	}
+
+	@OneToOne(optional=true, fetch=FetchType.LAZY)
+	@JoinColumn(name="raceId")
+	public RacePo getRace() {
+		return race;
+	}
+
+	public void setRace(RacePo race) {
+		this.race = race;
 	}
 
 	public void setAdminUser(AdminUserPo adminUser) {
@@ -135,13 +157,7 @@ public class OrderPo extends BasePo {
 	public void setSiteList(List<SitePo> siteList) {
 		this.siteList = siteList;
 	}
-	@Override
-	public String toString() {
-		return "OrderPo [orderId=" + orderId + ", orderNumber=" + orderNumber + ", orderClass=" + orderClass
-				+ ", orderType=" + orderType + ", buildTime=" + buildTime + ", isDelete=" + isDelete + ", remark="
-				+ remark + ", reply=" + reply + ", user=" + user + ", adminUser=" + adminUser + ", siteList=" + siteList
-				+ "]";
-	}
+	
 	public OrderPo() {
 		super();
 	}
