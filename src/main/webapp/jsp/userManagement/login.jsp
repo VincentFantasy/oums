@@ -4,11 +4,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/jsp/userManagement";
+	%>
+	<base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src="../../js/jquery-2.2.3.min.js"></script>
-	<script src="../../bootstrap-3.3.5/js/bootstrap.min.js"></script>
-	<script src="../../js/jquery.validate.js"></script>
-	<link href="../../bootstrap-3.3.5/css/bootstrap.min.css"rel="stylesheet">
+	<link href="../css/bootstrap.min.css"rel="stylesheet">
+
 	<title>欢迎登陆</title>
 </head>
 <body>
@@ -16,36 +20,32 @@
 	<h1>欢迎进入广东海洋大学体育馆管理系统！</h1>
 </div>
 <div class="container">
-	<div class="row">
-		<div class="col-sm-3 col-md-6 col-lg-8"
-			style="background-color:#dedef8;
-			box-shadow: inset 1px -1px 1px #444,
-			inset -1px 1px 1px #444;">
-			<img src="../../image/chijing.jpg" class="img-circle">
-		</div>
-		<div class="col-sm-9 col-md-6 col-lg-4" 
-	         style="background-color: #dedef8;
-	         box-shadow: inset 1px -1px 1px #444, 
-	         inset -1px 1px 1px #444;">
-			<form action="../../user/userLogin.action" method="post">
+	<ul id="myTab" class="nav nav-tabs">
+   <li class="active">
+      <a href="#userLogin" data-toggle="tab">
+         	普通用户登录
+      </a>
+   </li>
+   <li><a href="#adminLogin" data-toggle="tab">管理员用户登录</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+   <div class="tab-pane fade in active" id="userLogin">
+   			<form action="${pageContext.request.contextPath}/userLogin.action" method="post">
 				证件号：<input id="certificateNumber" name="userVo.certificateNumber" type="text" /><br /> 
 				密码：<input id="password" name="userVo.password" type="text" /><br /> 
-				<tr>
-					<td>
-						<input name="RadioButtonList1" tabindex="4" id="RadioButtonList1_0" type="radio" value="student">
-						<label>student</label>
-					</td>
-					<td>
-						<input name="RadioButtonList2" tabindex="4" id="RadioButtonList2_0" type="radio" value="admin">
-						<label>admin</label>
-					</td>
-				</tr><br/>
-
 				<button type="submit" class="btn btn-primary btn-sm">登陆</button>
 			</form>
-			<button class="btn btn-primary btn-sm" onclick="window.location.href('regist.jsp')">注册</button>
-		</div>
-	</div>
+   
+   </div>
+   <div class="tab-pane fade" id="adminLogin">
+   			<form action="${pageContext.request.contextPath}/adminLogin.action" method="post">
+				员工号：<input id="employeeNumber" name="adminVo.employeeNumber" type="text" /><br /> 
+				密码：<input id="password" name="adminVo.password" type="text" /><br /> 
+				<button type="submit" class="btn btn-primary btn-sm">登陆</button>
+			</form>
+   </div>
+</div>
+
 </div>
 <div id="footer" class="container">
 	<nav class="navbar navbar-default navbar-fixed-bottom">
@@ -97,4 +97,7 @@
 		})
 	</script>
 </body>
+	<script src="../js/jquery-2.2.3.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.validate.js"></script>
 </html>

@@ -25,12 +25,15 @@ public class UserRegistTest extends BaseUnit{
 	public void registTest(){
 		UserVo userVo = new UserVo();
 		
-		userVo.setCertificateNumber("201311911218");
+		userVo.setCertificateNumber("201311911207");
 		userVo.setIDCardNumber("440105199501010666");
 		userVo.setIsDelete(false);
 		userVo.setPassword("1234");
 		userVo.setPhone("18344069822");
-		userVo.setRealName("ouzhu");
+		userVo.setRealName("区柱7");
+//		userVo.setPeriod("14");
+//		userVo.setClasses("软件2班");
+		userVo.setIsTourist(true);
 		
 		returnMessage = userService.regist(userVo);
 		assertEquals(returnMessage.isFlat(),true);

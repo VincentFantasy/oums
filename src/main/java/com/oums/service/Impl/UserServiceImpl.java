@@ -56,6 +56,7 @@ public class UserServiceImpl implements IUserService{
 		return returnMessage;
 	}
 	
+	@Override
 	public ReturnMessage regist(UserVo userVo){
 		ReturnMessage returnMessage = new ReturnMessage();
 		//check exist

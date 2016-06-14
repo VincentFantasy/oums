@@ -3,6 +3,7 @@ package com.oums.service;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.vo.AdminUserVo;
+import com.oums.bean.vo.UserVo;
 
 /**
  * admin service
@@ -37,5 +38,19 @@ public interface IAdminUserService {
 	 * @return
 	 */
 	abstract ReturnMessage modifyPassword(String oldPassword, String newPassword, String emplNum);
-
+	/**
+	 * user admin delete user by user certificate number
+	 * @param cerNum
+	 * @return
+	 */
+	abstract ReturnMessage deleteUser(String cerNum[], String emplNum, String password);
+	/**
+	 * user admin search users by period, classes, isTourist, certificate number
+	 * @param peroid
+	 * @param classes
+	 * @param isTourist
+	 * @param cerNum
+	 * @return
+	 */
+	abstract ReturnMessage searchUser(String period, String classes, String isTourist, String cerNum);
 }

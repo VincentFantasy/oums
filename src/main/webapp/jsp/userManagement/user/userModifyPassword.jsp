@@ -7,7 +7,7 @@
 	<%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+			+ path + "/jsp/userManagement/user";
 	%>
 	<base href="<%=basePath%>">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
@@ -70,9 +70,9 @@
 							<li><a href="#">contact</a></li>
 						</ul>
 					</li>
-					<li><span>个人信息</span>
+					<li><a href="#"><span>个人信息</span></a>
 						<ul>
-							<li><a href="jsp/userManagement/user/userModifyPassword.jsp">修改密码</a></li>
+							<li><a href="#">修改密码</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>财务</span></a>
@@ -96,10 +96,7 @@
             <h2>欢迎进入广东海洋大学体育馆系统</h2>
         </div>
         <div id="content">
-        	<p>系统消息:</p>
-			<div class="SystemMessage">
-				
-			</div>
+			修改密码
         </div>
 		</div>
 		<!-- END Main -->
