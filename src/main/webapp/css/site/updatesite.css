@@ -1,0 +1,40 @@
+#title2{
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* form */
+#content{
+    height: 200px;
+}
+
+#content2{
+    width: 400px;
+    height: 200px;
+    margin-left: 300px;
+    margin-top: 20px;
+}
+
+#sitename{  margin-left: 22px; }
+#sitetype{  margin-left: 9px; }
+#sitedtail{ margin-left: 9px; }
+
+.ttext{
+    height: 20px;
+}
+
+#sitename2{  margin-left: 20px; }
+#weekofday{  margin-left: 30px; }
+#timeofday{ margin-left: 10px; }
+#itemtype{ margin-left: 6px; }
+
+#sumbtn2{
+    margin-left: 100px;
+    width: 80px;
+    height: 20px;
+    background: url("../../images/button.jpg");
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}
+/* ---------------------------------------------- */

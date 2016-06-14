@@ -1,0 +1,54 @@
+package com.oums.service;
+
+import com.oums.bean.ReturnMessage;
+import com.oums.bean.vo.EquipmentTypeVo;
+import com.oums.bean.vo.EquipmentVo;
+
+/**
+ * 
+ * @author pzh
+ * TODO 一般用户的器材操作服务
+ * 2016年6月7日
+ */
+public interface IEquipmentService {
+
+//	/**
+//	 * 查找器材,根据器材名称,或器材品牌
+//	 * @param equipmentType
+//	 * @return ReturnMessage
+//	 */
+//	ReturnMessage findEquipment(EquipmentVo equipment);
+	
+	
+	/**
+	 * 器材租借 从页面接EquipmentType 根据数量,然后选择空闲状态的器材项设为租借.
+	 * @param equipmentType
+	 * @return ReturnMessage
+	 */
+	ReturnMessage findFreeEquipment(EquipmentTypeVo equipmentType);
+
+	/**
+	 * 查找器材,
+	 * @param 
+	 * @return ReturnMessage
+	 */
+	ReturnMessage findAllEquipment();
+
+	/**
+	 * 查找器材,根据器材名称,或器材品牌
+	 * @param content
+	 * @param type
+	 * @return
+	 */
+	ReturnMessage findEquipmentByType(String content, String type);
+	
+	
+	/**
+	 * 查找器材种类及数量
+	 * @return
+	 */
+	ReturnMessage findEquipmentTypeAndNum();
+
+
+
+}
