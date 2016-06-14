@@ -62,4 +62,13 @@ public class OrderDaoImpl implements IOrderDao {
 				.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderPo> findOrderLikeNumber(String orderNumber) {
+		List<OrderPo> list = sessionFactory.getCurrentSession()
+				.createQuery("from OrderPo o where o.orderNumber like '" + orderNumber + "%' and o.isDelete = false")
+				.list();
+		return list;
+	}
+
 }

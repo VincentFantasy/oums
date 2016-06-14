@@ -11,7 +11,7 @@ if (url.indexOf("?") != -1) {
     $("#rsitename").val(str);
 
     $.ajax({
-        url: '../../site/findSite.action', //请求地址ַ
+        url: 'findSite.action', //请求地址ַ
         type: 'POST',
         data:{"site.siteName":str},//参数，key:value,多个参数逗号隔开
         dataType: 'json',
@@ -154,7 +154,7 @@ function valid() {
 
 function sumbitform() {
     $.ajax({
-        url: '../../siteManager/updateSite.action', //请求地址ַ
+        url: '../siteManager/updateSite.action', //请求地址ַ
         type: 'POST',
         data:{"rSiteName":$("#rsitename").val(),"site.siteName":$("#sitename").val(), "site.siteCost":$("#sitecost").val(), "site.siteType":$("#sitetype").val(), "site.siteDtail":$("#sitedtail").val()},//参数，key:value,多个参数逗号隔开
         dataType: 'json',
@@ -208,7 +208,7 @@ function sumbitform() {
 function sumbitform2() {
 
     $.ajax({
-        url: '../../siteManager/updateSiteType.action', //请求地址ַ
+        url: '../siteManager/updateSiteType.action', //请求地址ַ
         type: 'POST',
         data:{"site.siteName":$("#rsitename").val(), "day.dayOfWeek":$("#weekofday").val(), "timeInDay":$("#timeofday").val(), "itemType":$("#itemtype").val()},//参数，key:value,多个参数逗号隔开
         dataType: 'json',

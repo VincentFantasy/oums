@@ -28,7 +28,7 @@ import com.oums.util.TimeUtil;
  *
  */
 @ParentPackage("basePackage")
-@Namespace("/site")
+@Namespace("/jsp/site")
 public class SiteAction {
 
 	@Autowired
@@ -103,7 +103,7 @@ public class SiteAction {
 	/**
 	 * 查找场地
 	 * 
-	 * @return http://localhost:8080/OUMS/site/findSite
+	 * @return http://localhost:8080/OUMS/jsp/site/findSite
 	 */
 	@Action(value = "findSite", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -118,7 +118,7 @@ public class SiteAction {
 	/**
 	 * 根据场地类型查找场地
 	 * 
-	 * @return http://localhost:8080/OUMS/site/findSiteType
+	 * @return http://localhost:8080/OUMS/jsp/site/findSiteType
 	 */
 	@Action(value = "findSiteType", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -140,10 +140,14 @@ public class SiteAction {
 		// order = new OrderVo();
 		order.setOrderNumber(OrderUtil.createOrderNumber());
 		order.setIsDelete(false);
-		order.setOrderType(OrderType.NOPAY);
+		order.setOrderType(OrderType.WAITSURE);
 		order.setOrderClass(OrderClass.SITE);
 		order.setBuildTime(TimeUtil.getNowTime());
 
+		// 从作用域中取用户
+		user = new UserVo();
+		user.setCertificateNumber("123");
+		
 		// 设置用户
 		returnMessage = userService.getUserPoByCerNum(user.getCertificateNumber());
 		if (returnMessage.isFlat()) {
@@ -164,7 +168,7 @@ public class SiteAction {
 					}else{
 						returnMessage.setObject(null);
 						returnMessage.setFlat(false);
-						returnMessage.setContent("此场地不是空闲状态");
+						returnMessage.setContent("场地此时不是空闲状态");
 					}
 				} else {
 					returnMessage.setObject(null);

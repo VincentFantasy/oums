@@ -40,7 +40,7 @@ function valid() {
 
 function sumbitform() {
     $.ajax({
-        url: '../../siteManager/addSite.action', //请求地址ַ
+        url: '../siteManager/addSite.action', //请求地址ַ
         type: 'POST',
         data:{"site.siteName":$("#sitename").val(), "site.siteCost":$("#sitecost").val(), "site.siteType":$("#sitetype").val(), "site.siteDtail":$("#sitedtail").val()},//参数，key:value,多个参数逗号隔开
         dataType: 'json',

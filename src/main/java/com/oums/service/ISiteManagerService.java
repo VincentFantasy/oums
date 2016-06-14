@@ -3,10 +3,10 @@ package com.oums.service;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.po.OrderPo;
+import com.oums.bean.po.SitePo;
 import com.oums.bean.vo.DayVo;
 import com.oums.bean.vo.OrderVo;
 import com.oums.bean.vo.SiteVo;
-import com.oums.bean.vo.WeekVo;
 
 /**
  * 场地管理
@@ -59,4 +59,12 @@ public interface ISiteManagerService {
 	 * @return
 	 */
 	ReturnMessage findSiteOrderByType(OrderVo vo);
+	
+	/**
+	 * 设置场地的一周的所有状态
+	 * @param itemType
+	 * @return
+	 */
+	ReturnMessage setSiteType(SitePo po, int itemType);
+	
 }

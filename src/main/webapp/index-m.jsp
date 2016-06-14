@@ -26,15 +26,14 @@
 			<div class="cl">&nbsp;</div>
 			<div id="navigation">
 				<ul>
-					<li><a href="index.jsp" class="active"><span>首页</span></a></li>
-					<li><a href="jsp/site/site.jsp"><span>场地</span></a>
+					<li><a href="index-m.jsp" class="active"><span>首页</span></a></li>
+					<li><a href="#"><span>场地</span></a>
 						<ul>
 							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
 							<li><a href="jsp/site/addsite.html">添加场地</a></li>
-							<li><a href="#">删除场地</a></li>
-							<li><a href="#">更改场地</a></li>
+							<li><a href="jsp/site/deletesite.html">删除场地</a></li>
+							<li><a href="jsp/site/updatesite.html">更改场地</a></li>
 							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
-							<li><a href="#">改变场地状态</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>器材</span></a>
@@ -105,7 +104,7 @@
 				&copy; 软件1131第九小组 &nbsp; Design by <a href="#" target="_blank" title="">VincentFantasy</a>
 			</p>
 			<p>
-				<a href="index.html">首页</a><span>&nbsp;</span>
+				<a href="index-m.html">首页</a><span>&nbsp;</span>
 				<a href="#">关于我们</a><span>&nbsp;</span>
 				<a href="#">更多服务</a><span>&nbsp;</span>
 				<a href="#">解决方案</a><span>&nbsp;</span>

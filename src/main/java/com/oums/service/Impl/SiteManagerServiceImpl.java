@@ -22,6 +22,7 @@ import com.oums.dao.IOrderDao;
 import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteManagerService;
 import com.oums.util.BeanUtil;
+import com.oums.util.TimeUtil;
 
 @Service("siteManagerService")
 public class SiteManagerServiceImpl implements ISiteManagerService {
@@ -220,6 +221,32 @@ public class SiteManagerServiceImpl implements ISiteManagerService {
 			returnMessage.setObject(orders);
 			returnMessage.setFlat(true);
 			returnMessage.setContent("查询成功");
+		} catch(Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("操作异常");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage setSiteType(SitePo po, int itemType) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			TimeUtil.setDayPoType(po.getWeek().getSunday(), itemType);
+			TimeUtil.setDayPoType(po.getWeek().getMonday(), itemType);
+			TimeUtil.setDayPoType(po.getWeek().getTuesday(), itemType);
+			TimeUtil.setDayPoType(po.getWeek().getWednesday(), itemType);
+			TimeUtil.setDayPoType(po.getWeek().getTuesday(), itemType);
+			TimeUtil.setDayPoType(po.getWeek().getFriday(), itemType);
+			TimeUtil.setDayPoType(po.getWeek().getSaturday(), itemType);
+			
+			baseDao.update(po);
+			
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
 		} catch(Exception e) {
 			e.printStackTrace();
 			returnMessage.setFlat(false);

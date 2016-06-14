@@ -1,0 +1,73 @@
+/* searchsite */
+.searchorder{
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+/* sitelist */
+#siteorderlist{
+    width: 100%;
+    height: 600px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#siteorder-table{
+    margin: 0 auto;
+    border: 1px solid;
+    height: 600px;
+    width: 100%;
+}
+
+.sumbtn{ margin-left: 10px; }
+
+#data{  text-align: center;  }
+
+td{ border: 1px solid; }
+#ordertitle{
+    background: deepskyblue;
+    color: #ffffff;
+}
+.order-name{
+    width: 150px;
+    height: 20px;
+}
+.order-type{
+    width: 150px;
+    height: 20px;
+}
+.order-class{
+    width: 150px;
+    height: 20px;
+}
+.order-time{
+    width: 150px;
+    height: 20px;
+}
+/* ---------------------------------------------------------------------------- */
+
+/* main-footer */
+#main-footer{
+    text-align: center;
+    margin-top: 5px;
+}
+#page-last{
+    width: 17px;
+    height: 25px;
+    background: deepskyblue;
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}
+#page-next{
+    width: 17px;
+    height: 25px;
+    background: deepskyblue;
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}

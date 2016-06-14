@@ -118,6 +118,12 @@ public class TimeUtil {
 			return false;
 	}
 	
+	/**
+	 * 设置DayVo的时间状态
+	 * @param vo
+	 * @param timeInDay
+	 * @param itemType
+	 */
 	public static void setDayVoTime(DayVo vo, int timeInDay, int itemType) {
 		switch (timeInDay) {
 		case 0:
@@ -147,6 +153,21 @@ public class TimeUtil {
 		default:
 			break;
 		}
+	}
+	
+	/**
+	 * 设置DayPo的全部状态
+	 * @param po
+	 * @param itemType
+	 */
+	public static void setDayPoType(DayPo po, int itemType){
+		po.setTime0(itemType);
+		po.setTime1(itemType);
+		po.setTime2(itemType);
+		po.setTime3(itemType);
+		po.setTime4(itemType);
+		po.setTime5(itemType);
+		
 	}
 	
 }

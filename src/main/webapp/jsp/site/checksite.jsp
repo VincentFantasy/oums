@@ -105,7 +105,7 @@
                 <option value="4">篮球场</option>
                 <option value="5">网球场</option>
                 </select>
-                <input id="sumbtn" type="button" value="查找场地" onclick="sitesearch()" />
+                <input class="sumbtn" type="button" value="查找场地" onclick="sitesearch()" />
             </form>
             <!-- 显示状态信息 -->
             <div id="data"></div>

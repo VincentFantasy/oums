@@ -1,5 +1,7 @@
 package com.oums.action;
 
+import java.util.List;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -9,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.po.OrderPo;
+import com.oums.bean.po.SitePo;
 import com.oums.bean.type.AdminUserType;
+import com.oums.bean.type.ItemState;
 import com.oums.bean.type.OrderType;
 import com.oums.bean.vo.AdminUserVo;
 import com.oums.bean.vo.DayVo;
@@ -29,7 +33,7 @@ import com.oums.util.TimeUtil;
  *
  */
 @ParentPackage("basePackage")
-@Namespace("/siteManager")
+@Namespace("/jsp/siteManager")
 public class SiteManagerAction {
 
 	@Autowired
@@ -137,7 +141,7 @@ public class SiteManagerAction {
 	/**
 	 * 添加场地，费用填了字符串就会变成空值？
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/addSite
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/addSite
 	 */
 	@Action(value = "addSite", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -159,7 +163,7 @@ public class SiteManagerAction {
 	/*	*//**
 			 * 添加场地
 			 * 
-			 * @return http://localhost:8080/OUMS/siteManager/testAddSite
+			 * @return http://localhost:8080/OUMS/jsp/siteManager/testAddSite
 			 *//*
 			 * @Action(value="testAddSite", results={@Result(name="success",
 			 * type="json", params={"root","returnMessage"})}) public String
@@ -176,7 +180,7 @@ public class SiteManagerAction {
 	/**
 	 * 添加场地,需要提供场地的名字
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/deleteSite
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/deleteSite
 	 */
 	@Action(value = "deleteSite", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -190,7 +194,7 @@ public class SiteManagerAction {
 	/**
 	 * 更新场地
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/updateSite
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/updateSite
 	 */
 	@Action(value = "updateSite", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -216,7 +220,7 @@ public class SiteManagerAction {
 	/**
 	 * 更改场地类型
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/updateSiteType
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/updateSiteType
 	 */
 	@Action(value = "updateSiteType", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -232,7 +236,7 @@ public class SiteManagerAction {
 	/**
 	 * 查询全部场地订单
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/findAllSiteOrder
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/findAllSiteOrder
 	 */
 	@Action(value = "findAllSiteOrder", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -246,7 +250,7 @@ public class SiteManagerAction {
 	/**
 	 * 确认订单
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/sureSiteOrder
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/sureSiteOrder
 	 */
 	@Action(value = "sureSiteOrder", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -287,7 +291,7 @@ public class SiteManagerAction {
 	/**
 	 * 按类型查询场地订单
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/findSiteOrderByType
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/findSiteOrderByType
 	 */
 	@Action(value = "findSiteOrderByType", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -301,7 +305,7 @@ public class SiteManagerAction {
 	/**
 	 * 拒绝订单
 	 * 
-	 * @return http://localhost:8080/OUMS/siteManager/rejectOrder
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/rejectOrder
 	 */
 	@Action(value = "rejectOrder", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
@@ -338,4 +342,47 @@ public class SiteManagerAction {
 
 				return "success";
 	}
+	
+	/**
+	 * 设置这个场地的所有时间状态
+	 * 
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/setSiteType
+	 */
+	@Action(value = "setSiteType", results = {
+			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
+	public String setSiteType() {
+
+		ReturnMessage returnMessage = siteService.findSiteByName(site.getSiteName());
+		
+		if(returnMessage.isFlat()){
+			SitePo po = (SitePo) returnMessage.getObject();
+		
+			returnMessage  = siteManagerService.setSiteType(po, itemType);
+		}
+		
+		return "success";
+	}
+	
+	/**
+	 * 设置一个类型所有场地的所有时间状态
+	 * 
+	 * @return http://localhost:8080/OUMS/jsp/siteManager/setSiteType
+	 */
+	@Action(value = "setSiteType", results = {
+			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
+	public String setAllSiteType() {
+
+		ReturnMessage returnMessage = siteService.findSiteByType(site.getSiteType());
+		
+		if(returnMessage.isFlat()){
+			@SuppressWarnings("unchecked")
+			List<SitePo> listPo = ((List<SitePo>) returnMessage.getObject());
+		
+			for(SitePo po : listPo)
+				returnMessage  = siteManagerService.setSiteType(po, itemType);
+		}
+		
+		return "success";
+	}
+	
 }

@@ -2,6 +2,8 @@ package com.oums.junit.order;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,4 +44,24 @@ public class TestOrderService extends BaseUnit {
 		assertTrue(!returnMessage.isFlat());
 	}
 	
+	@Test
+	public void testFindOrderLikeNumber() {
+		OrderVo vo = new OrderVo();
+		vo.setOrderNumber("2016");
+		ReturnMessage returnMessage = orderService.findOrderLikeNumber(vo);
+		
+		//存在的订单
+		if(returnMessage.isFlat()) {
+			List<OrderPo> list = (List<OrderPo>) returnMessage.getObject();
+			System.out.println(list);
+			assertTrue(true);
+		} else {
+			fail();
+		}
+		
+		//不存在的订单
+		vo.setOrderNumber("0");
+		returnMessage = orderService.findOrderLikeNumber(vo);
+		assertTrue(!returnMessage.isFlat());
+	}
 }

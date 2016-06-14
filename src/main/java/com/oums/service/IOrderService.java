@@ -16,4 +16,9 @@ public interface IOrderService {
 	 */
 	ReturnMessage findOrderByNumber(OrderVo vo);
 	
+	/**
+	 * 按订单号模糊查找订单 只匹配前面部分 number%
+	 * @return
+	 */
+	ReturnMessage findOrderLikeNumber(OrderVo vo);
 }

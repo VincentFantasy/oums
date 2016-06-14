@@ -24,4 +24,16 @@ public interface ISiteDao {
 	 */
 	List<SitePo> findSitePoBySiteType(int type);
 	
+	/**
+	 * 获取所有的site
+	 * @return
+	 */
+	List<SitePo> getAllSitePo();
+	
+	/**
+	 * 模糊查询场地
+	 * @return
+	 */
+	List<SitePo> findSitePoLikeSiteName(String siteName);
+	
 }

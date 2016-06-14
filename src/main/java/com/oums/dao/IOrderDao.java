@@ -17,6 +17,12 @@ public interface IOrderDao {
 	OrderPo findOrderByNumber(String orderNumber);
 	
 	/**
+	 * 根据订单号模糊查询
+	 * @return
+	 */
+	List<OrderPo> findOrderLikeNumber(String orderNumber);
+	
+	/**
 	 * 根据订单类型获取订单
 	 * @return
 	 */

@@ -61,6 +61,7 @@ public class OrderPo extends BasePo {
 				+ ", race=" + race + ", equipmentList=" + equipmentList + "]";
 	}
 
+	@ManyToMany(fetch=FetchType.LAZY)
 	public List<EquipmentPo> getEquipmentList() {
 		return equipmentList;
 	}

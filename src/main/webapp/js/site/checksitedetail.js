@@ -8,7 +8,7 @@ if (url.indexOf("?") != -1) {
     	str = decodeURIComponent(str);
     
     $.ajax({
-        url: '../../site/findSite.action', //请求地址ַ
+        url: 'findSite.action', //请求地址ַ
         type: 'POST',
         data:{"site.siteName":str},//参数，key:value,多个参数逗号隔开
         dataType: 'json',

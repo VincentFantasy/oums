@@ -1,5 +1,7 @@
 package com.oums.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,32 @@ public class OrderServiceImpl implements IOrderService {
 				throw new NullPointerException();
 			
 			returnMessage.setObject(po);
+			returnMessage.setFlat(true);
+			returnMessage.setContent("操作成功");
+		} catch(NullPointerException e){
+			returnMessage.setFlat(false);
+			returnMessage.setContent("找不到此订单");
+		} catch(Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("操作异常");
+		}
+		
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage findOrderLikeNumber(OrderVo vo) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		
+		try{
+			List<OrderPo> listPo = orderDao.findOrderLikeNumber(vo.getOrderNumber());
+			
+			//如果找到的为空
+			if(listPo.size() == 0)
+				throw new NullPointerException();
+			
+			returnMessage.setObject(listPo);
 			returnMessage.setFlat(true);
 			returnMessage.setContent("操作成功");
 		} catch(NullPointerException e){

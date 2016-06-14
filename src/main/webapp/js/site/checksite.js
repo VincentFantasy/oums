@@ -1,6 +1,6 @@
 function sitesearch(){
     $.ajax({
-        url: '../../site/findSiteType.action', //请求地址ַ
+        url: 'findSiteType.action', //请求地址ַ
         type: 'POST',
         data:{"site.siteType":$("#siteType").val()},//参数，key:value,多个参数逗号隔开
         dataType: 'json',

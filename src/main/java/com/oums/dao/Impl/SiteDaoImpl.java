@@ -33,4 +33,23 @@ public class SiteDaoImpl implements ISiteDao {
 		return list;
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SitePo> getAllSitePo() {
+		List<SitePo> list = sessionFactory.getCurrentSession()
+				.createQuery("from SitePo s where s.isDelete = false")
+				.list();
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SitePo> findSitePoLikeSiteName(String siteName) {
+		List<SitePo> list = sessionFactory.getCurrentSession()
+				.createQuery("from SitePo s where s.siteName = '%" + siteName + "%' and s.isDelete = false")
+				.list();
+		return list;
+	}
+
 }

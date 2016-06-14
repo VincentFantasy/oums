@@ -3,7 +3,7 @@ function sumbitform() {
 
 	if (str != "") {
 		$.ajax({
-			url : '../../siteManager/deleteSite.action', // 请求地址ַ
+			url : '../siteManager/deleteSite.action', // 请求地址ַ
 			type : 'POST',
 			data : {
 				"site.siteName" : str
