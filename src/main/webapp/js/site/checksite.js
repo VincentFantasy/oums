@@ -1,4 +1,4 @@
-function sitesearch(){
+function sitesearch(m){
     $.ajax({
         url: 'findSiteType.action', //请求地址ַ
         type: 'POST',
@@ -62,7 +62,7 @@ function sitesearch(){
                 $.each(site[key], function (i, v){
                     switch (i){
                         case "siteName":
-                            $("#site-name"+key).html("<a href='checksitedetail.jsp?sitename=" + v + "'>" + v + "</a>");
+                            $("#site-name"+key).html("<a href='" + m + "checksitedetail.jsp?sitename=" + v + "'>" + v + "</a>");
                             break;
                         case "siteType":
                             $("#site-type"+key).html(sitetype(v));
@@ -82,29 +82,4 @@ function sitesearch(){
         }else
             $("#data").html(content);
     }
-}
-
-function sitetype(type){
-    var str;
-    switch (type){
-        case 1:
-            str = "羽毛球场";
-            break
-        case 2:
-            str = "兵乓球场";
-            break;
-        case 3:
-            str = "桌球场";
-            break;
-        case 4:
-            str = "篮球场";
-            break;
-        case 5:
-            str = "网球场";
-            break;
-        default :
-            break;
-    }
-
-    return str;
 }

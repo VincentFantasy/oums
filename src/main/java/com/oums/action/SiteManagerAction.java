@@ -263,6 +263,11 @@ public class SiteManagerAction {
 
 			// 未付款订单
 			if (po.getOrderType() == OrderType.WAITSURE) {
+				
+				//从作用域取出admin
+				adminUser = new AdminUserVo();
+				adminUser.setEmployeeNumber("123");
+				
 				// 找出管理员，再操作
 				returnMessage = adminUserService.getAdminPoByEmplNum(adminUser.getEmployeeNumber());
 				if (returnMessage.isFlat()) {
@@ -271,6 +276,7 @@ public class SiteManagerAction {
 					//查询权限
 					if(adminUserPo.getPermission() == AdminUserType.SITE_ADMIN) {
 						po.setOrderType(OrderType.SURE);
+						po.setReply(order.getReply());
 						returnMessage = siteManagerService.updateSiteOrderType(po, adminUserPo);
 					} else {
 						returnMessage = new ReturnMessage();
@@ -317,7 +323,11 @@ public class SiteManagerAction {
 					OrderPo po = (OrderPo) returnMessage.getObject();
 
 					// 未付款订单
-					if (po.getOrderType() == OrderType.NOPAY) {
+					if (po.getOrderType() == OrderType.WAITSURE) {
+						//从作用域取出admin
+						adminUser = new AdminUserVo();
+						adminUser.setEmployeeNumber("123");
+						
 						// 找出管理员，再操作
 						returnMessage = adminUserService.getAdminPoByEmplNum(adminUser.getEmployeeNumber());
 						if (returnMessage.isFlat()) {
@@ -326,6 +336,7 @@ public class SiteManagerAction {
 							//查询权限
 							if(adminUserPo.getPermission() == AdminUserType.SITE_ADMIN) {
 								po.setOrderType(OrderType.REFUSE);
+								po.setReply(order.getReply());
 								returnMessage = siteManagerService.updateSiteOrderType(po, adminUserPo);
 							} else {
 								returnMessage = new ReturnMessage();

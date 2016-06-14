@@ -43,6 +43,20 @@ public class OrderAction {
 	}
 	
 	/**
+	 * 订单号查询场地
+	 * 
+	 * @return http://localhost:8080/OUMS/jsp/order/findOrder
+	 */
+	@Action(value = "findOrder", results = {
+			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
+	public String findOrder() {
+
+		returnMessage = orderService.findOrderByNumber(order);
+
+		return "success";
+	}
+	
+	/**
 	 * 模糊查询订单，只匹配后面的  number%
 	 * 
 	 * @return http://localhost:8080/OUMS/jsp/order/findOrderLikeNumber
