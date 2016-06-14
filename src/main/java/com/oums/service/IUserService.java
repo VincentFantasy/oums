@@ -35,4 +35,5 @@ public interface IUserService {
 	 * @return
 	 */
 	abstract ReturnMessage modifyPassword(String oldPassword, String newPassword, String cerNum);
+
 }

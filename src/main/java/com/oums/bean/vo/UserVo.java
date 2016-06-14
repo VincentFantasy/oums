@@ -12,7 +12,7 @@ public class UserVo extends BaseVo{
 		private String realName;
 		// 身份证
 		private String IDCardNumber;
-		// 学号
+		// 证件号
 		private String certificateNumber;
 		// 联系电话
 		private String phone;
@@ -20,6 +20,12 @@ public class UserVo extends BaseVo{
 		private Date lastLoginTime;
 		// 是否删除
 		private Boolean isDelete;
+		// 入学年份
+		private String period;
+		// 班级
+		private String classes;
+		//是否游客
+		private Boolean isTourist;
 
 
 		public Integer getUserId() {
@@ -76,6 +82,24 @@ public class UserVo extends BaseVo{
 		}
 		public void setIsDelete(Boolean isDelete) {
 			this.isDelete = isDelete;
+		}
+		public String getPeriod() {
+			return period;
+		}
+		public void setPeriod(String period) {
+			this.period = period;
+		}
+		public String getClasses() {
+			return classes;
+		}
+		public void setClasses(String classes) {
+			this.classes = classes;
+		}
+		public Boolean getIsTourist() {
+			return isTourist;
+		}
+		public void setIsTourist(Boolean isTourist) {
+			this.isTourist = isTourist;
 		}
 		
 	}

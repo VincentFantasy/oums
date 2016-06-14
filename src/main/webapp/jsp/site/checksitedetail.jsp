@@ -30,7 +30,7 @@
                 <li><a href="../../index.jsp" class="active"><span>首页</span></a></li>
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
-                        <li><a href="#">预约场地</a></li>
+                        <li><a href="ordersite.jsp">预约场地</a></li>
                         <li><a href="checksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
@@ -219,6 +219,7 @@
 
 <!-- js -->
 <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
+<script src="../../js/site/basesitetype.js" type="text/javascript"></script>
 <script src="../../js/site/checksitedetail.js" type="text/javascript"></script>
 </body>
 </html>

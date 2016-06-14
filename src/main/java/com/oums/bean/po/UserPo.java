@@ -29,6 +29,12 @@ public class UserPo extends BasePo{
 	private Date lastLoginTime;
 	// 是否删除
 	private Boolean isDelete;
+	//是否游客
+	private Boolean isTourist;
+	//入学年份
+	private String period;
+	//班级
+	private String classes;
 	
 	public String getRealName() {
 		return realName;
@@ -80,11 +86,22 @@ public class UserPo extends BasePo{
 	public void setCertificateNumber(String certificateNumber) {
 		this.certificateNumber = certificateNumber;
 	}
-
-	@Override
-	public String toString() {
-		return "UserPo [userId=" + userId + ", password=" + password + ", realName="
-				+ realName + ", IDCardNumber=" + IDCardNumber + ", certificateNumber=" + certificateNumber + ", phone=" + phone
-				+ ", lastLoginTime=" + lastLoginTime + ", isDelete=" + isDelete + "]";
+	public Boolean getIsTourist() {
+		return isTourist;
+	}
+	public void setIsTourist(Boolean isTourist) {
+		this.isTourist = isTourist;
+	}
+	public String getPeriod() {
+		return period;
+	}
+	public void setPeriod(String period) {
+		this.period = period;
+	}
+	public String getClasses() {
+		return classes;
+	}
+	public void setClasses(String classes) {
+		this.classes = classes;
 	}
 }

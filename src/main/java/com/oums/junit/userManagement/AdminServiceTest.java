@@ -11,6 +11,7 @@ import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.type.AdminUserType;
 import com.oums.bean.vo.AdminUserVo;
+import com.oums.bean.vo.UserVo;
 import com.oums.junit.BaseUnit;
 import com.oums.service.IAdminUserService;
 
@@ -47,5 +48,36 @@ public class AdminServiceTest extends BaseUnit{
 		assertTrue(returnMessage.isFlat());
 		adminPo = (AdminUserPo)adminService.getAdminPoByEmplNum("10001").getObject();
 		assertEquals(adminPo.getPassword(),"12345");
+	}
+	
+	@Test
+	public void deleteUserTest(){
+		String[] users = new String[2]; 
+		users[0] = "201311911210";
+		users[1] = "201311911216";
+		returnMessage = adminService.deleteUser(users, "10001", "12345");
+		assertEquals(returnMessage.isFlat(), true);
+		assertEquals(returnMessage.getContent(), "delete succeed");
+		returnMessage = adminService.deleteUser(users, "10001", "1234");
+		assertEquals(returnMessage.isFlat(), false);
+	}
+	
+	@Test
+	public void searchUserTest(){
+		returnMessage = adminService.searchUser("*", "*", "true", "*");
+		System.out.println("!");
+		System.out.println("!");
+		System.out.println("!");
+		System.out.println("!");
+		System.out.println("!");
+		UserVo[] users = (UserVo[])returnMessage.getObject();
+		for(int i = 0; i < users.length; i++){
+			System.out.println(users[i].toString());
+		}
+		System.out.println("!");
+		System.out.println("!");
+		System.out.println("!");
+		System.out.println("!");
+		System.out.println("!");
 	}
 }

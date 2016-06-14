@@ -35,7 +35,7 @@
 							<li><a href="addsite.jsp">添加场地</a></li>
 							<li><a href="deletesite.jsp">删除场地</a></li>
 							<li><a href="updatesite.jsp">更改场地</a></li>
-							<li><a href="checksite.jsp">查看场地</a></li>
+							<li><a href="mchecksite.jsp">查看场地</a></li>
 						</ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
@@ -50,7 +50,7 @@
                 </li>
                 <li><a href="#"><span>赛事</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
+                        <li><a href="../order/dealordersite.jsp">about us</a></li>
                         <li><a href="#">services</a></li>
                         <li><a href="#">solutions</a></li>
                         <li><a href="#">support</a></li>
@@ -199,6 +199,7 @@
 <!-- js -->
 <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
 <script src="../../js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="../../js/site/basesitetype.js" type="text/javascript"></script>
 <script src="../../js/site/updatesite.js" type="text/javascript"></script>
 </body>
 </html>

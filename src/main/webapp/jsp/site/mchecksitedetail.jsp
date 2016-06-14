@@ -6,8 +6,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>海大体育馆管理系统-查看场地</title>
     <link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="../../css/site/basesite.css" type="text/css" />
-    <link rel="stylesheet" href="../../css/site/checksite.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/site/checksitedetail.css" type="text/css" />
 </head>
 <body>
 <div id="page" class="shell">
@@ -31,13 +30,16 @@
                 <li><a href="../../index.jsp" class="active"><span>首页</span></a></li>
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
-                        <li><a href="ordersite.jsp">预约场地</a></li>
                         <li><a href="checksite.jsp">查看场地</a></li>
+                        <li><a href="addsite.jsp">添加场地</a></li>
+                        <li><a href="deletesite.jsp">删除场地</a></li>
+                        <li><a href="updatesite.jsp">更改场地</a></li>
+                        <li><a href="mchecksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
+                        <li><a href="../order/dealordersite.jsp">about us</a></li>
                         <li><a href="#">services</a></li>
                         <li><a href="#">solutions</a></li>
                         <li><a href="#">support</a></li>
@@ -57,7 +59,7 @@
                 </li>
                 <li><a href="#"><span>订单</span></a>
                     <ul>
-                        <li><a href="#">场地订单</a></li>
+                        <li><a href="../order/dealordersite.jsp">场地订单</a></li>
                         <li><a href="#">services</a></li>
                         <li><a href="#">solutions</a></li>
                         <li><a href="#">support</a></li>
@@ -92,99 +94,106 @@
     <hr/>
     <!-- Main 在这里编辑正文内容-->
     <div id="main">
-        <div id="title">
-            <h2>查看场地</h2>
-        </div>
-
-        <div id="searchsite">
-            <form action="" method="post">
-                场地类型：<select id="siteType">
-                <option value="1">羽毛球场</option>
-                <option value="2">兵乓球场</option>
-                <option value="3">桌球场</option>
-                <option value="4">篮球场</option>
-                <option value="5">网球场</option>
-                </select>
-                <input class="sumbtn" type="button" value="查找场地" onclick="sitesearch('')" />
-            </form>
-            <!-- 显示状态信息 -->
-            <div id="data"></div>
-        </div>
-
-        <div id="sitelist">
+        <!-- 显示状态信息 -->
+        <div id="data"></div>
+        <div id="sitedetail">
             <table id="site-table">
-                <tr id="sitetitle">
+                <tr class="title">
                     <td class="site-name">场地名称</td>
                     <td class="site-type">场地类型</td>
                     <td class="site-cost">费用（元）</td>
                     <td class="site-dtail">场地描述</td>
                 </tr>
-                <tr>
+                <tr id="site-0">
                     <td class="site-name" id="site-name0"></td>
                     <td class="site-type" id="site-type0"></td>
                     <td class="site-cost" id="site-cost0"></td>
                     <td class="site-dtail" id="site-dtail0"></td>
                 </tr>
-                <tr id="site-1">
-                    <td class="site-name" id="site-name1"></td>
-                    <td class="site-type" id="site-type1"></td>
-                    <td class="site-cost" id="site-cost1"></td>
-                    <td class="site-dtail" id="site-dtail1"></td>
-                </tr>
-                <tr id="site-2">
-                    <td class="site-name" id="site-name2"></td>
-                    <td class="site-type" id="site-type2"></td>
-                    <td class="site-cost" id="site-cost2"></td>
-                    <td class="site-dtail" id="site-dtail2"></td>
-                </tr>
-                <tr id="site-3">
-                    <td class="site-name" id="site-name3"></td>
-                    <td class="site-type" id="site-type3"></td>
-                    <td class="site-cost" id="site-cost3"></td>
-                    <td class="site-dtail" id="site-dtail3"></td>
-                </tr>
-                <tr id="site-4">
-                    <td class="site-name" id="site-name4"></td>
-                    <td class="site-type" id="site-type4"></td>
-                    <td class="site-cost" id="site-cost4"></td>
-                    <td class="site-dtail" id="site-dtail4"></td>
-                </tr>
-                <tr id="site-5">
-                    <td class="site-name" id="site-name5"></td>
-                    <td class="site-type" id="site-type5"></td>
-                    <td class="site-cost" id="site-cost5"></td>
-                    <td class="site-dtail" id="site-dtail5"></td>
-                </tr>
-                <tr id="site-6">
-                    <td class="site-name" id="site-name6"></td>
-                    <td class="site-type" id="site-type6"></td>
-                    <td class="site-cost" id="site-cost6"></td>
-                    <td class="site-dtail" id="site-dtail6"></td>
-                </tr>
-                <tr id="site-7">
-                    <td class="site-name" id="site-name7"></td>
-                    <td class="site-type" id="site-type7"></td>
-                    <td class="site-cost" id="site-cost7"></td>
-                    <td class="site-dtail" id="site-dtail7"></td>
-                </tr>
-                <tr id="site-8">
-                    <td class="site-name" id="site-name8"></td>
-                    <td class="site-type" id="site-type8"></td>
-                    <td class="site-cost" id="site-cost8"></td>
-                    <td class="site-dtail" id="site-dtail8"></td>
-                </tr>
-                <tr id="site-9">
-                    <td class="site-name" id="site-name9"></td>
-                    <td class="site-type" id="site-type9"></td>
-                    <td class="site-cost" id="site-cost9"></td>
-                    <td class="site-dtail" id="site-dtail9"></td>
-                </tr>
             </table>
         </div>
 
-        <div id="main-footer">
-            <input class="list-button" id="page-last" type="button" value="&lt" />
-            <input class="list-button" id="page-next" type="button" value="&gt" />
+        <hr id="hrcenter" />
+
+        <div id="weektitle">
+            <h2>场地空闲情况</h2>
+        </div>
+
+        <div id="week">
+            <table id="week-table">
+                <tr class="title">
+                    <td class="dayofweek" id="dayofweek">星期</td>
+                    <td class="time">8:00 - 9:50</td>
+                    <td class="time">10:00 - 11:50</td>
+                    <td class="time">12:00 - 13:50</td>
+                    <td class="time">14:00 - 15:50</td>
+                    <td class="time">16:00 - 17:50</td>
+                    <td class="time">18:00 - 19:50</td>
+                </tr>
+                <tr>
+                    <td class="dayofweek">星期日</td>
+                    <td class="time" id="time00"></td>
+                    <td class="time" id="time01"></td>
+                    <td class="time" id="time02"></td>
+                    <td class="time" id="time03"></td>
+                    <td class="time" id="time04"></td>
+                    <td class="time" id="time05"></td>
+                </tr>
+                <tr>
+                    <td class="dayofweek">星期一</td>
+                    <td class="time" id="time10"></td>
+                    <td class="time" id="time11"></td>
+                    <td class="time" id="time12"></td>
+                    <td class="time" id="time13"></td>
+                    <td class="time" id="time14"></td>
+                    <td class="time" id="time15"></td>
+                </tr>
+                <tr>
+                    <td class="dayofweek">星期二</td>
+                    <td class="time" id="time20"></td>
+                    <td class="time" id="time21"></td>
+                    <td class="time" id="time22"></td>
+                    <td class="time" id="time23"></td>
+                    <td class="time" id="time24"></td>
+                    <td class="time" id="time25"></td>
+                </tr>
+                <tr>
+                    <td class="dayofweek">星期三</td>
+                    <td class="time" id="time30"></td>
+                    <td class="time" id="time31"></td>
+                    <td class="time" id="time32"></td>
+                    <td class="time" id="time33"></td>
+                    <td class="time" id="time34"></td>
+                    <td class="time" id="time35"></td>
+                </tr>
+                <tr>
+                    <td class="dayofweek">星期四</td>
+                    <td class="time" id="time40"></td>
+                    <td class="time" id="time41"></td>
+                    <td class="time" id="time42"></td>
+                    <td class="time" id="time43"></td>
+                    <td class="time" id="time44"></td>
+                    <td class="time" id="time45"></td>
+                </tr>
+                <tr>
+                    <td class="dayofweek">星期五</td>
+                    <td class="time" id="time50"></td>
+                    <td class="time" id="time51"></td>
+                    <td class="time" id="time52"></td>
+                    <td class="time" id="time53"></td>
+                    <td class="time" id="time54"></td>
+                    <td class="time" id="time55"></td>
+                </tr>
+                <tr>
+                    <td class="dayofweek">星期六</td>
+                    <td class="time" id="time60"></td>
+                    <td class="time" id="time61"></td>
+                    <td class="time" id="time62"></td>
+                    <td class="time" id="time63"></td>
+                    <td class="time" id="time64"></td>
+                    <td class="time" id="time65"></td>
+                </tr>
+            </table>
         </div>
     </div>
     <!-- END Main -->
@@ -214,6 +223,6 @@
 <!-- js -->
 <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
 <script src="../../js/site/basesitetype.js" type="text/javascript"></script>
-<script src="../../js/site/checksite.js" type="text/javascript"></script>
+<script src="../../js/site/checksitedetail.js" type="text/javascript"></script>
 </body>
 </html>

@@ -1,11 +1,13 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>海大体育馆管理系统-预约场地</title>
+    <title>海大体育馆管理系统-查看订单详情</title>
     <link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="../../css/site/basesite.css" type="text/css" />
-    <link rel="stylesheet" href="../../css/site/ordersite.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/order/orderdetail.css" type="text/css" />
 </head>
 <body>
 <div id="page" class="shell">
@@ -30,7 +32,7 @@
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
                         <li><a href="#">预约场地</a></li>
-                        <li><a href="checksite.jsp">查看场地</a></li>
+                        <li><a href="../site/checksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
@@ -91,48 +93,56 @@
     <!-- Main 在这里编辑正文内容-->
     <div id="main">
         <div id="title">
-            <h2>预约场地</h2>
+            <h2>查看订单详情</h2>
         </div>
 
         <div id="content">
-            <form id="orderform" action="" method="post">
-                <div class="text">
-                    场地名:<input class="itext" id="sitename" name="sitename" type="text" />
-                </div>
-                <div class="text">
-                    选择时间
-                </div>
-                <div class="text">
-                    星期:<select id="dayofweek" name="day.dayOfWeek">
-                    <option value="0">星期天</option>
-                    <option value="1">星期一</option>
-                    <option value="2">星期二</option>
-                    <option value="3">星期三</option>
-                    <option value="4">星期四</option>
-                    <option value="5">星期五</option>
-                    <option value="6">星期六</option>
-                </select>
-                </div>
-                <div class="text">
-                    时间段：<select id="timeofday" name="timeInDay">
-                    <option value="0">8:00 - 9:50</option>
-                    <option value="1">10:00 - 11:50</option>
-                    <option value="2">12:00 - 13:50</option>
-                    <option value="3">14:00 - 15:50</option>
-                    <option value="4">16:00 - 17:50</option>
-                    <option value="5">18:00 - 19:50</option>
-                </select>
-                </div>
-                <div class="text" id="textarea">
-                	 备注：<textarea id="remark" name="order.remark" rows="2" cols="20"></textarea>
-                </div>
-                <div class="text">
-                    <input class="sumbtn" type="button" value="预约" onclick="sumbitform()" />
-                </div>
-            </form>
-            <div id="datatext"></div>
+            <div class="text">
+                订单号:<label id="ordernumber"></label>
+            </div>
+            <div class="text">
+                订单类型:<label id="orderclass"></label>
+            </div>
+            <div class="text">
+                订单状态:<label id="ordertype"></label>
+            </div>
+            <div class="text">
+                订单生产时间:<label id="buildtime"></label>
+            </div>
+            <div class="text">
+                用户备注:<label id="remark"></label>
+            </div>
+            <div class="text">
+                管理员回复:<label id="reply"></label>
+            </div>
+            <div class="text">
+                用户:<label id="userrealname"></label>
+            </div>
+            <div class="text">
+                管理员:<label id="adminrealname"></label>
+            </div>
+            <div class="text">
+                场地名:<label id="sitename"></label>
+            </div>
+            <!-- 器材赛事 到时自己加 -->
+
+            <div id="datatext">123</div>
         </div>
 
+
+
+        <div class="content-footer">
+            <div class="title"><h2>操作订单</h2></div>
+            <form action="" method="post">
+                <div class="text">
+                    回复内容:<textarea id="adminreply" rows="2" cols="20" ></textarea>
+                </div>
+                <div class="text" id="sumbtn-foot">
+                    <input class="sumbtn" type="button" onclick="sureorder()" value="接收订单" />
+                    <input class="sumbtn" type="button" onclick="rejectorder()" value="拒绝订单" />
+                </div>
+            </form>
+        </div>
     </div>
     <!-- END Main -->
     <hr/>
@@ -160,6 +170,7 @@
 
 <!-- js -->
 <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
-<script src="../../js/site/ordersite.js" type="text/javascript"></script>
+<script src="../../js/order/baseorder.js" type="text/javascript"></script>
+<script src="../../js/order/orderdetail.js" type="text/javascript"></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 package com.oums.dao;
 
+import java.util.List;
+
 import com.oums.bean.po.AdminUserPo;
+import com.oums.bean.po.UserPo;
 
 
 
@@ -26,4 +29,18 @@ public interface IAdminUserDao {
 	 * @param adminPo
 	 */
 	abstract void modifyPassword(AdminUserPo adminPo);
+	/**
+	 * admin delete user
+	 * @param userPo
+	 */
+	abstract void deleteUser(UserPo userPo);
+	/**
+	 * search users by period, classes, isTourist, certificate number
+	 * @param period
+	 * @param classes
+	 * @param isTourist
+	 * @param cerNum
+	 * @return
+	 */
+	abstract List<UserPo> searchUser(String period, String classes, String isTourist, String cerNum);
 }

@@ -31,8 +31,11 @@
                 <li><a href="../../index.jsp" class="active"><span>首页</span></a></li>
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
-                        <li><a href="ordersite.jsp">预约场地</a></li>
                         <li><a href="checksite.jsp">查看场地</a></li>
+                        <li><a href="addsite.jsp">添加场地</a></li>
+                        <li><a href="deletesite.jsp">删除场地</a></li>
+                        <li><a href="updatesite.jsp">更改场地</a></li>
+                        <li><a href="mchecksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
@@ -57,7 +60,7 @@
                 </li>
                 <li><a href="#"><span>订单</span></a>
                     <ul>
-                        <li><a href="#">场地订单</a></li>
+                        <li><a href="../order/dealordersite.jsp">场地订单</a></li>
                         <li><a href="#">services</a></li>
                         <li><a href="#">solutions</a></li>
                         <li><a href="#">support</a></li>
@@ -105,7 +108,7 @@
                 <option value="4">篮球场</option>
                 <option value="5">网球场</option>
                 </select>
-                <input class="sumbtn" type="button" value="查找场地" onclick="sitesearch('')" />
+                <input class="sumbtn" type="button" value="查找场地" onclick="sitesearch('m')" />
             </form>
             <!-- 显示状态信息 -->
             <div id="data"></div>
