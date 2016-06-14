@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.oums.bean.po.AdminUserPo;
+import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.UserPo;
 
@@ -39,7 +40,17 @@ public class OrderVo extends BaseVo {
 	/* 赛事 */
 //	private List<RacePo> raceList = new ArrayList<>();
 	/* 还要加管理员的Po */
+	/* 器材 */	
+	private List<EquipmentPo> equipmentList = new ArrayList<>();
 	
+	public List<EquipmentPo> getEquipmentList() {
+		return equipmentList;
+	}
+
+	public void setEquipmentList(List<EquipmentPo> equipmentList) {
+		this.equipmentList = equipmentList;
+	}
+
 	public Integer getOrderId() {
 		return orderId;
 	}

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <form action="../../equipManager/udateEquipment.action" method="post">
+    <form action="../../equipmentManager/udateEquipment.action" method="post">
     	<input name="equipment.equipId" type="hidden" value="${requestScope.list.equipId }"/>
     	<input name="equipment.addTime" type="hidden" value="${requestScope.list.addTime }"/>
         器材名：<input name="equipment.equipName" type="text" value="${requestScope.list.equipName }"/><br/>

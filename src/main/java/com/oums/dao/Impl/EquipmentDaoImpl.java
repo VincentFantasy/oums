@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.EquipmentTypePo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.vo.EquipmentTypeVo;
 import com.oums.bean.vo.EquipmentVo;
@@ -117,6 +118,28 @@ public class EquipmentDaoImpl implements IEquipmentDao {
 	
 		return list;
 	
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderPo> findOrder() {
+		// TODO Auto-generated method stub
+		List<OrderPo> list= sessionFactory.getCurrentSession()
+				.createQuery("from OrderPo e where e.isDelete = false and e.orderType= 0x01 ").list();
+		return list;
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderPo> findWaitSureOrder() {
+		// TODO Auto-generated method stub
+		List<OrderPo> list= sessionFactory.getCurrentSession()
+		.createQuery("from OrderPo e where e.isDelete = false and e.orderType=  0x02 ").list();
+		return list;
 	}
 
 

@@ -9,11 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.EquipmentTypePo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
+import com.oums.bean.type.OrderType;
 import com.oums.bean.vo.EquipmentTypeVo;
 import com.oums.bean.vo.EquipmentVo;
+import com.oums.bean.vo.OrderVo;
+import com.oums.dao.IBaseDao;
 import com.oums.dao.IEquipmentDao;
 import com.oums.service.IEquipmentService;
+import com.oums.util.BeanUtil;
 /**
  * 
  * @author pzh
@@ -25,23 +30,10 @@ public class EquipmentServiceImpl implements IEquipmentService {
 	
 	@Autowired
 	IEquipmentDao equipmentDao;
+	@Autowired
+	IBaseDao baseDao;
 
-//	public ReturnMessage findEquipment(EquipmentVo equipment) {
-//		
-//		ReturnMessage returnMessage = new ReturnMessage();
-//		try{
-//			HashMap pos = equipmentDao.findEquipmentList(equipment);
-//			returnMessage.setFlat(true);
-//			returnMessage.setContent("查找成功");
-//			returnMessage.setObject(pos);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			returnMessage.setFlat(false);
-//			returnMessage.setContent("查找失败");
-//		}
-//		
-//		return returnMessage;
-//	}
+
 	@Override
 	public ReturnMessage findFreeEquipment(EquipmentTypeVo equipmentType) {
 		// TODO Auto-generated method stub
@@ -80,7 +72,6 @@ public class EquipmentServiceImpl implements IEquipmentService {
 	}
 	@Override
 	public ReturnMessage findEquipmentByType(String content, String type) {
-		// TODO 查找所有器材
 				ReturnMessage returnMessage = new ReturnMessage();
 				try{
 					List<EquipmentPo> pos = equipmentDao.findEquipmentByType(content,type);
@@ -112,6 +103,77 @@ public class EquipmentServiceImpl implements IEquipmentService {
 			returnMessage.setContent("查找失败");
 		}
 		
+		return returnMessage;
+	}
+	@Override
+	public ReturnMessage addOrder(OrderVo vo) {
+		// TODO Auto-generated method stub
+		
+		ReturnMessage returnMessage = new ReturnMessage();
+		try{
+			OrderPo po=new OrderPo();
+			BeanUtil.voToPo(vo, po);
+			baseDao.add(po);
+			returnMessage.setFlat(true);
+			returnMessage.setContent("添加订单成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("添加订单失败");
+		}
+		return returnMessage;
+	}
+	@Override
+	public ReturnMessage findOrder() {
+		// TODO Auto-generated method stub
+		ReturnMessage returnMessage = new ReturnMessage();
+		try{
+			
+			List<OrderPo> list=equipmentDao.findOrder();
+			returnMessage.setFlat(true);
+			returnMessage.setObject(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+		}
+		return returnMessage;
+	}
+	@Override
+	public ReturnMessage payOrder(int id) {
+		// TODO Auto-generated method stub
+		ReturnMessage returnMessage = new ReturnMessage();
+		try{
+			
+			OrderPo po=baseDao.findById(OrderPo.class, id);
+			po.setOrderType(OrderType.WAITSURE);
+			baseDao.update(po);
+			List<OrderPo> list=equipmentDao.findOrder();
+			returnMessage.setFlat(true);
+			returnMessage.setObject(list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+		}
+		return returnMessage;
+	}
+	@Override
+	public ReturnMessage delOrder(int id) {
+		// TODO Auto-generated method stub
+		ReturnMessage returnMessage = new ReturnMessage();
+		try{
+			
+			OrderPo po=baseDao.findById(OrderPo.class, id);
+			po.setIsDelete(true);
+			baseDao.update(po);
+			List<OrderPo> list=equipmentDao.findOrder();
+			returnMessage.setFlat(true);
+			returnMessage.setObject(list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+		}
 		return returnMessage;
 	}
 	

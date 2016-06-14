@@ -29,7 +29,7 @@
 	 		</c:forEach>
 		</table>
 	</form>
-	 <form action="../../equipManager/addEquipment.action" method="post">
+	 <form action="../../equipmentManager/addEquipment.action" method="post">
         器材名：<input name="equipment.equipName" type="text" /><br/>
         器材品牌：<input name="equipment.equipBrand" type="text" /><br/>
       	器材数量：<input name="equipment.totalNum" type="text" /><br/>

@@ -4,7 +4,14 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>海大体育馆管理系统</title>
+	<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	%>
+	<base href="<%=basePath%>">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/site/addsite.css" type="text/css" />
 </head>
 
 <body>
@@ -91,7 +98,13 @@
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main">
 			<h1>正文内容</h1>
-		</div>
+			<a href="jsp/equipment/equipmentFind.jsp">器材查询</a>
+			<a href="jsp/equipment/equipmentAdd.jsp">添加器材</a>
+			<a href="jsp/equipment/equipmentUpdate.jsp">修改器材</a>
+			<a href="jsp/equipment/equipmentDel.jsp">删除器材</a>
+			<a href="jsp/equipment/equipmentBorrow.jsp">租借请求</a>
+			<a href="jsp/equipment/equipmentManagerSureOrder.jsp">租借请求处理</a>
+				</div>
 		<!-- END Main -->
 		<hr/>
 

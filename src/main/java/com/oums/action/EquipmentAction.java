@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.EquipmentPo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.UserPo;
 import com.oums.bean.type.ItemState;
@@ -39,7 +40,7 @@ import com.oums.util.TimeUtil;
  */
 
 @ParentPackage("basePackage")
-@Namespace("/equiment")
+@Namespace("/user")
 public class EquipmentAction {
 	
 	@Autowired
@@ -137,7 +138,25 @@ public class EquipmentAction {
 		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
 		request.setAttribute("list",list );
 		try {
-			request.getRequestDispatcher("../../equipmentList.jsp").forward(request, response);
+			String type=request.getParameter("type");
+			switch (type){
+			case "detail" : 
+				request.getRequestDispatcher("../../equipmentDetail.jsp").forward(request, response);
+				break;
+			case "borrow" : 
+				request.getRequestDispatcher("../../equipmentBorrow.jsp").forward(request, response);
+				break;
+			case "find" : 
+				request.getRequestDispatcher("../../equipmentFind.jsp").forward(request, response);
+				break;
+			case "list" : 
+				request.getRequestDispatcher("../../equipmentList.jsp").forward(request, response);
+				break;
+			case "del" : 
+				request.getRequestDispatcher("../../equipmentDel.jsp").forward(request, response);
+				break;
+			default : break;
+			} 
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,7 +183,6 @@ public class EquipmentAction {
 		
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
 		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
-		
 		try {
 			request.getRequestDispatcher("../../equipmentList.jsp").forward(request, response);
 		} catch (ServletException e) {
@@ -183,8 +201,8 @@ public class EquipmentAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipment/borrowEquipment
 	 */
-	@Action(value="rentEquipment", results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String rentEquipment() {		
+	@Action(value="borrowEquipment", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String borrowEquipment() {		
 		
 		try {
 
@@ -207,10 +225,16 @@ public class EquipmentAction {
 						for(int i=0;i<po.size();i++){
 							po.get(i).setItemState(ItemState.ORDERED);
 							equipmentManagerService.updateEquipment(po.get(i));
-							
+							 order.getEquipmentList().add(po.get(i));
+						}
+						returnMessage=equipmentService.addOrder(order);
+						if(returnMessage.isFlat()){
+							returnMessage.setContent("租借成功");
+						}else{
+							returnMessage.setContent("租借失败");
 						}
 					} else {
-						
+						returnMessage.setContent("查找失败");
 					}
 				}
 		} catch (Exception e) {
@@ -218,5 +242,89 @@ public class EquipmentAction {
 		}
 		return "success";
 	
+	}
+	
+	/**
+	 * 查找非删除的订单
+	 * @return
+	 * http://localhost:8080/OUMS/equipment/borrowEquipment
+	 */
+	@Action(value="findOrder")  //	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findOrder() {		
+		
+		try {
+			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+			HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+			
+			// 设置用户
+			returnMessage = equipmentService.findOrder();
+			if(returnMessage.isFlat()){
+				List<OrderPo> list = (List<OrderPo>) returnMessage.getObject();
+				request.setAttribute("list", list);
+				returnMessage.setContent("订单查找成功!");
+			}else{
+				returnMessage.setContent("订单查找失败!");
+			}
+			request.getRequestDispatcher("../../equipmentList.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "success";
+	}
+	
+	/**
+	 * 订单支付
+	 * @return
+	 * http://localhost:8080/OUMS/equipment/borrowEquipment
+	 */
+	@Action(value="findOrder") //	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String payOrder() {		
+		
+		try {
+			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+			HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+			int id = Integer.parseInt(request.getParameter("orderId"));
+			// 设置用户
+			returnMessage = equipmentService.payOrder(id);
+			if(returnMessage.isFlat()){
+				returnMessage.setContent("订单支付成功!");
+			}else{
+				returnMessage.setContent("订单支付失败!");
+			}
+			List<OrderPo> list = (List<OrderPo>) returnMessage.getObject();
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("../../equipmentOrderList.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "success";
+	}
+	
+	/**
+	 * 订单删除
+	 * @return
+	 * http://localhost:8080/OUMS/equipment/borrowEquipment
+	 */
+	@Action(value="delOrder")   //	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String delOrder() {		
+		
+		try {
+			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+			HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+			int id = Integer.parseInt(request.getParameter("orderId"));
+			// 设置用户
+			returnMessage = equipmentService.delOrder(id);
+			if(returnMessage.isFlat()){
+				List<OrderPo> list = (List<OrderPo>) returnMessage.getObject();
+				request.setAttribute("list", list);
+				returnMessage.setContent("订单删除成功!");
+			}else{
+				returnMessage.setContent("订单删除失败!");
+			}
+			request.getRequestDispatcher("../../equipmentOrderList.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "success";
 	}
 }

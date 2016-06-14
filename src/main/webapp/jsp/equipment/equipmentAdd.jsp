@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <form action="../../equipManager/addEquipment.action" method="post">
+    <form action="../../manager/addEquipment.action" method="post">
         器材名：<input name="equipment.equipName" type="text" /><br/>
         器材品牌：<input name="equipment.equipBrand" type="text" /><br/>
         收购价格:<input name="equipment.equipPrice" type="text" /><br/>

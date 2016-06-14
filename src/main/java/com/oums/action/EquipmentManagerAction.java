@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.EquipmentPo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.vo.EquipmentVo;
 import com.oums.service.IEquipmentManagerService;
 import com.oums.service.IEquipmentService;
@@ -28,7 +29,7 @@ import com.oums.service.IUserService;
  * 2016年6月7日
  */
 @ParentPackage("basePackage")
-@Namespace("/equipmentManager")
+@Namespace("/manager")
 public class EquipmentManagerAction {
 	
 	@Autowired
@@ -66,11 +67,14 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/addEquipment
 	 */
-	@Action(value="addEquipment", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	@Action(value="addEquipment")//, results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String addEquipment() {
 		
 		//添加器材
 		returnMessage = equipmentManagerService.addEquipment(equip);
+		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+//		request.getRequestDispatcher("../../equipmentDel.jsp").forward(request, response);
 //		@Results({
 //		    @Result(name=success,location=/success.jsp),
 //		    @Result(name=error,location=/error.jsp)
@@ -115,15 +119,21 @@ public class EquipmentManagerAction {
 	 * 从界面接受 器材种类信息,
 	 * 更新器材器材信息
 	 * @return
-	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
+	 * http://localhost:8080/OUMS/equipmentManager/updateEquipment
 	 */
 	@Action(value="updateEquipment", results={@Result(name="success", type="json", params={"root","returnMessage"})})
 	public String updateEquipment() {
-		
-		
 		//更新器材
 		returnMessage=equipmentManagerService.updateEquipment(equip);
-
+		
+		try {
+			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+			HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+			request.getRequestDispatcher("../../equipment/FindequipmentByType.action").forward(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "success";
 	}
@@ -134,18 +144,74 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
 	 */
-	@Action(value="findEquipmentById")
-//			, results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String findEquipmentById(int id) {
+	@Action(value="findEquipmentById")//	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findEquipmentById() {
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
 		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
-		
+		int id=Integer.parseInt( request.getParameter("equipId"));
 		returnMessage=equipmentManagerService.findEquipmentById(id);
 		try {
 			if(returnMessage.isFlat()){
 				EquipmentPo list=(EquipmentPo) returnMessage.getObject();
 				request.setAttribute("list",list );
 				request.getRequestDispatcher("../../equipmentDetail.jsp").forward(request, response);
+			}
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "success";
+	}
+	
+	/**
+	 * 
+	 * 查找待确认订单
+	 * @return
+	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
+	 */
+	@Action(value="findWaitSureOrder")//	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String findWaitSureOrder() {
+		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+		
+		returnMessage=equipmentManagerService.findWaitSureOrder();
+		try {
+			if(returnMessage.isFlat()){
+				List<OrderPo> list=(List<OrderPo>) returnMessage.getObject();
+				request.setAttribute("list",list );
+				request.getRequestDispatcher("../../equipmentManagerSureOrder.jsp").forward(request, response);
+			}
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "success";
+	}
+	
+	/**
+	 * 
+	 * 确认订单
+	 * @return
+	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
+	 */
+	@Action(value="sureOrder")//	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	public String sureOrder() {
+		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+		int id=Integer.parseInt( request.getParameter("orderId"));
+		returnMessage=equipmentManagerService.sureOrder(id);
+		try {
+			if(returnMessage.isFlat()){
+				returnMessage=equipmentManagerService.findWaitSureOrder();
+				EquipmentPo list=(EquipmentPo) returnMessage.getObject();
+				request.setAttribute("list",list );
+				request.getRequestDispatcher("../../equipmentManagerSureOrder.jsp").forward(request, response);
 			}
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block

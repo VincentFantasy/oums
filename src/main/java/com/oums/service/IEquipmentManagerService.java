@@ -51,6 +51,21 @@ public interface IEquipmentManagerService {
 	void updateEquipment(EquipmentPo equipmentPo);
 
 
+	/**
+	 * 查找待确认的订单
+	 * @return
+	 */
+	ReturnMessage findWaitSureOrder();
+
+	
+	/**
+	 * 确认订单
+	 * @param id
+	 * @return
+	 */
+	ReturnMessage sureOrder(int id);
+
+
 
 
 

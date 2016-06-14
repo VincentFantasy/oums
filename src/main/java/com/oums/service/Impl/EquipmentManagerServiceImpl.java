@@ -1,11 +1,15 @@
 package com.oums.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.EquipmentTypePo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.type.ItemState;
+import com.oums.bean.type.OrderType;
 import com.oums.bean.vo.EquipmentVo;
 import com.oums.dao.IBaseDao;
 import com.oums.dao.IEquipmentDao;
@@ -57,8 +61,6 @@ public class EquipmentManagerServiceImpl implements IEquipmentManagerService {
 		return returnMessage;
 	}
 
-	
-
 	@Override
 	public ReturnMessage delEquipment(int id) {
 		// TODO Auto-generated method stub
@@ -102,8 +104,6 @@ public class EquipmentManagerServiceImpl implements IEquipmentManagerService {
 	}
 
 
-
-
 	@Override
 	public ReturnMessage findEquipmentById(int id) {
 		// TODO Auto-generated method stub
@@ -127,5 +127,44 @@ public class EquipmentManagerServiceImpl implements IEquipmentManagerService {
 	public void updateEquipment(EquipmentPo equipmentPo) {
 		baseDao.update(equipmentPo);
 		
+	}
+
+
+
+	@Override
+	public ReturnMessage findWaitSureOrder() {
+		// TODO Auto-generated method stub
+		ReturnMessage returnMessage=new ReturnMessage();
+		try{
+			List<OrderPo> po = equipmentDao.findWaitSureOrder();
+			returnMessage.setObject(po);
+			returnMessage.setFlat(true);
+			returnMessage.setContent("查找成功!" );
+		}catch(Exception e){
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("查找失败" + e);
+		}
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnMessage sureOrder(int id) {
+		// TODO Auto-generated method stub
+		ReturnMessage returnMessage=new ReturnMessage();
+		try{
+			OrderPo po=baseDao.findById(OrderPo.class, id);
+			po.setOrderType(OrderType.SURE);
+			baseDao.update(po);
+			List<OrderPo> pos = equipmentDao.findWaitSureOrder();
+			returnMessage.setObject(pos);
+			returnMessage.setFlat(true);
+			returnMessage.setContent("确认成功!" );
+		}catch(Exception e){
+			e.printStackTrace();
+			returnMessage.setFlat(false);
+			returnMessage.setContent("确认失败" + e);
+		}
+		return returnMessage;
 	}
 }

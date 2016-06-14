@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.EquipmentTypePo;
+import com.oums.bean.po.OrderPo;
 import com.oums.bean.vo.EquipmentTypeVo;
 import com.oums.bean.vo.EquipmentVo;
 
@@ -53,5 +54,20 @@ public interface IEquipmentDao {
 	 * @return Map
 	 */
 	List<EquipmentPo> findEquipmentTypeAndNum();
+
+	/**
+	 * 查找订单
+	 * @param equipmen
+	 * @return Map
+	 */
+	List<OrderPo> findOrder();
+
+
+
+	/**
+	 * 查找待确认的订单
+	 * @return
+	 */
+	List<OrderPo> findWaitSureOrder();
 	
 }

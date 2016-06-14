@@ -3,6 +3,7 @@ package com.oums.service;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.vo.EquipmentTypeVo;
 import com.oums.bean.vo.EquipmentVo;
+import com.oums.bean.vo.OrderVo;
 
 /**
  * 
@@ -48,6 +49,33 @@ public interface IEquipmentService {
 	 * @return
 	 */
 	ReturnMessage findEquipmentTypeAndNum();
+	
+	/**
+	 * 添加器材订单
+	 * @param order
+	 * @return
+	 */
+	ReturnMessage addOrder(OrderVo order);
+	
+	/**
+	 * 查找所有非删除状态的订单
+	 * @return
+	 */
+	ReturnMessage findOrder();
+	
+	/**
+	 * 订单支付
+	 * @param id
+	 * @return
+	 */
+	ReturnMessage payOrder(int id);
+	
+	/**
+	 * 订单删除
+	 * @param id
+	 * @return
+	 */
+	ReturnMessage delOrder(int id);
 
 
 
