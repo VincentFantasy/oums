@@ -44,6 +44,10 @@ public class Page {
 //		
 //	}
 	
+	public Page(){
+		
+	}
+	
 	public Page(int recordCount){
 		this.recordCount = recordCount;
 		

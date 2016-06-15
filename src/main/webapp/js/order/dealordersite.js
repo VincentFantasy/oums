@@ -1,6 +1,6 @@
 var pageNum = 1;
 var pageCount = 1;
-var search = 0;
+var search = 1;
 
 function ordersearch(){
 	if(search == 2){
@@ -197,9 +197,9 @@ function addpage(){
 		pageNum = pageNum + 1;
 		$("#pageNum").html(pageNum);
 		if(search == 1)
-			ordersearch("");
+			ordersearch();
 		else if(search == 2)
-			ordersearch2("");
+			ordersearch2();
 	} else {
 		alert("最后一页");
 	}
@@ -210,9 +210,9 @@ function subpage(){
 		pageNum = pageNum - 1;
 		$("#pageNum").html(pageNum);
 		if(search == 1)
-			ordersearch("");
+			ordersearch();
 		else if(search == 2)
-			ordersearch2("");
+			ordersearch2();
 	} else {
 		alert("最前一页");
 	}
