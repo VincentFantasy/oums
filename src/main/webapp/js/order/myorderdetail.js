@@ -2,11 +2,11 @@ var url = location.search; //获取url中"?"符后的字串
 if (url.indexOf("?") != -1) {
     var str = url.substr(1);
     str = str.split("=")[1];
-    
+
     //如果变成中文编码
     if(str.charAt(0) == "%")
-    	str = decodeURIComponent(str);
-    
+        str = decodeURIComponent(str);
+
     $.ajax({
         url: 'findOrder.action', //请求地址ַ
         type: 'POST',
@@ -16,7 +16,7 @@ if (url.indexOf("?") != -1) {
         cache: false,
         beforeSend: LoadFunction, //
         error: erryFunction,  //
-        success: succFunction //       
+        success: succFunction //
     });
 
     function LoadFunction() {
@@ -124,63 +124,7 @@ if (url.indexOf("?") != -1) {
     }
 }
 
-function sureorder(){
-    var str = $("#ordernumber").html();
-
-    if(str != ""){
-
-        var str2 = $("#ordertype").html();
-
-        if(str2 == "等待确认"){
-        $.ajax({
-            url: '../siteManager/sureSiteOrder.action', //请求地址ַ
-            type: 'POST',
-            data:{"order.orderNumber":str, "order.reply":$("#adminreply").val()},//参数，key:value,多个参数逗号隔开
-            dataType: 'json',
-            timeout: 5000,
-            cache: false,
-            beforeSend: LoadFunction, //
-            error: erryFunction,  //
-            success: succFunction //
-        });
-
-        function LoadFunction() {
-            $("#datatext").html('waiting...');
-        }
-
-        function erryFunction() {
-            $("#datatext").html('error,try to refresh');
-        }
-
-        function succFunction(getJson) {
-            $("#datatext").html('');
-
-            //解析json(returnMessage)
-            var json = eval(getJson);
-            var flat = null;
-            var content = null;
-            $.each(json, function (key, value) {
-                switch (key) {
-                    case "flat":
-                        flat = value;
-                        break;
-                    case "content":
-                        content = value;
-                        break;
-                    default :
-                        break;
-                }
-            });
-
-            $("#datatext").html(content);
-        }
-        } else {
-            alert("不是等待确认状态");
-        }
-    }
-}
-
-function rejectorder(){
+function cancelorder(){
     var str = $("#ordernumber").html();
 
     if(str != ""){
@@ -189,9 +133,9 @@ function rejectorder(){
 
         if(str2 == "等待确认"){
             $.ajax({
-                url: '../siteManager/rejectOrder.action', //请求地址ַ
+                url: '../site/cancelOrder.action', //请求地址ַ
                 type: 'POST',
-                data:{"order.orderNumber":str, "order.reply":$("#adminreply").val()},//参数，key:value,多个参数逗号隔开
+                data:{"order.orderNumber":str, "order.remark":$("#userremark").val()},//参数，key:value,多个参数逗号隔开
                 dataType: 'json',
                 timeout: 5000,
                 cache: false,

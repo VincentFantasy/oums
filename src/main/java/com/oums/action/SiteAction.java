@@ -1,11 +1,15 @@
 package com.oums.action;
 
+import java.util.List;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.oums.bean.Page;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
@@ -39,7 +43,7 @@ public class SiteAction {
 
 	@Autowired
 	IOrderService orderService;
-
+	
 	private int dayOfWeek;
 
 	private int timeInDay;
@@ -124,8 +128,13 @@ public class SiteAction {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String findSiteType() {
 
+		
+		
 		returnMessage = siteService.findSiteByType(site.getSiteType());
-
+		
+		@SuppressWarnings("unchecked")
+		List<SitePo> list = (List<SitePo>) returnMessage.getObject();				
+		
 		return "success";
 	}
 
@@ -204,6 +213,10 @@ public class SiteAction {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String findUserSiteOrder() {
 
+		//从作用域中取出
+		user = new UserVo();
+		user.setCertificateNumber("123");
+		
 		// 查找出用户
 		returnMessage = userService.getUserPoByCerNum(user.getCertificateNumber());
 
@@ -256,9 +269,10 @@ public class SiteAction {
 
 		if (returnMessage.isFlat()) {
 			OrderPo po = (OrderPo) returnMessage.getObject();
-			if (po.getOrderType() == OrderType.NOPAY) {
+			if (po.getOrderType() == OrderType.WAITSURE) {
 				// 设为取消状态
 				po.setOrderType(OrderType.CANCEL);
+				po.setRemark(order.getRemark());
 				returnMessage = siteService.updateSiteOrder(po);
 			} else {
 				returnMessage.setObject(null);

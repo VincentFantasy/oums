@@ -1,3 +1,5 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +31,8 @@
                 <li><a href="../../index.jsp" class="active"><span>首页</span></a></li>
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
+                        <li><a href="ordersite.jsp">预约场地</a></li>
                         <li><a href="checksite.jsp">查看场地</a></li>
-                        <li><a href="addsite.jsp">添加场地</a></li>
-                        <li><a href="deletesite.jsp">删除场地</a></li>
-                        <li><a href="updatesite.jsp">更改场地</a></li>
-                        <li><a href="mchecksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
@@ -58,7 +57,7 @@
                 </li>
                 <li><a href="#"><span>订单</span></a>
                     <ul>
-                        <li><a href="dealordersite.jsp">场地订单</a></li>
+                        <li><a href="mysiteorder.jsp">场地订单</a></li>
                         <li><a href="#">services</a></li>
                         <li><a href="#">solutions</a></li>
                         <li><a href="#">support</a></li>
@@ -95,28 +94,6 @@
     <div id="main">
         <div id="title">
             <h2>查看场地订单</h2>
-        </div>
-
-        <div class="searchorder">
-            <form action="" method="post">
-                场地类型：<select id="orderType">
-                <option value="1">未付款</option>
-                <option value="2">等待确认</option>
-                <option value="3">已确认</option>
-                <option value="4">已取消</option>
-                <option value="5">已退款</option>
-                <option value="6">已拒绝</option>
-            </select>
-                <input class="sumbtn" type="button" value="查找订单" onclick="ordersearch()" />
-            </form>
-
-        </div>
-
-        <div class="searchorder">
-            <form action="" method="post">
-                订单编号：<input id="ordernumber" type="text" />
-                <input class="sumbtn" type="button" value="搜索订单" onclick="ordersearch2()" />
-            </form>
         </div>
 
         <!-- 显示状态信息 -->
@@ -225,6 +202,6 @@
 <!-- js -->
 <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
 <script src="../../js/order/baseorder.js" type="text/javascript"></script>
-<script src="../../js/order/dealordersite.js" type="text/javascript"></script>
+<script src="../../js/order/mysiteorder.js" type="text/javascript"></script>
 </body>
 </html>

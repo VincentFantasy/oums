@@ -62,7 +62,7 @@ function ordersearch(){
                 $.each(orders[key], function (i, v){
                     switch (i){
                         case "orderNumber":
-                            $("#order-name"+key).html("<a href='orderdetail.html?ordername=" + v + "'>" + v + "</a>");
+                            $("#order-name"+key).html("<a href='orderdetail.jsp?ordername=" + v + "'>" + v + "</a>");
                             break;
                         case "orderType":
                             $("#order-type"+key).html(ordertype(v));
@@ -148,7 +148,7 @@ function ordersearch2(){
                 $.each(orders[key], function (i, v){
                     switch (i){
                         case "orderNumber":
-                            $("#order-name"+key).html("<a href='orderdetail.html?ordername=" + v + "'>" + v + "</a>");
+                            $("#order-name"+key).html("<a href='orderdetail.jsp?ordername=" + v + "'>" + v + "</a>");
                             break;
                         case "orderType":
                             $("#order-type"+key).html(ordertype(v));
