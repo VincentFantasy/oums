@@ -8,6 +8,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.oums.bean.Page;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.po.OrderPo;
@@ -66,6 +67,16 @@ public class SiteManagerAction {
 
 	private AdminUserVo adminUser;
 
+	private Page page; 
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+	
 	public int getItemType() {
 		return itemType;
 	}
@@ -304,6 +315,13 @@ public class SiteManagerAction {
 	public String findSiteOrderByType() {
 
 		returnMessage = siteManagerService.findSiteOrderByType(order);
+		
+		@SuppressWarnings("unchecked")
+		List<OrderPo> list = (List<OrderPo>) returnMessage.getObject();
+		page.setRecordCount(list.size());
+		list = page.thisPageData(list);
+		returnMessage.setObject(list);
+		returnMessage.setPageCount(page.getPageCount());
 
 		return "success";
 	}

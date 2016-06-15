@@ -88,31 +88,6 @@ if (url.indexOf("?") != -1) {
     }
 }
 
-function sitetype(type){
-    var str;
-    switch (type){
-        case 1:
-            str = "羽毛球场";
-            break
-        case 2:
-            str = "兵乓球场";
-            break;
-        case 3:
-            str = "桌球场";
-            break;
-        case 4:
-            str = "篮球场";
-            break;
-        case 5:
-            str = "网球场";
-            break;
-        default :
-            break;
-    }
-
-    return str;
-}
-
 function valid() {
     $("#addsiteform").validate({
         rules: {
@@ -150,7 +125,6 @@ function valid() {
         }
     });
 }
-/*});*/
 
 function sumbitform() {
     $.ajax({

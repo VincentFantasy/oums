@@ -1,8 +1,18 @@
+var pageNum = 1;
+var pageCount = 1;
+var search = 0;
+
 function ordersearch(){
+	if(search == 2){
+		pageNum = 1;
+		pageCount = 1;
+		search = 1;
+	}			
+	
     $.ajax({
         url: '../siteManager/findSiteOrderByType.action', //请求地址ַ
         type: 'POST',
-        data:{"order.orderType":$("#orderType").val()},//参数，key:value,多个参数逗号隔开
+        data:{"order.orderType":$("#orderType").val(), "page.pageNum":pageNum},//参数，key:value,多个参数逗号隔开
         dataType: 'json',
         timeout: 5000,
         cache: false,
@@ -44,6 +54,9 @@ function ordersearch(){
                 case "object":
                     object = value;
                     break;
+                case "pageCount":
+                	pageCount = value;
+                	break;
                 default :
                     break;
             }
@@ -85,10 +98,16 @@ function ordersearch(){
 }
 
 function ordersearch2(){
+	if(search == 1){
+		pageNum = 1;
+		pageCount = 1;
+		search = 2;
+	}		
+	
     $.ajax({
         url: '../order/findOrderLikeNumber.action', //请求地址ַ
         type: 'POST',
-        data:{"order.orderNumber":$("#ordernumber").val()},//参数，key:value,多个参数逗号隔开
+        data:{"order.orderNumber":$("#ordernumber").val(), "page.pageNum":pageNum},//参数，key:value,多个参数逗号隔开
         dataType: 'json',
         timeout: 5000,
         cache: false,
@@ -130,6 +149,9 @@ function ordersearch2(){
                 case "object":
                     object = value;
                     break;
+                case "pageCount":
+                	pageCount = value;
+                	break;
                 default :
                     break;
             }
@@ -168,4 +190,30 @@ function ordersearch2(){
         }else
             $("#data").html(content);
     }
+}
+
+function addpage(){
+	if(pageNum < pageCount) {
+		pageNum = pageNum + 1;
+		$("#pageNum").html(pageNum);
+		if(search == 1)
+			ordersearch("");
+		else if(search == 2)
+			ordersearch2("");
+	} else {
+		alert("最后一页");
+	}
+}
+
+function subpage(){
+	if(pageNum > 1) {
+		pageNum = pageNum - 1;
+		$("#pageNum").html(pageNum);
+		if(search == 1)
+			ordersearch("");
+		else if(search == 2)
+			ordersearch2("");
+	} else {
+		alert("最前一页");
+	}
 }

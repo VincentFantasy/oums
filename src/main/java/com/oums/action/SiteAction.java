@@ -55,6 +55,16 @@ public class SiteAction {
 	private OrderVo order;
 
 	private UserVo user;
+	
+	private Page page; 
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
 
 	public UserVo getUser() {
 		return user;
@@ -127,13 +137,16 @@ public class SiteAction {
 	@Action(value = "findSiteType", results = {
 			@Result(name = "success", type = "json", params = { "root", "returnMessage" }) })
 	public String findSiteType() {
-
-		
 		
 		returnMessage = siteService.findSiteByType(site.getSiteType());
 		
 		@SuppressWarnings("unchecked")
-		List<SitePo> list = (List<SitePo>) returnMessage.getObject();				
+		List<SitePo> list = (List<SitePo>) returnMessage.getObject();
+		
+		page.setRecordCount(list.size());
+		list = page.thisPageData(list);
+		returnMessage.setObject(list);
+		returnMessage.setPageCount(page.getPageCount());
 		
 		return "success";
 	}
@@ -223,6 +236,14 @@ public class SiteAction {
 		if (returnMessage.isFlat()) {
 			UserPo userPo = (UserPo) returnMessage.getObject();
 			returnMessage = siteService.findUserOrder(userPo);
+			
+			@SuppressWarnings("unchecked")
+			List<SitePo> list = (List<SitePo>) returnMessage.getObject();
+			
+			page.setRecordCount(list.size());
+			list = page.thisPageData(list);
+			returnMessage.setObject(list);
+			returnMessage.setPageCount(page.getPageCount());
 		}
 
 		return "success";

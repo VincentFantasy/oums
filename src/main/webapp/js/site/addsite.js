@@ -1,4 +1,3 @@
-/*$().ready(function() {*/
 function valid() {
     $("#addsiteform").validate({
         rules: {
@@ -36,7 +35,6 @@ function valid() {
         }
     });
 }
-/*});*/
 
 function sumbitform() {
     $.ajax({
@@ -83,6 +81,6 @@ function sumbitform() {
             }
         });
 
-        $("#datetext").html(content);
+        $("#datatext").html(content);
     }
 }

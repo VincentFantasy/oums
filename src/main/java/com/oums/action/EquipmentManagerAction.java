@@ -68,7 +68,7 @@ public class EquipmentManagerAction {
 	 * http://localhost:8080/OUMS/equipmentManager/addEquipment
 	 */
 	//, results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	@Action(value="addEquipment",results={@Result(name="success",location="index.jsp")})
+	@Action(value="addEquipment",results={@Result(name="success",location="../../../index.jsp")})
 	public String addEquipment() {
 		
 		//添加器材

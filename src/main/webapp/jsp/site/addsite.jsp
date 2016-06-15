@@ -29,16 +29,13 @@
         <div id="navigation">
             <ul>
                 <li><a href="../../index-m.jsp" class="active"><span>首页</span></a></li>
-                <li><a href="site.jsp"><span>场地</span></a>
-                    <li><a href="#"><span>场地</span></a>
-						<ul>
-							<li><a href="checksite.jsp">查看场地</a></li>
-							<li><a href="addsite.jsp">添加场地</a></li>
-							<li><a href="deletesite.jsp">删除场地</a></li>
-							<li><a href="updatesite.jsp">更改场地</a></li>
-							<li><a href="mchecksite.jsp">查看场地</a></li>
-						</ul>
-                </li>
+                <li><a href="#"><span>场地</span></a>
+					<ul>
+						<li><a href="addsite.jsp">添加场地</a></li>
+						<li><a href="deletesite.jsp">删除场地</a></li>
+						<li><a href="updatesite.jsp">更改场地</a></li>
+						<li><a href="mchecksite.jsp">查看场地</a></li>
+					</ul>    
                 <li><a href="#"><span>器材</span></a>
                     <ul>
                         <li><a href="#">about us</a></li>
@@ -122,7 +119,7 @@
                     场地备注:<input class="itext" id="sitedtail" name="sitedtail" type="text" />可不填
                 </div>
                 <div class="text">
-                    <input class="sumbtn" type="button" value="添加" onclick="valid()" />
+                    <input class="sumbtn" type="submit" value="添加" onclick="valid()" />
                 </div>
 
                 <div id="datatext"></div>

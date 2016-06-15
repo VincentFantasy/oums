@@ -5,7 +5,15 @@ public class ReturnMessage {
 	private String messageType;
 	private String content;
 	private Object object;
-	private boolean flat;	
+	private boolean flat;
+	//页面总大小
+	private int pageCount;
+	public int getPageCount() {
+		return pageCount;
+	}
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
 	public Object getObject() {
 		return object;
 	}
@@ -19,7 +27,7 @@ public class ReturnMessage {
 	@Override
 	public String toString() {
 		return "ReturnMessage [messageType=" + messageType + ", content=" + content + ", object=" + object + ", flat="
-				+ flat + "]";
+				+ flat + ", pageCount=" + pageCount + "]";
 	}
 	public String getMessageType() {
 		return messageType;

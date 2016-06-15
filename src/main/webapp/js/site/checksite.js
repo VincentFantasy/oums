@@ -1,8 +1,11 @@
+var pageNum = 1;
+var pageCount = 1;
+
 function sitesearch(m){
     $.ajax({
         url: 'findSiteType.action', //请求地址ַ
         type: 'POST',
-        data:{"site.siteType":$("#siteType").val()},//参数，key:value,多个参数逗号隔开
+        data:{"site.siteType":$("#siteType").val(), "page.pageNum":pageNum},//参数，key:value,多个参数逗号隔开
         dataType: 'json',
         timeout: 5000,
         cache: false,
@@ -44,6 +47,9 @@ function sitesearch(m){
                 case "object":
                     object = value;
                     break;
+                case "pageCount":
+                	pageCount = value;
+                	break;
                 default :
                     break;
             }
@@ -82,4 +88,24 @@ function sitesearch(m){
         }else
             $("#data").html(content);
     }
+}
+
+function addpage(){
+	if(pageNum < pageCount) {
+		pageNum = pageNum + 1;
+		$("#pageNum").html(pageNum);
+		sitesearch("");
+	} else {
+		alert("最后一页");
+	}
+}
+
+function subpage(){
+	if(pageNum > 1) {
+		pageNum = pageNum - 1;
+		$("#pageNum").html(pageNum);
+		sitesearch("");
+	} else {
+		alert("最前一页");
+	}
 }

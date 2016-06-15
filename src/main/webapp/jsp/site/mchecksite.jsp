@@ -186,8 +186,9 @@
         </div>
 
         <div id="main-footer">
-            <input class="list-button" id="page-last" type="button" value="&lt" />
-            <input class="list-button" id="page-next" type="button" value="&gt" />
+            <input class="list-button" id="page-last" type="button" value="&lt" onclick="subpage()" />
+            <label id="pageNum">1</label>
+            <input class="list-button" id="page-next" type="button" value="&gt" onclick="addpage()" />
         </div>
     </div>
     <!-- END Main -->
