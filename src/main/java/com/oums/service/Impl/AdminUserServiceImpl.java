@@ -1,6 +1,5 @@
 package com.oums.service.Impl;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.AdminUserPo;
 import com.oums.bean.po.UserPo;
-import com.oums.bean.type.AdminUserType;
 import com.oums.bean.vo.AdminUserVo;
 import com.oums.bean.vo.UserVo;
 import com.oums.dao.IAdminUserDao;
@@ -39,34 +37,14 @@ public class AdminUserServiceImpl implements IAdminUserService {
 			returnMessage.setFlat(false);
 			returnMessage.setContent("admin user does not exist");
 			return returnMessage;
+			
 		}
 		
-		if(adminVo.getPassword() == adminPo.getPassword()){
+		if(adminVo.getPassword().equals(adminPo.getPassword())){
 			returnMessage.setFlat(true);
 			AdminUserVo loginAdminVo = new AdminUserVo();
 			BeanUtil.poToVo(adminPo, loginAdminVo);
 			returnMessage.setObject(loginAdminVo);
-//			switch(adminPo.getPermission()){
-//			case AdminUserType.USER_ADMIN: 
-//				returnMessage.setContent("USER_ADMIN");
-//				return returnMessage;
-//			case AdminUserType.FINANCE_ADMIN:
-//				returnMessage.setContent("FINANCE_ADMIN");
-//				return returnMessage;
-//			case AdminUserType.SITE_ADMIN:
-//				returnMessage.setContent("SITE_ADMIN");
-//				return returnMessage;
-//			case AdminUserType.EQUIPMENT_ADMIN:
-//				returnMessage.setContent("EQUIPMENT_ADMIN");
-//				return returnMessage;
-//			case AdminUserType.SUPER_ADMIN_USER:
-//				returnMessage.setContent("SUPER_ADMIN_USER");
-//				return returnMessage;
-//			default:
-//				returnMessage.setFlat(false);
-//				returnMessage.setContent("unknowed type of admin user");
-//				return returnMessage;
-//			}
 		}else{
 			returnMessage.setFlat(false);
 			returnMessage.setContent("password error");

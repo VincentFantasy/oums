@@ -36,12 +36,21 @@ public class AdminUserVo extends BaseVo{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "UserVo [userId=" + userId + ", password=" + password + ", realName="
-				+ realName + ", IDCardNumber=" + IDCardNumber + ", employeeNumber=" + employeeNumber + ", phone=" + phone
-				+ ", lastLoginTime=" + lastLoginTime + ", isDelete=" + isDelete + "]";
-	}
+	@Override 
+	 public String toString() { 
+
+	 return "\"permission\" : " + "\"" + permission + "\"" + "," 
+	 + "\"userId\" : " + "\"" + userId + "\"" + "," 
+	 + "\"password\" : " + "\"" + password + "\"" + "," 
+	 + "\"realName\" : " + "\"" + realName + "\"" + "," 
+	 + "\"IDCardNumber\" : " + "\"" + IDCardNumber + "\"" + "," 
+	 + "\"isDelete\" : " + "\"" + isDelete + "\"" + "," 
+	 + "\"employeeNumber\" : " + "\"" + employeeNumber + "\"" + "," 
+	 + "\"phone\" : " + "\"" + phone + "\"" + "," 
+	 + "\"lastLoginTime\" : " + "\"" + lastLoginTime + "\""; 
+	 } 
+
+	
 	public Integer getUserId() {
 		return userId;
 	}

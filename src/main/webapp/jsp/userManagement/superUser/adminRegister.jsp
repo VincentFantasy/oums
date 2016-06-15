@@ -96,7 +96,7 @@
         </div>
         <div id="content">
         	<p>注册管理员用户:</p>
-		<form id="registForm" action="${pageContext.request.contextPath}/adminRegister.action" method="post">
+		<form id="registerForm" action="${pageContext.request.contextPath}/adminRegister.action" method="post">
 		<ul class="list-group">
 			<li class="list-group-item">
 				<div class="form-group">
@@ -107,13 +107,13 @@
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>密码</label>
-					<input type="text" class="form-control" id="cpassword" name="adminVo.password" placeholder=“请输入密码(至少5位)”>
+					<input type="password" class="form-control" id="cpassword" name="adminVo.password" placeholder=“请输入密码(至少5位)”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>再次输入密码</label>
-					<input type="text" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入再密码”>
+					<input type="password" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入再密码”>
 				</div>
 			</li>
 			<li class="list-group-item">
@@ -177,7 +177,8 @@
 	</div>
 	
 	<!-- js -->
-	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	<script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	<script src="../../js/jquery.validate.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 	$.validator.addMethod(
 		    "chrnum", function(value, element) {
@@ -187,29 +188,28 @@
 
 	);
 		$(document).ready(function(){
-			console.log("1");
-			$("#registForm").validate({
+			$("#registerForm").validate({
 				rules:{
-					username:{
+					"adminVo.realName":{
 						required:true,
-						chrnum:true
 					},
-					IdCardNumber:{
+					"adminVo.IDCardNumber":{
 						required:true,
 						maxlength:18,
-						minlength:18
+						minlength:18,
+						number:true
 					},
-					phoneNumber:{
+					"adminVo.phone":{
 						required:true,
 						maxlength:11,
 						minlength:11
 					},
-					studentNumber:{
+					"adminVo.employeeNumber":{
 						required:true,
 						maxlength:12,
 						minlength:12
 					},
-					password:{
+					"adminVo.password":{
 						required:true,
 						chrnum:true,
 						minlength:5
@@ -217,49 +217,41 @@
 					passwordConfirm:{
 						required:true,
 						equalTo:"#cpassword"
-					},
-					email:{
-						required:true,
-						email:true
 					}
 				},
-				message:{
-					username:{
+				messages:{
+					"adminVo.realName":{
 						required:"必填"
 					},
-					IdCardNumber:{
+					"adminVo.IDCardNumber":{
+						required:"必填",
+						maxlength:"不符合身份证长度",
+						minlength:"不符合身份证长度"
+					},
+					"adminVo.phone":{
+						required:"必填",
+						maxlength:"不符合手机号码长度",
+						minlength:"不符合手机号码长度"
+					},
+					"adminVo.employeeNumber":{
 						required:"必填",
 						maxlength:"长度不符合",
 						minlength:"长度不符合"
 					},
-					phoneNumber:{
-						required:"必填",
-						maxlength:"长度不符合",
-						minlength:"长度不符合"
-					},
-					studentNumber:{
-						required:"必填",
-						maxlength:"长度不符合",
-						minlength:"长度不符合"
-					},
-					password:{
+					"adminVo.password":{
 						required:"必填",
 						minlength:"长度必须大于5位",
 					},
 					passwordConfirm:{
 						required:"必填",
 						equalTo:"两次密码输入不相同"
-					},
-					email:{
-						required:"必填",
-						email:"不符合邮箱地址格式"
 					}
 				},
 				highlight: function(element){
 					$(element).closest('.form-group').addClass('has-error');
 				},
-				submitHandler:function(){
-					alert("succeed!")
+				unhighlight: function(element, errorClass) {
+					$(element).closest('.form-group').removeClass('has-error');
 				}
 			});
 		})

@@ -41,6 +41,8 @@ public class UserAdminAction implements ServletRequestAware{
 	private AdminUserVo[] adminArray;
 	private AdminUserVo adminVo;
 	private HttpServletRequest request = null;
+	private String oldPassword;
+	private String newPassword;
 	public AdminUserVo getAdminVo() {
 		return adminVo;
 	}
@@ -69,6 +71,22 @@ public class UserAdminAction implements ServletRequestAware{
 
 	public UserVo[] getUserArray() {
 		return userArray;
+	}
+	
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 
 	public void setUserArray(UserVo[] userArray) {
@@ -159,9 +177,12 @@ public class UserAdminAction implements ServletRequestAware{
 		}
 		return "success";
 	}
-	
+	/**
+	 * 管理员登陆
+	 * @return
+	 */
 	@Action(value = "adminLogin", results = {
-			@Result(name = "success", location = "/jsp/index-m.jsp"),
+			@Result(name = "success", location = "/index-m.jsp"),
 			@Result(name = "fail", location = "/jsp/userManagement/login.jsp")})
 	public String adminLogin(){
 		ReturnMessage returnMessage = adminService.login(adminVo);
@@ -174,6 +195,10 @@ public class UserAdminAction implements ServletRequestAware{
 		}
 	}
 	
+	/**
+	 * 超级用户注册管理员
+	 * @return
+	 */
 	@Action(value = "adminRegister", results = {
 			@Result(name = "success", location = "success.jsp"),
 			@Result(name = "exist", location = "fail.jsp"),
@@ -190,6 +215,24 @@ public class UserAdminAction implements ServletRequestAware{
 			}
 		}
 		
+	}
+
+	/**
+	 * 管理员修改密码
+	 * @return
+	 */
+	@Action(value="adminModifyPassword", results={
+			@Result(name = "success", location = "success.jsp"), 
+			@Result(name = "fail", location = "fail.jsp")})	
+	public String userModifyPassword() {
+		AdminUserVo adminVo = (AdminUserVo)this.request.getSession().getAttribute("adminVo");
+		String emplNum = adminVo.getEmployeeNumber();
+		returnMessage = adminService.modifyPassword(oldPassword, newPassword, emplNum);
+		if(returnMessage.isFlat()){
+			return "success";
+		}else{
+			return "fail";
+		}
 	}
 
 	

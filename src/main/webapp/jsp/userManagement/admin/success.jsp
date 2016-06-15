@@ -4,7 +4,14 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>海大体育馆管理系统-管理员版</title>
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/jsp/userManagement/admin";
+	%>
+<base href="<%=basePath%>">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -96,9 +103,8 @@
 		<hr/>
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main">
-				欢迎你
-				<input style='border-left:0px;border-top:0px;border-right:0px;border-bottom:1px ' 
-					value="${session.adminVo.getRealName()}" readOnly="true"/>
+				<h1>操作成功</h1>
+				<a href="../../index-m.jsp">返回首页</a>
         </div>
         <div id="content">
         	<p>系统消息:</p>

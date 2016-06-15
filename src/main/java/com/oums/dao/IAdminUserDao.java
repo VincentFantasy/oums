@@ -17,7 +17,7 @@ public interface IAdminUserDao {
 	 * get admin po by employee number
 	 * @param emplNum
 	 * @return
-	 */
+	 */ 
 	abstract AdminUserPo getAdminByEmplNum(String emplNum);	
 	/**
 	 * admin register service

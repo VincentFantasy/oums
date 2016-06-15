@@ -97,7 +97,7 @@
         </div>
         <div id="content">
         	<p>注册用户:</p>
-				<form action="${pageContext.request.contextPath}/userRegister.action" method="post">
+		<form id="registerForm" action="${pageContext.request.contextPath}/userRegister.action" method="post">
 		<ul class="list-group">
 			<li class="list-group-item">
 				<div class="form-group">
@@ -108,13 +108,13 @@
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>密码</label>
-					<input type="text" class="form-control" id="cpassword" name="userVo.password" placeholder=“请输入密码(至少5位)”>
+					<input type="password" class="form-control" id="cpassword" name="userVo.password" placeholder=“请输入密码(至少5位)”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>再次输入密码</label>
-					<input type="text" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入密码”>
+					<input type="password" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入密码”>
 				</div>
 			</li>
 			<li class="list-group-item">
@@ -126,7 +126,7 @@
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>身份证</label>
-					<input type="text" class="form-control" id="cIdCardNumber" name="userVo.IDCardNumber" placeholder="请输入身份证">
+					<input type="text" class="form-control" id="cIdCardNumber" name="userVo.iDCardNumber" placeholder="请输入身份证">
 				</div>
 			</li>
 			<li class="list-group-item">
@@ -138,21 +138,21 @@
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>是否游客</label>
-					<select name="userVo.isTourist" class="selectpicker show-tick">
+					<select name="userVo.isTourist" class="selectpicker show-tick" id = "cperiod" onchange="isTourist(this.value)">
 						<option></option>
-						<option value = 'TRUE'>是</option>
-						<option value = 'FALSE'>否</option>
+						<option value = "TRUE">是</option>
+						<option value = "FALSE">否</option>
 					</select>
 				</div>
 			</li>
-			<li class="list-group-item">
+			<li class="list-group-item" id="period_li" style="">
 				<div class="form-group">
 					<label>入学年份</label>
 					<input type="text" class="form-control" id="cstudentNumber" name="userVo.period" placeholder="请输入入学年份">
 				</div>
 			</li>
-			<li class="list-group-item">
-				<div class="form-group">
+			<li class="list-group-item" id="classes_li" style="">
+				<div class="form-group"  >
 					<label>班级</label>
 					<input type="text" class="form-control" id="cstudentNumber" name="userVo.classes" placeholder="请输入班级">
 				</div>
@@ -187,92 +187,21 @@
 	</div>
 	
 	<!-- js -->
-	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	<script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	<script src="../../js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="../../js/userManagement/validate.js" type="text/javascript"></script>
 	<script type="text/javascript">
-	$.validator.addMethod(
-		    "chrnum", function(value, element) {
-		    var chrnum = /^([a-zA-Z0-9_]+)$/;
-		    return this.optional(element) || (chrnum.test(value));
-		    }, "只能输入数字和字母(字符A-Z, a-z, 0-9)"
-
-	);
-		$(document).ready(function(){
-			console.log("1");
-			$("#registForm").validate({
-				rules:{
-					username:{
-						required:true,
-						chrnum:true
-					},
-					IdCardNumber:{
-						required:true,
-						maxlength:18,
-						minlength:18
-					},
-					phoneNumber:{
-						required:true,
-						maxlength:11,
-						minlength:11
-					},
-					studentNumber:{
-						required:true,
-						maxlength:12,
-						minlength:12
-					},
-					password:{
-						required:true,
-						chrnum:true,
-						minlength:5
-					},
-					passwordConfirm:{
-						required:true,
-						equalTo:"#cpassword"
-					},
-					email:{
-						required:true,
-						email:true
-					}
-				},
-				message:{
-					username:{
-						required:"必填"
-					},
-					IdCardNumber:{
-						required:"必填",
-						maxlength:"长度不符合",
-						minlength:"长度不符合"
-					},
-					phoneNumber:{
-						required:"必填",
-						maxlength:"长度不符合",
-						minlength:"长度不符合"
-					},
-					studentNumber:{
-						required:"必填",
-						maxlength:"长度不符合",
-						minlength:"长度不符合"
-					},
-					password:{
-						required:"必填",
-						minlength:"长度必须大于5位",
-					},
-					passwordConfirm:{
-						required:"必填",
-						equalTo:"两次密码输入不相同"
-					},
-					email:{
-						required:"必填",
-						email:"不符合邮箱地址格式"
-					}
-				},
-				highlight: function(element){
-					$(element).closest('.form-group').addClass('has-error');
-				},
-				submitHandler:function(){
-					alert("succeed!")
-				}
-			});
-		})
+	function isTourist(value){
+		var periodLi = document.getElementById("period_li");
+		var classesLi = document.getElementById("classes_li");
+		if(value === "TRUE"){
+			periodLi.style.display="none";
+			classesLi.style.display="none";
+		}else{
+			periodLi.style.display="block";
+			classesLi.style.display="block";
+		}
+	};
 	</script>
 </body>
 </html>

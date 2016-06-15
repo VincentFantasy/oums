@@ -1,0 +1,96 @@
+/**
+ * 表单校验js
+ */
+	$.validator.addMethod(
+		    "chrnum", function(value, element) {
+		    var chrnum = /^([a-zA-Z0-9_]+)$/;
+		    return this.optional(element) || (chrnum.test(value));
+		    }, "只能输入数字和字母(字符A-Z, a-z, 0-9)"
+
+	);
+		$(document).ready(function(){
+			$("#registerForm").validate({
+				rules:{
+					"userVo.realName":{
+						required:true,
+					},
+					"userVo.iDCardNumber":{
+						required:true,
+						maxlength:18,
+						minlength:18,
+						number:true
+					},
+					"userVo.phone":{
+						required:true,
+						maxlength:11,
+						minlength:11
+					},
+					"userVo.certificateNumber":{
+						required:true,
+						maxlength:12,
+						minlength:12
+					},
+					"userVo.password":{
+						required:true,
+						chrnum:true,
+						minlength:5
+					},
+					passwordConfirm:{
+						required:true,
+						equalTo:"#cpassword"
+					},
+					"userVo.period":{
+						required:true,
+						number:true,
+						maxlength:5
+					},
+					"userVo.classes":{
+						required:true,
+						maxlength:8,
+					}
+				},
+				messages:{
+					"userVo.realName":{
+						required:"必填"
+					},
+					"userVo.iDCardNumber":{
+						required:"必填",
+						maxlength:"不符合身份证长度",
+						minlength:"不符合身份证长度"
+					},
+					"userVo.phone":{
+						required:"必填",
+						maxlength:"不符合手机号码长度",
+						minlength:"不符合手机号码长度"
+					},
+					"userVo.certificateNumber":{
+						required:"必填",
+						maxlength:"长度不符合",
+						minlength:"长度不符合"
+					},
+					"userVo.password":{
+						required:"必填",
+						minlength:"长度必须大于5位",
+					},
+					passwordConfirm:{
+						required:"必填",
+						equalTo:"两次密码输入不相同"
+					},
+					"userVo.period":{
+						required:"必填",
+						maxlength:"长度过长",
+						number:"必须是数字"
+					},
+					"userVo.classes":{
+						required:"必填",
+						maxlength:"长度过长",
+					}
+				},
+				highlight: function(element){
+					$(element).closest('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass) {
+					$(element).closest('.form-group').removeClass('has-error');
+				}
+			});
+		})

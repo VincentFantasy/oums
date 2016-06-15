@@ -31,8 +31,11 @@ public class UserServiceImpl implements IUserService{
 			return returnMessage;
 		}
 		
-		if(userPo.getPassword() == userVo.getPassword()){
+		if(userPo.getPassword().equals(userVo.getPassword())){
 			returnMessage.setFlat(true);
+			UserVo loginUserVo = new UserVo();
+			BeanUtil.poToVo(userPo, loginUserVo);
+			returnMessage.setObject(loginUserVo);
 		}else{
 			returnMessage.setFlat(false);
 			returnMessage.setContent("password error");

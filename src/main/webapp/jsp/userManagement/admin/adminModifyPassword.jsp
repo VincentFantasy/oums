@@ -1,18 +1,17 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>海大体育馆管理系统</title>
+	<title>海大体育馆管理系统-管理员版</title>
 	<%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+			+ path + "/jsp/userManagement/admin";
 	%>
 	<base href="<%=basePath%>">
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/site/addsite.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,8 +20,16 @@
 		<div id="top">
 			<div class="cl">&nbsp;</div>
 			<h1 id="logo">
-				<a href="#">OUMS</a>
+				<a href="index.jsp">OUMS</a>
 			</h1>
+			<!-- 搜索不要没时间做 -->
+			<!--<form action="" method="post" id="search">
+			<div class="field-holder">
+				<input type="text" class="field" value="Search" title="Search" />
+			</div>
+			<input type="submit" class="button" value="Search" />
+			<div class="cl">&nbsp;</div>
+		</form>-->
 			<div class="cl">&nbsp;</div>
 			<div id="navigation">
 				<ul>
@@ -63,6 +70,11 @@
 							<li><a href="#">contact</a></li>
 						</ul>
 					</li>
+					<li><a href="#"><span>个人信息</span></a>
+						<ul>
+							<li><a href="#">修改密码</a></li>
+						</ul>
+					</li>
 					<li><a href="#"><span>财务</span></a>
 						<ul>
 							<li><a href="#">about us</a></li>
@@ -73,11 +85,6 @@
 							<li><a href="#">contact</a></li>
 						</ul>
 					</li>
-					<li><a href="#"><span>个人信息</span></a>
-						<ul>
-							<li><a href="jsp/userManagement/user/userModifyPassword.jsp">修改密码</a></li>
-						</ul>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -85,27 +92,33 @@
 		<hr/>
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main">
-		<!--  
-			<h1>正文内容</h1>
-			<a href="jsp/equipment/equipmentFind.jsp">器材查询</a>
-			<a href="jsp/equipment/equipmentAdd.jsp">添加器材</a>
-			<a href="jsp/equipment/equipmentUpdate.jsp">修改器材</a>
-			<a href="jsp/equipment/equipmentDel.jsp">删除器材</a>
-			<a href="jsp/equipment/equipmentBorrow.jsp">租借请求</a>
-			<a href="jsp/equipment/equipmentManagerSureOrder.jsp">租借请求处理</a>
-				</div>
 			<div id="title">
-		-->
-            <h2>欢迎你 </h2>
-            <input style='border-left:0px;border-top:0px;border-right:0px;border-bottom:1px ' 
-            	value="${session.userVo.getRealName()}" readOnly="true"/>
-				
+            <h2>修改密码</h2>
         </div>
         <div id="content">
-        	<p>系统消息:</p>
-			<div class="SystemMessage">
-				
-			</div>
+		<form id="modifyPasswordForm" action="${pageContext.request.contextPath}/adminModifyPassword.action" method="post">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="form-group">
+						<label>原密码</label>
+						<input type="password" class="form-control" id="cpassword" name="oldPassword" placeholder=“请输入密码(至少5位)”>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label>新密码</label>
+						<input type="password" class="form-control" id="cpassword" name="newPassword" placeholder=“请输入密码(至少5位)”>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label>再次输入新密码</label>
+						<input type="password" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入再密码”>
+					</div>
+				</li>
+			</ul>
+			<button type="submit" class="btn btn-primary btn-sm">提交</button>
+		</form>
         </div>
 		</div>
 		<!-- END Main -->
@@ -133,7 +146,6 @@
 	</div>
 	
 	<!-- js -->
-	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
-
+	<script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
 </body>
 </html>

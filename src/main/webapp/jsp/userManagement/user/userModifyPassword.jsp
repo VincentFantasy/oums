@@ -10,8 +10,8 @@
 			+ path + "/jsp/userManagement/user";
 	%>
 	<base href="<%=basePath%>">
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/site/addsite.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -93,10 +93,32 @@
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main">
 			<div id="title">
-            <h2>欢迎进入广东海洋大学体育馆系统</h2>
+            <h2>修改密码</h2>
         </div>
         <div id="content">
-			修改密码
+		<form id="modifyPasswordForm" action="${pageContext.request.contextPath}/userModifyPassword.action" method="post">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="form-group">
+						<label>原密码</label>
+						<input type="password" class="form-control" id="cpassword" name="oldPassword" placeholder=“请输入密码(至少5位)”>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label>新密码</label>
+						<input type="password" class="form-control" id="cpassword" name="newPassword" placeholder=“请输入密码(至少5位)”>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label>再次输入新密码</label>
+						<input type="password" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入再密码”>
+					</div>
+				</li>
+			</ul>
+			<button type="submit" class="btn btn-primary btn-sm">提交</button>
+		</form>
         </div>
 		</div>
 		<!-- END Main -->
@@ -124,6 +146,6 @@
 	</div>
 	
 	<!-- js -->
-	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	<script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
 </body>
 </html>
