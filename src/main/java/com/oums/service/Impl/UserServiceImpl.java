@@ -69,6 +69,7 @@ public class UserServiceImpl implements IUserService{
 		
 		UserPo userPo = new UserPo();
 		BeanUtil.voToPo(userVo, userPo);
+		userPo.setIsDelete(false);
 		try{
 			userDao.userRegist(userPo);
 		}catch(Exception e){

@@ -23,7 +23,11 @@ public class AdminUserType {
 	 */
 	public final static int EQUIPMENT_ADMIN = 4;
 	/*
+	 * 赛事管理员
+	 */
+	public final static int MATCH_ADMIN = 5;
+	/*
 	 * 超级用户
 	 */
-	public final static int SUPER_ADMIN_USER = 5;
+	public final static int SUPER_ADMIN_USER = 6;
 }

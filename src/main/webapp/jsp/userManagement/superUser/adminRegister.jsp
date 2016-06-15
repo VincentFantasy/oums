@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>海大体育馆管理系统</title>
+	<title>海大体育馆管理系统-超级用户端</title>
 	<%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -93,58 +93,58 @@
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main">
 			<div id="title">
-            <h2>欢迎进入广东海洋大学体育馆系统</h2>
         </div>
         <div id="content">
-        	<p>注册用户:</p>
-				<form id="registForm" role="form" action="" method="post">
+        	<p>注册管理员用户:</p>
+		<form id="registForm" action="${pageContext.request.contextPath}/adminRegister.action" method="post">
 		<ul class="list-group">
 			<li class="list-group-item">
 				<div class="form-group">
-					<label>用户名</label>
-					<input type="text" class="form-control" id="cusername" name="username" placeholder=“请输入用户名”>
+					<label>姓名</label>
+					<input type="text" class="form-control" id="cusername" name="adminVo.realName" placeholder=“请输入姓名”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>密码</label>
-					<input type="text" class="form-control" id="cpassword" name="password" placeholder=“请输入密码(至少5位)”>
+					<input type="text" class="form-control" id="cpassword" name="adminVo.password" placeholder=“请输入密码(至少5位)”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>再次输入密码</label>
-					<input type="text" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入密码”>
+					<input type="text" class="form-control" id="cpasswordConfirm" name="passwordConfirm" placeholder=“请输入再密码”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>手机</label>
-					<input type="text" class="form-control" id="ctel" name="tel" placeholder=“请输入手机号码”>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label>邮箱</label>
-					<input type="text" class="form-control" id="cemail" name="email" placeholder=“请输入邮箱”>
+					<input type="text" class="form-control" id="cphone" name="adminVo.phone" placeholder=“请输入手机号码”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>身份证</label>
-					<input type="text" class="form-control" id="cIdCardNumber" name="IdCardNumber" placeholder="请输入身份证">
+					<input type="text" class="form-control" id="cIdCardNumber" name="adminVo.IDCardNumber" placeholder="请输入身份证">
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
-					<label>手机号码</label>
-					<input type="text" class="form-control" id="cphoneNumber" name="phoneNumber" placeholder="请输入手机号码">
+					<label>员工号</label>
+					<input type="text" class="form-control" id="cstudentNumber" name="adminVo.employeeNumber" placeholder="请输入员工号">
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
-					<label>学生号</label>
-					<input type="text" class="form-control" id="cstudentNumber" name="studentNumber" placeholder="请输入手机号码">
+					<label>权限</label>
+					<select name="adminVo.permission" class="selectpicker show-tick">
+						<option></option>
+						<option value = "1">用户管理员</option>
+						<option value = "2">财务管理员</option>
+						<option value = "3">场地管理员</option>
+						<option value = "4">器材管理员</option>
+						<option value = "5">赛事管理员</option>
+					</select>
 				</div>
 			</li>
 		</ul>

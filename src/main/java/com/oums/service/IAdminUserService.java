@@ -43,7 +43,7 @@ public interface IAdminUserService {
 	 * @param cerNum
 	 * @return
 	 */
-	abstract ReturnMessage deleteUser(String cerNum[], String emplNum, String password);
+	abstract ReturnMessage deleteUser(String cerNum);
 	/**
 	 * user admin search users by period, classes, isTourist, certificate number
 	 * @param peroid
@@ -53,4 +53,11 @@ public interface IAdminUserService {
 	 * @return
 	 */
 	abstract ReturnMessage searchUser(String period, String classes, String isTourist, String cerNum);
+	/**
+	 * super user search admin user by permission, employee number
+	 * @param permission
+	 * @param emplNum
+	 * @return
+	 */
+	abstract ReturnMessage searchAdmin(int permission, String emplNum);
 }

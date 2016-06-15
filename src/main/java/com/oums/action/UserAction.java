@@ -25,7 +25,7 @@ import com.oums.util.JsonUtil;
  */
 
 @ParentPackage("basePackage")
-@Namespace("/user")
+@Namespace("/")
 public class UserAction {
 	
 	private static Logger logger = LogManager.getLogger(UserAction.class.getName());
@@ -57,13 +57,16 @@ public class UserAction {
 			return "fail";
 	}
 	
-
+	@Action(value="userRegister", results={
+			@Result(name = "success", location = "success.jsp"), 
+			@Result(name = "fail", location = "fail.jsp"),
+			@Result(name = "exist", location = "exist.jsp"),})	
 	public String userRegist() {
 		returnMessage = userService.regist(userVo);
 		if(returnMessage.isFlat()){
 			return "success";
-		}else if(returnMessage.getContent().equals("existed")){
-			return "existed";
+		}else if(returnMessage.getContent().equals("user already exists")){
+			return "exist";
 		}else{
 			return "fail";
 		}

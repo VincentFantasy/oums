@@ -26,6 +26,11 @@ public class AdminUserServiceImpl implements IAdminUserService {
 	@Autowired
 	IUserDao userDao;
 	@Override
+	/**
+	 * 管理员登陆
+	 * @param adminVo
+	 * @return
+	 */
 	public ReturnMessage login(AdminUserVo adminVo) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		AdminUserPo adminPo = adminDao.getAdminByEmplNum(adminVo.getEmployeeNumber());
@@ -69,7 +74,11 @@ public class AdminUserServiceImpl implements IAdminUserService {
 
 		return returnMessage;
 	}
-
+	/**
+	 * 超级用户查询管理员，通过emplNum
+	 * @param emplNum
+	 * @return
+	 */
 	@Override
 	public ReturnMessage getAdminPoByEmplNum(String emplNum) {
 		AdminUserPo adminPo = adminDao.getAdminByEmplNum(emplNum);
@@ -84,7 +93,11 @@ public class AdminUserServiceImpl implements IAdminUserService {
 		
 		return returnMessage;
 	}
-
+	/**
+	 * 注册管理员
+	 * @param adminVo
+	 * @return
+	 */
 	@Override
 	public ReturnMessage regist(AdminUserVo adminVo) {
 		ReturnMessage returnMessage = new ReturnMessage();
@@ -98,6 +111,7 @@ public class AdminUserServiceImpl implements IAdminUserService {
 		
 		AdminUserPo adminPo = new AdminUserPo();
 		BeanUtil.voToPo(adminVo, adminPo);
+		adminPo.setIsDelete(false);
 		try{
 			adminDao.userRegist(adminPo);
 		}catch(Exception e){
@@ -135,21 +149,14 @@ public class AdminUserServiceImpl implements IAdminUserService {
 	}
 
 	@Override
-	public ReturnMessage deleteUser(String[] cerNum, String emplNum, String password) {
+	public ReturnMessage deleteUser(String cerNum) {
 		ReturnMessage returnMessage = new ReturnMessage();
 		UserPo userPo;
-		AdminUserPo adminPo = adminDao.getAdminByEmplNum(emplNum);
-		if(!adminPo.getPassword().equals(password)){
-			returnMessage.setContent("password error");
-			returnMessage.setFlat(false);
-			return returnMessage;
-		}
 		try{
-			for(int i = 0; i < cerNum.length; i++){
-				userPo = userDao.getUserByCerNum(cerNum[i]);
+				userPo = userDao.getUserByCerNum(cerNum);
+				System.out.println(userPo.toString());
 				userPo.setIsDelete(true);
 				adminDao.deleteUser(userPo);
-			}
 		}catch(Exception e){
 			returnMessage.setFlat(false);
 			return returnMessage;
@@ -180,5 +187,21 @@ public class AdminUserServiceImpl implements IAdminUserService {
 		returnMessage.setFlat(true);
 		return returnMessage;
 	}
+
+	@Override
+	public ReturnMessage searchAdmin(int permission, String emplNum) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		List<AdminUserPo> admin;
+		admin = adminDao.searchAdmin(permission, emplNum);
+		Iterator<AdminUserPo> it = admin.iterator();
+		AdminUserVo[] adminVoArray = new AdminUserVo[admin.size()];
+		for(int i = 0; it.hasNext(); i++){
+			adminVoArray[i] = new AdminUserVo();
+			BeanUtil.poToVo(it.next(), adminVoArray[i]);
+		}
+		returnMessage.setObject(adminVoArray);
+		returnMessage.setFlat(true);
+		return returnMessage;
+			}
 
 }

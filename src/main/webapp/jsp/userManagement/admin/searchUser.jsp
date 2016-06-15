@@ -125,7 +125,7 @@
 							<td>${user.classes}</td>
 							<td>${user.isTourist}</td>
 							<td><input type="checkbox" value = "${status.count-1}" name="deleteUserCheckboxList" type="text" /></td>
-							<td><input type="text"  value ="${user.certificateNumber}" name="userCerNumList" type="text" /></td>
+							<td><input type="hidden"  value ="${user.certificateNumber}" name="userCerNumList" type="text" /></td>
 							<!--  <td><input type="text"  value ="${status.count-1}" name="index" class=" type="text" /></td>
 							<td><input type="text"  value ="${user.certificateNumber}" name="deleteUserList[${status.count-1}].certificateNumber" type="text" /></td>
 							-->
@@ -147,8 +147,11 @@
 						type="text" />
 				</div>
 				<div class="text">
-					是否游客:<input type="checkbox" id="isTourist" name="userVo.isTourist"
-						type="text" />
+					是否游客:					
+					<select name="userVo.isTourist">
+						<option value = 'TRUE'>是</option>
+						<option value = 'FALSE'>否</option>
+					</select>
 				</div>
 				<div class="text">
 					证件号:<input class="itext" id="cerNum" name="userVo.cerNum"

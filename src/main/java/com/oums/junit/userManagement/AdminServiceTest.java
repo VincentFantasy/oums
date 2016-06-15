@@ -50,17 +50,17 @@ public class AdminServiceTest extends BaseUnit{
 		assertEquals(adminPo.getPassword(),"12345");
 	}
 	
-	@Test
-	public void deleteUserTest(){
-		String[] users = new String[2]; 
-		users[0] = "201311911210";
-		users[1] = "201311911216";
-		returnMessage = adminService.deleteUser(users, "10001", "12345");
-		assertEquals(returnMessage.isFlat(), true);
-		assertEquals(returnMessage.getContent(), "delete succeed");
-		returnMessage = adminService.deleteUser(users, "10001", "1234");
-		assertEquals(returnMessage.isFlat(), false);
-	}
+//	@Test
+//	public void deleteUserTest(){
+//		String[] users = new String[2]; 
+//		users[0] = "201311911210";
+//		users[1] = "201311911216";
+//		returnMessage = adminService.deleteUser(users, "10001", "12345");
+//		assertEquals(returnMessage.isFlat(), true);
+//		assertEquals(returnMessage.getContent(), "delete succeed");
+//		returnMessage = adminService.deleteUser(users, "10001", "1234");
+//		assertEquals(returnMessage.isFlat(), false);
+//	}
 	
 	@Test
 	public void searchUserTest(){

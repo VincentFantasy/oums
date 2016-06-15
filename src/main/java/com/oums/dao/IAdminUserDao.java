@@ -43,4 +43,11 @@ public interface IAdminUserDao {
 	 * @return
 	 */
 	abstract List<UserPo> searchUser(String period, String classes, String isTourist, String cerNum);
+	/**
+	 * search admin user by permission, employee number
+	 * @param permission
+	 * @param emplNum
+	 * @return
+	 */
+	abstract List<AdminUserPo> searchAdmin(int permission, String emplNum);
 }

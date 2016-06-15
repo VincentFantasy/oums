@@ -49,20 +49,16 @@ public class AdminUserDaoImpl implements IAdminUserDao {
 
 	@Override
 	public void deleteUser(UserPo userPo) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		Transaction tran = session.beginTransaction();
 		session.update(userPo);
 		tran.commit();
+		session.close();
 	}
 
 	@Override
 	public List<UserPo> searchUser(String period, String classes, String isTourist, String cerNum) {
 		Session session = sessionFactory .getCurrentSession();
-		System.out.println(period);
-		System.out.println(classes);
-		System.out.println(isTourist);
-		System.out.println(cerNum);
-		
 		Criteria cri = session.createCriteria(UserPo.class);
 		if(!period.equals("*")){
 			Criterion cron = Restrictions.like("period","%"+period+"%");
@@ -89,6 +85,23 @@ public class AdminUserDaoImpl implements IAdminUserDao {
 		List<UserPo> userList = cri.list();
 		System.out.println(userList.toString());
 		return userList;
+	}
+
+	@Override
+	public List<AdminUserPo> searchAdmin(int permission, String emplNum) {
+		Session session = sessionFactory .getCurrentSession();
+		Criteria cri = session.createCriteria(AdminUserPo.class);
+		if(permission != 0){
+			Criterion cron = Restrictions.eq("permission",permission);
+			cri.add(cron);
+		}
+		if(!emplNum.equals(null)){
+			Criterion cron = Restrictions.like("employeeNumber","%"+emplNum+"%");
+			cri.add(cron);
+		}
+		List<AdminUserPo> adminList = cri.list();
+		System.out.println(adminList.toString());
+		return adminList;
 	}
 
 }

@@ -107,28 +107,21 @@
 						<tr>
 							<th>姓名</th>
 							<th>身份证号</th>
-							<th>证件号</th>
+							<th>员工号</th>
 							<th>电话号码</th>
-							<th>入学年份</th>
-							<th>班级</th>
-							<th>是否游客</th>
+							<th>权限</th>
 							<th>选择</th>
 						</tr>
 					</thead>
-					<c:forEach items="${requestScope.userArray}" var="user" varStatus="status">
+					<c:forEach items="${requestScope.adminArray}" var="user" varStatus="status">
 						<tr>
 							<td>${user.realName}</td>
 							<td>${user.IDCardNumber}</td>
-							<td>${user.certificateNumber}</td>
+							<td>${user.employeeNumber}</td>
 							<td>${user.phone}</td>
-							<td>${user.period}</td>
-							<td>${user.classes}</td>
-							<td>${user.isTourist}</td>
+							<td>${user.permission}</td>
 							<td><input type="checkbox" value = "${status.count-1}" name="deleteUserCheckboxList" type="text" /></td>
-							<td><input type="text"  value ="${user.certificateNumber}" name="userCerNumList" type="text" /></td>
-							<!--  <td><input type="text"  value ="${status.count-1}" name="index" class=" type="text" /></td>
-							<td><input type="text"  value ="${user.certificateNumber}" name="deleteUserList[${status.count-1}].certificateNumber" type="text" /></td>
-							-->
+							<td><input type="hidden"  value ="${user.employeeNumber}" name="userCerNumList" type="text" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -136,23 +129,22 @@
 			</form>
 			<p>查询用户</p>
 			<form id="searchUser"
-				action="${pageContext.request.contextPath}/searchUser.action"
+				action="${pageContext.request.contextPath}/searchAdmin.action"
 				method="post">
 				<div class="text">
-					入学年份:<input class="itext" id="period" name="userVo.period"
+					员工号:<input class="itext" id="emplNum" name="adminVo.employeeNumber"
 						type="text" />
 				</div>
 				<div class="text">
-					班级:<input class="itext" id="classes" name="userVo.classes"
-						type="text" />
-				</div>
-				<div class="text">
-					是否游客:<input type="checkbox" id="isTourist" name="userVo.isTourist"
-						type="text" />
-				</div>
-				<div class="text">
-					证件号:<input class="itext" id="cerNum" name="userVo.cerNum"
-						type="text" />
+					权限:					
+					<select name="adminVo.permission" class="selectpicker show-tick">
+						<option></option>
+						<option value = "1">用户管理员</option>
+						<option value = "2">财务管理员</option>
+						<option value = "3">场地管理员</option>
+						<option value = "4">器材管理员</option>
+						<option value = "5">赛事管理员</option>
+					</select>
 				</div>
 				<div class="text">
 					<input id="sumbtn" type="submit" value="查询" />

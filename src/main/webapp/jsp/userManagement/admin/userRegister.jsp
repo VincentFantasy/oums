@@ -97,18 +97,18 @@
         </div>
         <div id="content">
         	<p>注册用户:</p>
-				<form id="registForm" role="form" action="" method="post">
+				<form action="${pageContext.request.contextPath}/userRegister.action" method="post">
 		<ul class="list-group">
 			<li class="list-group-item">
 				<div class="form-group">
-					<label>用户名</label>
-					<input type="text" class="form-control" id="cusername" name="username" placeholder=“请输入用户名”>
+					<label>姓名</label>
+					<input type="text" class="form-control" id="cusername" name="userVo.realName" placeholder=“请输入姓名”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>密码</label>
-					<input type="text" class="form-control" id="cpassword" name="password" placeholder=“请输入密码(至少5位)”>
+					<input type="text" class="form-control" id="cpassword" name="userVo.password" placeholder=“请输入密码(至少5位)”>
 				</div>
 			</li>
 			<li class="list-group-item">
@@ -120,31 +120,41 @@
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>手机</label>
-					<input type="text" class="form-control" id="ctel" name="tel" placeholder=“请输入手机号码”>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label>邮箱</label>
-					<input type="text" class="form-control" id="cemail" name="email" placeholder=“请输入邮箱”>
+					<input type="text" class="form-control" id="ctel" name="userVo.phone" placeholder=“请输入手机号码”>
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
 					<label>身份证</label>
-					<input type="text" class="form-control" id="cIdCardNumber" name="IdCardNumber" placeholder="请输入身份证">
+					<input type="text" class="form-control" id="cIdCardNumber" name="userVo.IDCardNumber" placeholder="请输入身份证">
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
-					<label>手机号码</label>
-					<input type="text" class="form-control" id="cphoneNumber" name="phoneNumber" placeholder="请输入手机号码">
+					<label>证件号</label>
+					<input type="text" class="form-control" id="cstudentNumber" name="userVo.certificateNumber" placeholder="请输入证件号">
 				</div>
 			</li>
 			<li class="list-group-item">
 				<div class="form-group">
-					<label>学生号</label>
-					<input type="text" class="form-control" id="cstudentNumber" name="studentNumber" placeholder="请输入手机号码">
+					<label>是否游客</label>
+					<select name="userVo.isTourist" class="selectpicker show-tick">
+						<option></option>
+						<option value = 'TRUE'>是</option>
+						<option value = 'FALSE'>否</option>
+					</select>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="form-group">
+					<label>入学年份</label>
+					<input type="text" class="form-control" id="cstudentNumber" name="userVo.period" placeholder="请输入入学年份">
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="form-group">
+					<label>班级</label>
+					<input type="text" class="form-control" id="cstudentNumber" name="userVo.classes" placeholder="请输入班级">
 				</div>
 			</li>
 		</ul>
