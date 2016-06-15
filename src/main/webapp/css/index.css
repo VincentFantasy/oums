@@ -1,0 +1,36 @@
+hr{ margin-top: 10px; }
+
+#main{
+    width: 100%;
+    height: 620px;
+    border: 2px solid black;
+    border-radius: 15px ;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.text{
+    margin-top: 40px;
+}
+
+/* main-footer */
+#main-footer{
+    text-align: center;
+    margin-top: 5px;
+}
+#page-last{
+    width: 17px;
+    height: 25px;
+    background: deepskyblue;
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}
+#page-next{
+    width: 17px;
+    height: 25px;
+    background: deepskyblue;
+    color: #ffffff;
+    border:none;
+    border-radius:5px;
+}
