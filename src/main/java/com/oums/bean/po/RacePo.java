@@ -17,7 +17,7 @@ public class RacePo extends BasePo {
 	private static final long serialVersionUID = 1L;
 	/* 场地id */
 	private Integer raceId;
-	/* 场地名 */
+	/* 赛事名 */
 	private String raceName;
 	/* 赛事时间，用string值，如 2016年6月1号 */
 	private String siteTime;
