@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.EquipmentTypePo;
@@ -15,6 +17,7 @@ import com.oums.bean.vo.EquipmentTypeVo;
 import com.oums.bean.vo.EquipmentVo;
 import com.oums.dao.IEquipmentDao;
 
+@Repository(value="equipmentDao")
 public class EquipmentDaoImpl implements IEquipmentDao {
 
 	@Autowired

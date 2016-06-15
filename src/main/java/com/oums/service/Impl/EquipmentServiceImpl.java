@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.EquipmentPo;
@@ -25,6 +26,7 @@ import com.oums.util.BeanUtil;
  * TODO 实现一般用户的器材操作的服务
  * 2016年6月7日
  */
+@Service("equipmentService")
 public class EquipmentServiceImpl implements IEquipmentService {
 
 	

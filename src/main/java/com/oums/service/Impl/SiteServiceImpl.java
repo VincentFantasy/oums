@@ -19,7 +19,7 @@ import com.oums.dao.ISiteDao;
 import com.oums.service.ISiteService;
 import com.oums.util.BeanUtil;
 
-@Service("siteService")
+@Service("sizeService")
 public class SiteServiceImpl implements ISiteService {	
 	
 	@Autowired

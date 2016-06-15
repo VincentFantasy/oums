@@ -67,19 +67,15 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/addEquipment
 	 */
-	@Action(value="addEquipment")//, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	//, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	@Action(value="addEquipment",results={@Result(name="success",location="index.jsp")})
 	public String addEquipment() {
 		
 		//添加器材
 		returnMessage = equipmentManagerService.addEquipment(equip);
-		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
-		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
-//		request.getRequestDispatcher("../../equipmentDel.jsp").forward(request, response);
-//		@Results({
-//		    @Result(name=success,location=/success.jsp),
-//		    @Result(name=error,location=/error.jsp)
-//		})
+
 		return "success";
+
 	}
 	
 	/**

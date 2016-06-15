@@ -40,7 +40,7 @@ import com.oums.util.TimeUtil;
  */
 
 @ParentPackage("basePackage")
-@Namespace("/user")
+@Namespace("/equipment")
 public class EquipmentAction {
 	
 	@Autowired

@@ -20,7 +20,7 @@ public class EquipmentPo extends BasePo{
 	private static final long serialVersionUID = 1L;
 	
 	/*器材ID*/
-	private String  equipId;
+	private Integer  equipId;
 	/*器材名称*/
 	private String equipName;
 	/*器品牌名称*/
@@ -40,7 +40,7 @@ public class EquipmentPo extends BasePo{
 	
 	@Id
 	@GeneratedValue
-	public String getEquipId() {
+	public Integer getEquipId() {
 		return equipId;
 	}
 	public String getEquipName() {
@@ -88,7 +88,7 @@ public class EquipmentPo extends BasePo{
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-	public void setEquipId(String equipId) {
+	public void setEquipId(Integer equipId) {
 		this.equipId = equipId;
 	}
 	public void setEquipName(String equipName) {
