@@ -4,9 +4,10 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>海大体育馆管理系统-场地</title>
+    <title>海大体育馆管理系统-删除公告</title>
     <link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="../../css/site/basesite.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/site/deletesite.css" type="text/css" />
 </head>
 <body>
 <div id="page" class="shell">
@@ -29,10 +30,15 @@
             <ul>
                 <li><a href="../../index-m.jsp" class="active"><span>首页</span></a></li>
                 <li><a href="site.jsp"><span>场地</span></a>
-					<ul>
-                        <li><a href="ordersite.jsp">预约场地</a></li>
+                <li><a href="#"><span>场地</span></a>
+                    <ul>
                         <li><a href="checksite.jsp">查看场地</a></li>
-                    </ul>   
+                        <li><a href="addsite.jsp">添加场地</a></li>
+                        <li><a href="deletesite.jsp">删除场地</a></li>
+                        <li><a href="updatesite.jsp">更改场地</a></li>
+                        <li><a href="mchecksite.jsp">查看场地</a></li>
+                    </ul>
+                </li>
                 <li><a href="#"><span>器材</span></a>
                     <ul>
                         <li><a href="#">about us</a></li>
@@ -45,7 +51,7 @@
                 </li>
                 <li><a href="#"><span>赛事</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
+                        <li><a href="../order/dealordersite.jsp">about us</a></li>
                         <li><a href="#">services</a></li>
                         <li><a href="#">solutions</a></li>
                         <li><a href="#">support</a></li>
@@ -91,10 +97,18 @@
     <!-- Main 在这里编辑正文内容-->
     <div id="main">
         <div id="title">
-            <h2>预约场地指南</h2>
+            <h2>删除公告</h2>
         </div>
         <div id="content">
-        	<p>要预约场地，首先要<a href="checksite.jsp">查看场地</a>,然后点击场地名，进入查看时间表，然后<a href="ordersite.jsp">预约</a>时间段为空闲的场地</p>
+            <form id="deletegonggaoform" action="" method="post">
+                <div class="text">
+                    <label>输入要删除公告的id:</label><input name="gonggao.gonggaoId" class="itext" id="gonggaoid" type="text" />
+                </div>
+                <div class="text">
+                    <input class="sumbtn" type="button" value="删除" onclick="sumbitform()" />
+                </div>
+                <div id="datatext"></div>
+            </form>
         </div>
     </div>
 
@@ -121,5 +135,6 @@
 
 <!-- js -->
 <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
+<script src="../../js/gonggao/deletegonggao.js" type="text/javascript"></script>
 </body>
 </html>

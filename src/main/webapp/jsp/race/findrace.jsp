@@ -4,10 +4,10 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>海大体育馆管理系统-查看场地</title>
+    <title>海大体育馆管理系统-查看赛事</title>
     <link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="../../css/site/basesite.css" type="text/css" />
-    <link rel="stylesheet" href="../../css/site/checksite.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/order/dealordersite.css" type="text/css" />
 </head>
 <body>
 <div id="page" class="shell">
@@ -31,8 +31,11 @@
                 <li><a href="../../index.jsp" class="active"><span>首页</span></a></li>
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
-                        <li><a href="ordersite.jsp">预约场地</a></li>
                         <li><a href="checksite.jsp">查看场地</a></li>
+                        <li><a href="addsite.jsp">添加场地</a></li>
+                        <li><a href="deletesite.jsp">删除场地</a></li>
+                        <li><a href="updatesite.jsp">更改场地</a></li>
+                        <li><a href="mchecksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
@@ -57,7 +60,7 @@
                 </li>
                 <li><a href="#"><span>订单</span></a>
                     <ul>
-                        <li><a href="../order/mysiteorder.jsp">场地订单</a></li>
+                        <li><a href="dealordersite.jsp">场地订单</a></li>
                         <li><a href="#">services</a></li>
                         <li><a href="#">solutions</a></li>
                         <li><a href="#">support</a></li>
@@ -93,91 +96,75 @@
     <!-- Main 在这里编辑正文内容-->
     <div id="main">
         <div id="title">
-            <h2>查看场地</h2>
+            <h2>查看赛事</h2>
         </div>
 
-        <div id="searchsite">
+        <div class="searchorder">
             <form action="" method="post">
-                场地类型：<select id="siteType">
-                <option value="1">羽毛球场</option>
-                <option value="2">兵乓球场</option>
-                <option value="3">桌球场</option>
-                <option value="4">篮球场</option>
-                <option value="5">网球场</option>
-                </select>
-                <input class="sumbtn" type="button" value="查找场地" onclick="sitesearch('')" />
+                赛事名：<input id="racename" type="text" />
+                <input class="sumbtn" type="button" value="搜索赛事" onclick="racesearch()" />
             </form>
-            <!-- 显示状态信息 -->
-            <div id="data"></div>
         </div>
 
-        <div id="sitelist">
-            <table id="site-table">
-                <tr id="sitetitle">
-                    <td class="site-name">场地名称</td>
-                    <td class="site-type">场地类型</td>
-                    <td class="site-cost">费用（元）</td>
-                    <td class="site-dtail">场地描述</td>
+        <!-- 显示状态信息 -->
+        <div id="data"></div>
+
+        <div id="siteorderlist">
+            <table id="siteorder-table">
+                <tr id="ordertitle">
+                    <td class="race-name">赛事名</td>
+                    <td class="race-time">赛事时间</td>
+                    <td class="race-detail">赛事描述</td>
                 </tr>
                 <tr>
-                    <td class="site-name" id="site-name0"></td>
-                    <td class="site-type" id="site-type0"></td>
-                    <td class="site-cost" id="site-cost0"></td>
-                    <td class="site-dtail" id="site-dtail0"></td>
+                    <td class="race-name" id="race-name0"></td>
+                    <td class="race-time" id="race-time0"></td>
+                    <td class="race-detail" id="race-detail0"></td>
                 </tr>
-                <tr id="site-1">
-                    <td class="site-name" id="site-name1"></td>
-                    <td class="site-type" id="site-type1"></td>
-                    <td class="site-cost" id="site-cost1"></td>
-                    <td class="site-dtail" id="site-dtail1"></td>
+                <tr id="race-1">
+                    <td class="race-name" id="race-name1"></td>
+                    <td class="race-time" id="race-time1"></td>
+                    <td class="race-detail" id="race-detail1"></td>
                 </tr>
-                <tr id="site-2">
-                    <td class="site-name" id="site-name2"></td>
-                    <td class="site-type" id="site-type2"></td>
-                    <td class="site-cost" id="site-cost2"></td>
-                    <td class="site-dtail" id="site-dtail2"></td>
+                <tr id="race-2">
+                    <td class="race-name" id="race-name2"></td>
+                    <td class="race-time" id="race-time2"></td>
+                    <td class="race-detail" id="race-detail2"></td>
                 </tr>
-                <tr id="site-3">
-                    <td class="site-name" id="site-name3"></td>
-                    <td class="site-type" id="site-type3"></td>
-                    <td class="site-cost" id="site-cost3"></td>
-                    <td class="site-dtail" id="site-dtail3"></td>
+                <tr id="race-3">
+                    <td class="race-name" id="race-name3"></td>
+                    <td class="race-time" id="race-time3"></td>
+                    <td class="race-detail" id="race-detail3"></td>
                 </tr>
-                <tr id="site-4">
-                    <td class="site-name" id="site-name4"></td>
-                    <td class="site-type" id="site-type4"></td>
-                    <td class="site-cost" id="site-cost4"></td>
-                    <td class="site-dtail" id="site-dtail4"></td>
+                <tr id="race-4">
+                    <td class="race-name" id="race-name4"></td>
+                    <td class="race-time" id="race-time4"></td>
+                    <td class="race-detail" id="race-detail4"></td>
                 </tr>
-                <tr id="site-5">
-                    <td class="site-name" id="site-name5"></td>
-                    <td class="site-type" id="site-type5"></td>
-                    <td class="site-cost" id="site-cost5"></td>
-                    <td class="site-dtail" id="site-dtail5"></td>
+                <tr id="race-5">
+                    <td class="race-name" id="race-name5"></td>
+                    <td class="race-time" id="race-time5"></td>
+                    <td class="race-detail" id="race-detail5"></td>
                 </tr>
-                <tr id="site-6">
-                    <td class="site-name" id="site-name6"></td>
-                    <td class="site-type" id="site-type6"></td>
-                    <td class="site-cost" id="site-cost6"></td>
-                    <td class="site-dtail" id="site-dtail6"></td>
+                <tr id="race-6">
+                    <td class="race-name" id="race-name6"></td>
+                    <td class="race-time" id="race-time6"></td>
+                    <td class="race-detail" id="race-detail6"></td>
                 </tr>
-                <tr id="site-7">
-                    <td class="site-name" id="site-name7"></td>
-                    <td class="site-type" id="site-type7"></td>
-                    <td class="site-cost" id="site-cost7"></td>
-                    <td class="site-dtail" id="site-dtail7"></td>
+                <tr id="race-7">
+                    <td class="race-name" id="race-name7"></td>
+                    <td class="race-time" id="race-time7"></td>
+                    <td class="race-detail" id="race-detail7"></td>
                 </tr>
-                <tr id="site-8">
-                    <td class="site-name" id="site-name8"></td>
-                    <td class="site-type" id="site-type8"></td>
-                    <td class="site-cost" id="site-cost8"></td>
-                    <td class="site-dtail" id="site-dtail8"></td>
+                <tr id="race-8">
+                    <td class="race-name" id="race-name8"></td>
+                    <td class="race-time" id="race-time8"></td>
+                    <td class="race-detail" id="race-detail8"></td>
                 </tr>
-                <tr id="site-9">
-                    <td class="site-name" id="site-name9"></td>
-                    <td class="site-type" id="site-type9"></td>
-                    <td class="site-cost" id="site-cost9"></td>
-                    <td class="site-dtail" id="site-dtail9"></td>
+                <tr id="race-9">
+                    <td class="race-name" id="race-name9"></td>
+                    <td class="race-time" id="race-time9"></td>
+                    <td class="race-detail" id="race-detail9"></td>
                 </tr>
             </table>
         </div>
@@ -214,7 +201,7 @@
 
 <!-- js -->
 <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
-<script src="../../js/site/basesitetype.js" type="text/javascript"></script>
-<script src="../../js/site/checksite.js" type="text/javascript"></script>
+<script src="../../js/order/baseorder.js" type="text/javascript"></script>
+<script src="../../js/race/findrace.js" type="text/javascript"></script>
 </body>
 </html>

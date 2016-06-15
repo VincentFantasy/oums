@@ -1,28 +1,19 @@
 package com.oums.action;
 
+import java.util.List;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.oums.bean.Page;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.OrderPo;
-import com.oums.bean.po.SitePo;
-import com.oums.bean.po.UserPo;
-import com.oums.bean.type.ItemState;
-import com.oums.bean.type.OrderClass;
-import com.oums.bean.type.OrderType;
-import com.oums.bean.vo.OrderVo;
+import com.oums.bean.po.RacePo;
 import com.oums.bean.vo.RaceVo;
-import com.oums.bean.vo.SiteVo;
-import com.oums.bean.vo.UserVo;
-import com.oums.service.IOrderService;
 import com.oums.service.IRaceService;
-import com.oums.service.ISiteService;
-import com.oums.service.IUserService;
-import com.oums.util.OrderUtil;
-import com.oums.util.TimeUtil;
 
 /**
  * 
@@ -39,6 +30,16 @@ public class RaceAction {
 	private RaceVo race;
 	
 	private ReturnMessage returnMessage;
+	
+	private Page page; 
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
 	
 	public ReturnMessage getReturnMessage() {
 		return returnMessage;
@@ -82,6 +83,13 @@ public class RaceAction {
 
 		returnMessage = raceService.findRaceLikeName(race);
 
+		@SuppressWarnings("unchecked")
+		List<RacePo> list = (List<RacePo>) returnMessage.getObject();
+		page.setRecordCount(list.size());
+		list = page.thisPageData(list);
+		returnMessage.setObject(list);
+		returnMessage.setPageCount(page.getPageCount());
+				
 		return "success";
 
 	}
