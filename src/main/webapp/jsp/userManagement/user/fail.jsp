@@ -33,67 +33,39 @@
 			<div class="cl">&nbsp;</div>
 			<div id="navigation">
 				<ul>
-					<li><a href="index-m.jsp" class="active"><span>首页</span></a></li>
-					<li id = "siteLi" style="display:none"><a href="#"><span>场地</span></a>
+					<li><a href="index.jsp" class="active"><span>首页</span></a></li>
+					<li><a href="jsp/site/site.jsp"><span>场地</span></a>
 						<ul>
-							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
-							<li><a href="jsp/site/addsite.html">添加场地</a></li>
-							<li><a href="jsp/site/deletesite.html">删除场地</a></li>
-							<li><a href="jsp/site/updatesite.html">更改场地</a></li>
+							<li><a href="jsp/site/ordersite.jsp">预约场地</a></li>
 							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
 						</ul>
 					</li>
-					<li id = "equipmentLi" style="display:none"><a href="#"><span>器材</span></a>
+					<li><a href="#"><span>器材</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/equipment/equipmentFind.jsp">器材查询</a></li>
+							<li><a href="jsp/equipment/equipmentBorrow.jsp">租借请求</a></li>
+							<li><a href="jsp/equipment/equipmentOrderList.jsp">器材订单列表</a></li>
 						</ul>
 					</li>
-					<li id = "matchLi" style="display:none"><a href="#"><span>赛事</span></a>
+					<li><a href="#"><span>赛事</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/race/findrace.jsp">查看场地</a></li>
 						</ul>
 					</li>
-					<li id = "orderLi" style="display:none"><a href="#"><span>订单</span></a>
+					<li><a href="#"><span>订单</span></a>
 						<ul>
-							<li><a href="#">场地订单</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/order/mysiteorder.jsp">场地订单</a></li>
+
 						</ul>
 					</li>
-					<li id = "financyLi" style="display:none"><a href="#"><span>财务</span></a>
+					<li><a href="#"><span>财务</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
-						</ul>
-					</li>
-					<li id = "userManagementLi" style="display:none"><a href="#"><span>用户管理</span></a>
-						<ul>
-							<li id = "userManagementLi1" style = "display:none"><a href="jsp/userManagement/admin/userRegister.jsp">注册用户</a></li>
-							<li id = "userManagementLi2" style = "display:none"><a href="jsp/userManagement/admin/searchUser.jsp">查询用户</a></li>
-							<li id = "userManagementLi3" style = "display:none"><a href="jsp/userManagement/superUser/adminRegister.jsp">注册管理员用户</a></li>
-							<li id = "userManagementLi4" style = "display:none"><a href="jsp/userManagement/admin/userRegister.jsp">查询管理员用户</a></li>
+
 						</ul>
 					</li>
 					<li><a href="#"><span>个人信息</span></a>
 						<ul>
-							<li><a href="jsp/userManagement/admin/adminModifyPassword.jsp">修改密码</a></li>
+							<li><a href="jsp/userManagement/user/userModifyPassword.jsp">修改密码</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -103,9 +75,15 @@
 		<hr/>
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main" style="height:500px">
-				<h1>操作成功</h1>
-				<a href="../../index-m.jsp">返回首页</a>
+				<h1>操作失败</h1>
+				<a href="../../index.jsp">返回首页</a>
         </div>
+        <div id="content">
+        	<p>系统消息:</p>
+			<div class="SystemMessage">
+				
+			</div>
+		</div>
 		<!-- END Main -->
 		<hr/>
 

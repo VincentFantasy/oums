@@ -177,6 +177,22 @@ public class UserAdminAction implements ServletRequestAware{
 		}
 		return "success";
 	}
+	
+	/**
+	 * 删除用户
+	 * @return
+	 */
+	@Action(value = "deleteAdmin", results = {
+			@Result(name = "success", location="/jsp/userManagement/admin/searchAdminUser.jsp") })
+	public String deleteAdmin(){
+		String[] deleteUserArray = ServletActionContext.getRequest().getParameterValues("deleteUserCheckboxList");
+		String[] userCerNumArray = ServletActionContext.getRequest().getParameterValues("userCerNumList");
+		for(int i = 0; i < deleteUserArray.length; i++){
+			int deleteIndex = Integer.parseInt(deleteUserArray[i]);
+			adminService.deleteUser(userCerNumArray[deleteIndex]);
+		}
+		return "success";
+	}
 	/**
 	 * 管理员登陆
 	 * @return
@@ -188,7 +204,7 @@ public class UserAdminAction implements ServletRequestAware{
 		ReturnMessage returnMessage = adminService.login(adminVo);
 		if(returnMessage.isFlat() == true){
 			this.request.getSession().setAttribute("adminVo", returnMessage.getObject());
-			//将管理员vo放入session中
+			//将管理员vo放入session中 
 			return "success";
 		}else{
 			return "fail";
@@ -200,9 +216,9 @@ public class UserAdminAction implements ServletRequestAware{
 	 * @return
 	 */
 	@Action(value = "adminRegister", results = {
-			@Result(name = "success", location = "success.jsp"),
-			@Result(name = "exist", location = "fail.jsp"),
-			@Result(name = "fail", location = "error.jsp")})
+			@Result(name = "success", location = "/jsp/userManagement/admin/success.jsp"),
+			@Result(name = "exist", location = "/jsp/userManagement/admin/exist.jsp"),
+			@Result(name = "fail", location = "/jsp/userManagement/admin/fail.jsp")})
 	public String adminRegister(){
 		ReturnMessage returnMessage = adminService.regist(adminVo);
 		if(returnMessage.isFlat()){
@@ -222,8 +238,8 @@ public class UserAdminAction implements ServletRequestAware{
 	 * @return
 	 */
 	@Action(value="adminModifyPassword", results={
-			@Result(name = "success", location = "success.jsp"), 
-			@Result(name = "fail", location = "fail.jsp")})	
+			@Result(name = "success", location = "/jsp/userManagement/admin/success.jsp"), 
+			@Result(name = "fail", location = "/jsp/userManagement/admin/fail.jsp")})	
 	public String userModifyPassword() {
 		AdminUserVo adminVo = (AdminUserVo)this.request.getSession().getAttribute("adminVo");
 		String emplNum = adminVo.getEmployeeNumber();

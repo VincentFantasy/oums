@@ -103,9 +103,15 @@
 		<hr/>
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main" style="height:500px">
-				<h1>操作成功</h1>
+				<h1>操作失败</h1>
 				<a href="../../index-m.jsp">返回首页</a>
         </div>
+        <div id="content">
+        	<p>系统消息:</p>
+			<div class="SystemMessage">
+				
+			</div>
+		</div>
 		<!-- END Main -->
 		<hr/>
 

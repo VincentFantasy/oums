@@ -80,9 +80,9 @@ public class UserAction implements ServletRequestAware{
 	 * @return
 	 */
 	@Action(value="userRegister", results={
-			@Result(name = "success", location = "success.jsp"), 
-			@Result(name = "fail", location = "fail.jsp"),
-			@Result(name = "exist", location = "exist.jsp"),})	
+			@Result(name = "success", location = "/jsp/userManagement/admin/success.jsp"), 
+			@Result(name = "fail", location = "/jsp/userManagement/admin/exist.jsp"),
+			@Result(name = "exist", location = "/jsp/userManagement/admin/fail.jsp")})	
 	public String userRegist() {
 		returnMessage = userService.regist(userVo);
 		if(returnMessage.isFlat()){
@@ -99,8 +99,8 @@ public class UserAction implements ServletRequestAware{
 	 * @return
 	 */
 	@Action(value="userModifyPassword", results={
-			@Result(name = "success", location = "success.jsp"), 
-			@Result(name = "fail", location = "fail.jsp")})	
+			@Result(name = "success", location = "/jsp/userManagement/user/success.jsp"), 
+			@Result(name = "fail", location = "/jsp/userManagement/user/fail.jsp")})	
 	public String userModifyPassword() {
 		UserVo userVo = (UserVo)this.request.getSession().getAttribute("userVo");
 		String cerNum = userVo.getCertificateNumber();

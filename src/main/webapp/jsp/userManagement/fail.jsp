@@ -66,7 +66,7 @@
 					<li id = "orderLi" style="display:none"><a href="#"><span>订单</span></a>
 						<ul>
 							<li><a href="#">场地订单</a></li>
-							<li><a href="#">services</a></li>
+							<li><a href="#">servis</a></li>
 							<li><a href="#">solutions</a></li>
 							<li><a href="#">support</a></li>
 							<li><a href="#">partners</a></li>
@@ -103,9 +103,15 @@
 		<hr/>
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main" style="height:500px">
-				<h1>操作成功</h1>
-				<a href="../../index-m.jsp">返回首页</a>
+				<h1>登陆失败</h1>
+				<a href="login.jsp">返回首页</a>
         </div>
+        <div id="content">
+        	<p>系统消息:</p>
+			<div class="SystemMessage">
+				
+			</div>
+		</div>
 		<!-- END Main -->
 		<hr/>
 
