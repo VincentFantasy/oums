@@ -1,5 +1,5 @@
-
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -89,21 +89,47 @@
 
 		<hr/>
 		<!-- Main 在这里编辑正文内容-->
-		<div id="main">
-			<form action="${pageContext.request.contextPath}/p_equipmentManager/addEquipment1.action" method="post">
-		        器材名：<input name="equipment.equipName" type="text" /><br/>
-		        器材品牌：<input name="equipment.equipBrand" type="text" /><br/>
-		        收购价格:<input name="equipment.equipPrice" type="text" /><br/>
-		        出租价格（小时）:<input name="equipment.rentPrice" type="text" /><br/>
-		      	器材数量：<input name="equipment.equipNum" type="text" /><br/>
-		        场地备注：<input name="equipment.equipDtail" type="text" /><br/>
-        <input type="submit" value="添加" />
-    		</form>
-		
-		</div>
-			<div id="title">
-            <h2>欢迎进入广东海洋大学体育馆系统</h2>
-        </div>
+		<div id="main"><h1>正文内容</h1></div>
+		<div id="title"><h2>欢迎进入广东海洋大学体育馆系统</h2></div>
+        <form action="${pageContext.request.contextPath}/p_equipment/findOrder1.action" method="post">
+ 		请输入查询信息:<input type="text" name="content"   style="width:111px"/>
+ 		<input type="hidden" name="sd"  value="del"/>
+		<select name="type">
+			<option value="equipName" selected="selected">器材名</option>
+			<option  value="equipBrand">品牌名</option>
+		</select>
+ 		<input type="submit" value="查询"/>
+ 	</form>
+	<form >
+	 	<table  border="1" width="100%" >
+	 		<tr>
+			 	<th>订单号</th>
+			 	<th>订单类型</th>
+			 	<th>订单状态</th>
+			 	<th>订单数量</th>
+			 	<th>修改订单</th>
+			 	<th>取消订单</th>	
+			 	<th>订单支付</th>			
+	 		</tr>
+	 	<c:forEach items="${requestScope.list}" var="item" >
+ 			<tr>
+ 				<td>${item.orderNumber}</td>
+ 				<td>${item.orderClass}</td>
+ 				<td>${item.orderType}</td>
+ 				<td>${item.equipmentList.size}</td>
+ 				<td>
+ 					<a href="../../equipment/updateOrder.action?equipId=${item.orderId}">修改订单</a>
+ 				</td>
+ 				<td>
+ 					<a href="../../equipment/delOrder.action?equipId=${item.orderId}">取消订单</a>
+ 				</td>
+ 				<td> 
+ 					<a href="../../equipment/payOrder.action?equipId=${item.orderId}">订单支付</a>
+ 				</td> 
+ 			</tr>
+	 	</c:forEach>
+		</table>
+	</form>
         <div id="content">
         	<p>系统消息:</p>
 			<div class="SystemMessage">

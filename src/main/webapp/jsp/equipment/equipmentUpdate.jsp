@@ -1,24 +1,148 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>添加器材</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>海大体育馆管理系统</title>
+	<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	%>
+	<base href="<%=basePath%>">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/site/addsite.css" type="text/css" />
 </head>
-<body>
 
-    <form action="../../equipmentManager/udateEquipment.action" method="post">
-    	<input name="equipment.equipId" type="hidden" value="${requestScope.list.equipId }"/>
-    	<input name="equipment.addTime" type="hidden" value="${requestScope.list.addTime }"/>
-        器材名：<input name="equipment.equipName" type="text" value="${requestScope.list.equipName }"/><br/>
-        器材品牌：<input name="equipment.equipName" type="text" value="${requestScope.list.equipName}"/><br/>
-        收购价格:<input name="equipment.equipPrice" type="text" value="${requestScope.list.equipPrice}" /><br/>
-        出租价格（小时）:<input name="equipment.rentPrice" type="text" value="${requestScope.list.rentPrice}" /><br/>
-        场地备注：<input name="equipment.equipDtail" type="text" value="${requestScope.list.equipDtail}" /><br/>
-        <input type="submit" value="更新" />
-    </form>
-    
-    
-    <br/>
+<body>
+	<div id="page" class="shell">
+		<!-- Logo + Search + Navigation -->
+		<div id="top">
+			<div class="cl">&nbsp;</div>
+			<h1 id="logo">
+				<a href="index.jsp">OUMS</a>
+			</h1>
+			<!-- 搜索不要没时间做 -->
+			<!--<form action="" method="post" id="search">
+			<div class="field-holder">
+				<input type="text" class="field" value="Search" title="Search" />
+			</div>
+			<input type="submit" class="button" value="Search" />
+			<div class="cl">&nbsp;</div>
+		</form>-->
+			<div class="cl">&nbsp;</div>
+			<div id="navigation">
+				<ul>
+					<li><a href="index.jsp" class="active"><span>首页</span></a></li>
+					<li><a href="jsp/site/site.jsp"><span>场地</span></a>
+						<ul>
+							
+						</ul>
+					</li>
+					<li><a href="#"><span>器材</span></a>
+						<ul>
+							<li><a href="../equipment/equipmentFind.jsp">器材查询</a></li>
+							<li><a href="../equipment/equipmentBorrow.jsp">租借请求</a></li>
+							<li><a href="../equipment/equipmentOrderList.jsp">器材订单列表</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><span>赛事</span></a>
+						<ul>
+							
+						</ul>
+					</li>
+					<li><a href="#"><span>订单</span></a>
+						<ul>
+							
+							
+						</ul>
+					</li>
+					<li><span>个人信息</span>
+						<ul>
+							<li><a href="jsp/userManagement/user/userModifyPassword.jsp">修改密码</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><span>财务</span></a>
+						<ul>
+							
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<hr/>
+		<!-- Main 在这里编辑正文内容-->
+		<div id="main">
+		<h1>正文内容</h1></div>
+		<div id="title"><h2>欢迎进入广东海洋大学体育馆系统</h2></div>
+        <form action="${pageContext.request.contextPath}/p_equipment/findEquipmentByType1.action" method="post">
+ 		请输入查询信息:<input type="text" name="content"   style="width:111px"/>
+ 		<input type="hidden" name="sd"  value="detail"/>
+		<select name="type">
+			<option value="equipName" selected="selected">器材名</option>
+			<option  value="equipBrand">品牌名</option>
+		</select>
+ 		<input type="submit" value="查询"/>
+ 	</form>
+	<form >
+	 	<table  border="1" width="100%" >
+	 		<tr>
+			 	<th>器材名称</th>
+			 	<th>器材品牌</th>
+			 	<th>器材收购价格</th>
+			 	<th>器材出租价格</th>
+			 	<th>器材备注</th>	
+			 	<th>修改</th>			
+	 		</tr>
+
+	 		<c:forEach items="${requestScope.list}" var="item" >
+	 			<tr>
+	 				<td>${item.equipName}</td>
+	 				<td>${item.equipBrand}</td>
+	 				<td>${item.equipPrice}</td>
+	 				<td>${item.rentPrice}</td>
+	 				<td>${item.equipDtail}</td>
+	 				<td>
+<a href="${pageContext.request.contextPath}/p_equipmentManager/findEquipmentById.action?equipId=${item.equipId}">修改</a>
+	 				</td> 
+	 			</tr>
+	 		</c:forEach>
+		</table>
+	</form>
+        <div id="content">
+        	<p>系统消息:</p>
+			<div class="SystemMessage">
+				
+			</div>
+        </div>
+		</div>
+		<!-- END Main -->
+		<hr/>
+
+		<!-- Footer -->
+		<div id="footer">
+			<p class="right">
+				&copy; 软件1131第九小组 &nbsp; Design by <a href="#" target="_blank" title="">VincentFantasy</a>
+			</p>
+			<p>
+				<a href="index.html">首页</a><span>&nbsp;</span>
+				<a href="#">关于我们</a><span>&nbsp;</span>
+				<a href="#">更多服务</a><span>&nbsp;</span>
+				<a href="#">解决方案</a><span>&nbsp;</span>
+				<a href="#">支持</a><span>&nbsp;</span>
+				<a href="#">合作伙伴</a><span>&nbsp;</span>
+				<a href="#">联系方式</a>
+			</p>
+			<div class="cl">&nbsp;</div>
+		</div>
+
+		<!-- END Footer -->
+		<br />
+	</div>
+	
+	<!-- js -->
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
 </body>
 </html>

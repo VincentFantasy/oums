@@ -75,6 +75,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
 	@Override
 	public ReturnMessage findEquipmentByType(String content, String type) {
 				ReturnMessage returnMessage = new ReturnMessage();
+				System.out.println(type+"==================serviceImpl======================================");
 				try{
 					List<EquipmentPo> pos = equipmentDao.findEquipmentByType(content,type);
 					if(pos!=null)
@@ -90,11 +91,11 @@ public class EquipmentServiceImpl implements IEquipmentService {
 				return returnMessage;
 	}
 	@Override
-	public ReturnMessage findEquipmentTypeAndNum() {
+	public ReturnMessage findEquipmentTypeAndNum(String content, String type) {
 		// TODO Auto-generated method stub
 		ReturnMessage returnMessage = new ReturnMessage();
 		try{
-			List<EquipmentPo> pos= equipmentDao.findEquipmentTypeAndNum();
+			List<EquipmentTypePo> pos= equipmentDao.findEquipmentTypeAndNum( content, type);
 			if(pos!=null)
 			returnMessage.setFlat(true);
 			returnMessage.setContent("查找成功");
@@ -126,12 +127,12 @@ public class EquipmentServiceImpl implements IEquipmentService {
 		return returnMessage;
 	}
 	@Override
-	public ReturnMessage findOrder() {
+	public ReturnMessage findOrder(String content, String type) {
 		// TODO Auto-generated method stub
 		ReturnMessage returnMessage = new ReturnMessage();
 		try{
 			
-			List<OrderPo> list=equipmentDao.findOrder();
+			List<OrderPo> list=equipmentDao.findOrder(content,type);
 			returnMessage.setFlat(true);
 			returnMessage.setObject(list);
 		} catch (Exception e) {
@@ -149,7 +150,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
 			OrderPo po=baseDao.findById(OrderPo.class, id);
 			po.setOrderType(OrderType.WAITSURE);
 			baseDao.update(po);
-			List<OrderPo> list=equipmentDao.findOrder();
+			List<OrderPo> list=equipmentDao.findOrder(null,null);
 			returnMessage.setFlat(true);
 			returnMessage.setObject(list);
 			
@@ -168,7 +169,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
 			OrderPo po=baseDao.findById(OrderPo.class, id);
 			po.setIsDelete(true);
 			baseDao.update(po);
-			List<OrderPo> list=equipmentDao.findOrder();
+			List<OrderPo> list=equipmentDao.findOrder(null,null);
 			returnMessage.setFlat(true);
 			returnMessage.setObject(list);
 			

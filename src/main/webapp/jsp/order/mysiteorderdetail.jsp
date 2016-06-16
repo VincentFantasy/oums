@@ -31,58 +31,34 @@
                 <li><a href="../../index.jsp" class="active"><span>首页</span></a></li>
                 <li><a href="site.jsp"><span>场地</span></a>
                     <ul>
-                        <li><a href="#">预约场地</a></li>
+                        <li><a href="../site/ordersite.jsp">预约场地</a></li>
                         <li><a href="../site/checksite.jsp">查看场地</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>器材</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        
                     </ul>
                 </li>
                 <li><a href="#"><span>赛事</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        <li><a href="../race/findrace.jsp">查看赛事</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span>订单</span></a>
                     <ul>
-                        <li><a href="#">场地订单</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        <li><a href="../order/mysiteorderdetail.jsp">场地订单</a></li>
+                        
                     </ul>
                 </li>
                 <li><a href="#"><span>个人信息</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        
                     </ul>
                 </li>
                 <li><a href="#"><span>财务</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        
                     </ul>
                 </li>
             </ul>

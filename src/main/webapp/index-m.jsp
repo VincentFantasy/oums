@@ -27,56 +27,39 @@
 			<div id="navigation">
 				<ul>
 					<li><a href="index-m.jsp" class="active"><span>首页</span></a></li>
-					<li id = "siteLi" style="display:none"><a href="#"><span>场地</span></a>
+					<li id = "siteLi"><a href="#"><span>场地</span></a>
 						<ul>
-							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
-							<li><a href="jsp/site/addsite.html">添加场地</a></li>
-							<li><a href="jsp/site/deletesite.html">删除场地</a></li>
-							<li><a href="jsp/site/updatesite.html">更改场地</a></li>
-							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
+							<li><a href="jsp/site/addsite.jsp">添加场地</a></li>
+							<li><a href="jsp/site/deletesite.jsp">删除场地</a></li>
+							<li><a href="jsp/site/updatesite.jsp">更改场地</a></li>
+							<li><a href="jsp/site/mchecksite.jsp">查看场地</a></li>
 						</ul>
 					</li>
-					<li id = "equipmentLi" style="display:none"><a href="#"><span>器材</span></a>
+					<li id = "equipmentLi"><a href="#"><span>器材</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/equipment/equipmentFind.jsp">器材查询</a></li>
+							<li><a href="jsp/equipment/equipmentAdd.jsp">添加器材</a></li>
+							<li><a href="jsp/equipment/equipmentUpdate.jsp">修改器材</a></li>
+							<li><a href="jsp/equipment/equipmentDel.jsp">删除器材</a></li>
 						</ul>
 					</li>
-					<li id = "matchLi" style="display:none"><a href="#"><span>赛事</span></a>
+					<li id = "matchLi"><a href="#"><span>赛事</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/race/findrace.jsp">查找赛事</a></li>			
 						</ul>
 					</li>
-					<li id = "orderLi" style="display:none"><a href="#"><span>订单</span></a>
+					<li id = "orderLi"><a href="#"><span>订单</span></a>
 						<ul>
-							<li><a href="#">场地订单</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/order/dealordersite.jsp">场地订单</a></li>
+
 						</ul>
 					</li>
 					<li id = "financyLi" style="display:none"><a href="#"><span>财务</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+
 						</ul>
 					</li>
-					<li id = "userManagementLi" style="display:none"><a href="#"><span>用户管理</span></a>
+					<li id = "userManagementLi"><a href="#"><span>用户管理</span></a>
 						<ul>
 							<li id = "userManagementLi1" style = "display:none"><a href="jsp/userManagement/admin/userRegister.jsp">注册用户</a></li>
 							<li id = "userManagementLi2" style = "display:none"><a href="jsp/userManagement/admin/searchUser.jsp">查询用户</a></li>
@@ -87,6 +70,12 @@
 					<li><a href="#"><span>个人信息</span></a>
 						<ul>
 							<li><a href="jsp/userManagement/admin/adminModifyPassword.jsp">修改密码</a></li>
+						</ul>
+					</li>
+					<li ><a href="#"><span>公告</span></a>
+						<ul>
+							<li><a href="jsp/gonggao/addgonggao.jsp">添加公告</a></li>
+							<li><a href="jsp/gonggao/deletegonggao.jsp">删除公告</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -25,12 +25,19 @@ public class EquipmentTypeVo extends BaseVo{
 	private Integer equipNum;
 	/*器材租借价格*/
 	private Float rentPrice;
+	/*器材价格*/
+	private Float quipmentPrice;
 	/*租借天数*/
 	private Integer day;
 	/*租借小时*/
 	private Integer hour;
 	
-
+	public Float getQuipmentPrice() {
+		return quipmentPrice;
+	}
+	public void setQuipmentPrice(Float quipmentPrice) {
+		this.quipmentPrice = quipmentPrice;
+	}
 	public Integer getDay() {
 		return day;
 	}

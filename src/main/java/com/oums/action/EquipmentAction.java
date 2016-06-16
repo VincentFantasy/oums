@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.EquipmentPo;
+import com.oums.bean.po.EquipmentTypePo;
 import com.oums.bean.po.OrderPo;
 import com.oums.bean.po.SitePo;
 import com.oums.bean.po.UserPo;
@@ -40,7 +41,7 @@ import com.oums.util.TimeUtil;
  */
 
 @ParentPackage("basePackage")
-@Namespace("/equipment")
+@Namespace("/p_equipment")
 public class EquipmentAction {
 	
 	@Autowired
@@ -54,8 +55,7 @@ public class EquipmentAction {
 	private ReturnMessage returnMessage;
 	private OrderVo order;
 	private UserVo user;
-	private String content;
-	private String type;
+
 	private EquipmentTypeVo  equipmentType;
 	
 	public EquipmentTypeVo getEquipmentType() {
@@ -63,18 +63,6 @@ public class EquipmentAction {
 	}
 	public void setEquipmentType(EquipmentTypeVo equipmentType) {
 		this.equipmentType = equipmentType;
-	}
-	public String getContent() {
-		return content;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	public EquipmentVo getEquip() {
 		return equipment;
@@ -107,15 +95,13 @@ public class EquipmentAction {
 	 * http://localhost:8080/OUMS/equipment/findAllEquipment
 	 */
 	@Action(value="findAllEquipment", 
-			results={@Result(name="success", type="json", params={"root","returnMessage"})})
+			results={@Result(name="success", location="../../../jsp/equipment/equipmentList.jsp")})
 	public String findAllEquipment() {		
 		
 		ReturnMessage returnMessage = new  ReturnMessage();
 		
 		returnMessage = equipmentService.findAllEquipment();
-		
-//		request.setAttribute("list",list );
-//		request.getRequestDispatcher("/listCust.jsp").forward(request, response);
+
 		
 		return "success";
 	}
@@ -126,46 +112,40 @@ public class EquipmentAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipment/findEquipment
 	 */
-	@Action(value="findEquipmentByType")
-//			results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String findEquipmentByType() {		
+	@SuppressWarnings("unchecked")
+	@Action(value="findEquipmentByType1",
+		results={@Result(name="detail", location="../../../jsp/equipment/equipmentDtail.jsp"),
+				@Result(name="borrow", location="../../../jsp/equipment/equipmentBorrow.jsp"),
+				@Result(name="find", location="../../../jsp/equipment/equipmentFind.jsp"),
+				@Result(name="list", location="../../../jsp/equipment/equipmentList.jsp"),
+				@Result(name="del", location="../../../jsp/equipment/equipmentDel.jsp")})
+	public String findEquipmentByType1() {		
 		
 		ReturnMessage returnMessage = new  ReturnMessage();
-		
-		returnMessage = equipmentService.findEquipmentByType(content,type);
-		List<EquipmentPo> list=(List<EquipmentPo>) returnMessage.getObject();
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
-		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
+		String content=request.getParameter("content");
+		String type=request.getParameter("type");
+		returnMessage = equipmentService.findEquipmentByType(content, type);
+		List<EquipmentPo> list=(List<EquipmentPo>) returnMessage.getObject();
 		request.setAttribute("list",list );
-		try {
-			String type=request.getParameter("type");
-			switch (type){
-			case "detail" : 
-				request.getRequestDispatcher("../../equipmentDetail.jsp").forward(request, response);
-				break;
-			case "borrow" : 
-				request.getRequestDispatcher("../../equipmentBorrow.jsp").forward(request, response);
-				break;
-			case "find" : 
-				request.getRequestDispatcher("../../equipmentFind.jsp").forward(request, response);
-				break;
-			case "list" : 
-				request.getRequestDispatcher("../../equipmentList.jsp").forward(request, response);
-				break;
-			case "del" : 
-				request.getRequestDispatcher("../../equipmentDel.jsp").forward(request, response);
-				break;
-			default : break;
-			} 
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		return "success";
+
+		
+			String sd=request.getParameter("sd");
+			switch (sd){
+			case "detail" : 
+				return "detail";
+			case "borrow" :
+				return "borrow";
+			case "find" : 
+				return "find";
+			case "list" : 
+				return "list";
+			case "del" :
+				return "del";
+			default :
+				return "find";
+			}
 	}	
 	
 	/**
@@ -173,26 +153,19 @@ public class EquipmentAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipment/findEquipmentType
 	 */
-	@Action(value="findEquipmentTypeAndNum")
-//			results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String findEquipmentTypeAndNum() {		
+	@Action(value="findEquipmentTypeAndNum1",
+	results={@Result(name="success",location="../../../jsp/equipment/equipmentBorrow.jsp")})
+	
+	public String findEquipmentTypeAndNum1() {		
 		
 		ReturnMessage returnMessage = new  ReturnMessage();
-		
-		returnMessage = equipmentService.findEquipmentTypeAndNum();
-		
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
-		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
-		try {
-			request.getRequestDispatcher("../../equipmentList.jsp").forward(request, response);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		String content=request.getParameter("content");
+		String type=request.getParameter("type");
+		returnMessage = equipmentService.findEquipmentTypeAndNum(content,type);
+		List<EquipmentTypePo> list=(List<EquipmentTypePo>) returnMessage.getObject();
+
+		request.setAttribute("list", list);
 		return "success";
 	}	
 	
@@ -201,8 +174,9 @@ public class EquipmentAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipment/borrowEquipment
 	 */
-	@Action(value="borrowEquipment", results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String borrowEquipment() {		
+	@Action(value="borrowEquipment1",
+			results={@Result(name="success", location="../../../jsp/equipment/equipmentBorrow.jsp")})
+	public String borrowEquipment1() {		
 		
 		try {
 
@@ -212,7 +186,10 @@ public class EquipmentAction {
 			order.setOrderType(OrderType.NOPAY);
 			order.setOrderClass(OrderClass.EQUIPMENT);
 			order.setBuildTime(TimeUtil.getNowTime());
-
+			
+			// 从作用域中取用户
+			user = new UserVo();
+			user.setCertificateNumber("123");
 			// 设置用户
 			returnMessage = userService.getUserPoByCerNum(user.getCertificateNumber());
 			if (returnMessage.isFlat()) {
@@ -249,15 +226,17 @@ public class EquipmentAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipment/borrowEquipment
 	 */
-	@Action(value="findOrder")  //	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String findOrder() {		
+	@Action(value="findOrder1",
+			results={@Result(name="success",location="../../../jsp/equipment/equipmentOrderList.jsp")})
+	public String findOrder1() {		
 		
 		try {
-			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
-			HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
 			
+			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
+			String content=request.getParameter("content");
+			String type=request.getParameter("type");
 			// 设置用户
-			returnMessage = equipmentService.findOrder();
+			returnMessage = equipmentService.findOrder(content,type);
 			if(returnMessage.isFlat()){
 				List<OrderPo> list = (List<OrderPo>) returnMessage.getObject();
 				request.setAttribute("list", list);
@@ -265,7 +244,7 @@ public class EquipmentAction {
 			}else{
 				returnMessage.setContent("订单查找失败!");
 			}
-			request.getRequestDispatcher("../../equipmentList.jsp").forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -277,8 +256,9 @@ public class EquipmentAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipment/borrowEquipment
 	 */
-	@Action(value="findOrder") //	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String payOrder() {		
+	@Action(value="payOrder1", 
+			results={@Result(name="success",location="../../../jsp/equipment/equipmentOrderList.jsp")})
+	public String payOrder1() {		
 		
 		try {
 			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
@@ -293,7 +273,6 @@ public class EquipmentAction {
 			}
 			List<OrderPo> list = (List<OrderPo>) returnMessage.getObject();
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("../../equipmentOrderList.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -305,8 +284,9 @@ public class EquipmentAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipment/borrowEquipment
 	 */
-	@Action(value="delOrder")   //	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String delOrder() {		
+	@Action(value="delOrder1",
+			results={@Result(name="success", location="../../../jsp/equipment/equipmentOrderList.jsp")})
+	public String delOrder1() {		
 		
 		try {
 			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
@@ -321,7 +301,6 @@ public class EquipmentAction {
 			}else{
 				returnMessage.setContent("订单删除失败!");
 			}
-			request.getRequestDispatcher("../../equipmentOrderList.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

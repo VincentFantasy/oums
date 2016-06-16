@@ -12,13 +12,13 @@ import javax.persistence.Table;
  * 2016年6月4日
  */
 @Entity
-@Table(name="t_equipmentOrderItem")
+@Table(name="t_equipmentType")
 public class EquipmentTypePo extends BasePo{
 	
 	private static final long serialVersionUID = 1L;
 
 	/*器材种类ID*/
-	private String  equipTypeId;
+	private Integer  equipTypeId;
 	/*器材名称*/
 	private String equipName; 
 	/*品牌名称*/
@@ -27,14 +27,23 @@ public class EquipmentTypePo extends BasePo{
 	private Integer equipNum;
 	/*器材租借价格*/
 	private Float rentPrice;
+	/*器材价格*/
+	private Float equipPrice;
 	
 	@Id
 	@GeneratedValue
-	public String getEquipTypeId() {
+	public Integer getEquipTypeId() {
 		return equipTypeId;
 	}
 	public String getEquipName() {
 		return equipName;
+	}
+	
+	public Float getEquipPrice() {
+		return equipPrice;
+	}
+	public void setEquipPrice(Float equipPrice) {
+		this.equipPrice = equipPrice;
 	}
 	public String getEquipBrand() {
 		return equipBrand;
@@ -45,7 +54,7 @@ public class EquipmentTypePo extends BasePo{
 	public Float getRentPrice() {
 		return rentPrice;
 	}
-	public void setEquipTypeId(String equipTypeId) {
+	public void setEquipTypeId(Integer equipTypeId) {
 		this.equipTypeId = equipTypeId;
 	}
 	public void setEquipName(String equipName) {

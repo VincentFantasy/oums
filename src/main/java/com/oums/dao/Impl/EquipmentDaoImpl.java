@@ -1,18 +1,14 @@
 package com.oums.dao.Impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.EquipmentTypePo;
 import com.oums.bean.po.OrderPo;
-import com.oums.bean.po.SitePo;
 import com.oums.bean.vo.EquipmentTypeVo;
 import com.oums.bean.vo.EquipmentVo;
 import com.oums.dao.IEquipmentDao;
@@ -28,40 +24,12 @@ public class EquipmentDaoImpl implements IEquipmentDao {
 	public EquipmentTypePo findEquipmentByName(String equipName) {
 		// TODO Auto-generated method stub
 		return (EquipmentTypePo) sessionFactory.getCurrentSession()
-				.createQuery("from EquipmentTypePo e where e.equipName = :Name  ")
+				.createQuery("from EquipmentTypePo e where e.isDelete = 1 and  e.equipName = :Name  ")
 				.setString("equipName", equipName)
 				.uniqueResult();
 		
 	}
 
-
-
-//	@SuppressWarnings("rawtypes")
-//	@Override
-//	public HashMap findEquipmentList(EquipmentVo equipment) {
-//		String hql="from EquipmentPo e where 1=1 ";
-//		if(equipment.getEquipName()!=null){
-//			hql=hql+"e.equipName = " +equipment.getEquipName();
-//		}
-//		if(equipment.getEquipName()!=null){
-//			hql=hql+"e.equipBrand = " +equipment.getEquipBrand();
-//		}
-//		
-//		@SuppressWarnings("unchecked")
-//		List<EquipmentPo> listType=sessionFactory.getCurrentSession()
-//				.createQuery(hql).list();
-//		
-//		@SuppressWarnings("unchecked")
-//		List<EquipmentPo> listItem= sessionFactory.getCurrentSession()
-//		.createQuery("from EquipmentPo e where e.equipName = :Name and e.equipBrand = :equipBrand ")
-//		.setString("equipName", equipment.getEquipName())
-//		.list();
-//		
-//		HashMap<String, List> list=new HashMap<String,List>();
-//		list.put("listType", listType);
-//		list.put("listItem", listItem);
-//		return list;
-//	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -84,25 +52,30 @@ public class EquipmentDaoImpl implements IEquipmentDao {
 	public List<EquipmentPo> findAllEquipmentList() {
 		// TODO Auto-generated method stub
 		List<EquipmentPo> list= sessionFactory.getCurrentSession()
-				.createQuery("from EquipmentPo e where isDelete = false").list();
+				.createQuery("from EquipmentPo e where e.isDelete = 1").list();
 		return list;
 
 	}
 
 	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<EquipmentPo> findEquipmentByType(String content, String type) {
-		// TODO Auto-generated method stub
-		String hql="from EquipmentPo e where 1=1 ";
-		if(type=="equipName"){
-			hql=hql+"e.equipName = " +content;
+		String hql="from EquipmentPo e where  e.isDelete = 1 ";
+		if(content!=null&&!("".equals(content))){
+			if(type.equals("equipName")){
+				hql=hql+" and e.equipName = '" +content+"'";
+			}
+			else if(type.equals("equipBrand")){
+				hql=hql+" and e.equipBrand = '" +content+"'";
+			}
 		}
-		if(type=="equipBrand"){
-			hql=hql+"e.equipBrand = " +content;
-		}
+//		hql=hql+" and e.isDelete = 1";
 		List<EquipmentPo> list=sessionFactory.getCurrentSession()
 				.createQuery(hql).list();
+		
 		return list;
 	}
 
@@ -110,12 +83,19 @@ public class EquipmentDaoImpl implements IEquipmentDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<EquipmentPo> findEquipmentTypeAndNum() {
+	public List<EquipmentTypePo> findEquipmentTypeAndNum(String content, String type) {
 		// TODO Auto-generated method stub
-		String hql="select equipName ,equipBrand,equipPrice,rentPrice,"
-				+ "count(equipBrand) as equipNum from EquipmentPo e where"
-				+ " e.isDelete=false group by e.equipBrand ";
-		List<EquipmentPo> list= sessionFactory.getCurrentSession()
+		String hql="from EquipmentTypePo e where 1 = 1 ";
+		if(content!=null&&!("".equals(content))){
+			if(type.equals("equipName")){
+				hql=hql+" and e.equipName = '" +content+"'";
+			}
+			else if(type.equals("equipBrand")){
+				hql=hql+" and e.equipBrand = '" +content+"'";
+			}
+		}
+//		hql=hql+" and e.isDelete = 1";
+		List<EquipmentTypePo> list=sessionFactory.getCurrentSession()
 				.createQuery(hql).list();
 		
 	
@@ -127,10 +107,20 @@ public class EquipmentDaoImpl implements IEquipmentDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrderPo> findOrder() {
+	public List<OrderPo> findOrder(String content, String type) {
+		int ox=Integer.parseInt("0x01".substring(2), 16);
+		String hql="from OrderPo e where e.isDelete = 1 and e.orderType= '"+ ox +"'";
+		if(content!=null&&!("".equals(content))){
+			if(type.equals("equipName")){
+				hql=hql+" and e.equipName = '" +content+"'";
+			}
+			else if(type.equals("equipBrand")){
+				hql=hql+" and e.equipBrand = '" +content+"'";
+			}
+		}
 		// TODO Auto-generated method stub
 		List<OrderPo> list= sessionFactory.getCurrentSession()
-				.createQuery("from OrderPo e where e.isDelete = false and e.orderType= 0x01 ").list();
+				.createQuery(hql).list();
 		return list;
 	}
 
@@ -140,9 +130,22 @@ public class EquipmentDaoImpl implements IEquipmentDao {
 	@Override
 	public List<OrderPo> findWaitSureOrder() {
 		// TODO Auto-generated method stub
+		int ox=Integer.parseInt("0x02".substring(2), 16);
 		List<OrderPo> list= sessionFactory.getCurrentSession()
-		.createQuery("from OrderPo e where e.isDelete = false and e.orderType=  0x02 ").list();
+		.createQuery("from OrderPo e where e.isDelete = 1 and e.orderType=  '"+ox+"' ").list();
 		return list;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public int findEquipTypeIdByName(EquipmentVo vo) {
+		// TODO Auto-generated method stub
+		List<EquipmentTypePo> po=(List<EquipmentTypePo>) sessionFactory.getCurrentSession()
+		.createQuery("from EquipmentTypePo e where e.equipBrand = :equipBrand and  e.equipName = :equipName  ")
+		.setString("equipName", vo.getEquipName()).setString("equipBrand", vo.getEquipBrand()).list();
+		
+		return po.get(0).getEquipTypeId();
 	}
 
 

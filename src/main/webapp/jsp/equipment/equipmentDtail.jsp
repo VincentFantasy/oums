@@ -1,4 +1,3 @@
-
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -89,21 +88,18 @@
 
 		<hr/>
 		<!-- Main 在这里编辑正文内容-->
-		<div id="main">
-			<form action="${pageContext.request.contextPath}/p_equipmentManager/addEquipment1.action" method="post">
-		        器材名：<input name="equipment.equipName" type="text" /><br/>
-		        器材品牌：<input name="equipment.equipBrand" type="text" /><br/>
-		        收购价格:<input name="equipment.equipPrice" type="text" /><br/>
-		        出租价格（小时）:<input name="equipment.rentPrice" type="text" /><br/>
-		      	器材数量：<input name="equipment.equipNum" type="text" /><br/>
-		        场地备注：<input name="equipment.equipDtail" type="text" /><br/>
-        <input type="submit" value="添加" />
-    		</form>
-		
-		</div>
-			<div id="title">
-            <h2>欢迎进入广东海洋大学体育馆系统</h2>
-        </div>
+		<div id="main"><h1>正文内容</h1></div>
+		<div id="title"> <h2>欢迎进入广东海洋大学体育馆系统</h2> </div>
+        <form action="../../equipmentManager/udateEquipment.action" method="post">
+		<input type="hidden" name="equipment.equipId" value='${list.equipId }'>
+    	<input name="equipment.addTime" type="hidden" value="${list.addTime }"/>
+        器材名：<input name="equipment.equipName" type="text" value="${list.equipName }"/><br/>
+        器材品牌：<input name="equipment.equipBrand" type="text" value="${list.equipBrand}"/><br/>
+        收购价格:<input name="equipment.equipPrice" type="text" value="${list.equipPrice}" /><br/>
+        出租价格（小时）:<input name="equipment.rentPrice" type="text" value="${list.rentPrice}" /><br/>
+        场地备注：<input name="equipment.equipDtail" type="text" value="${list.equipDtail}" /><br/>
+        <input type="submit" value="更新" />
+    </form>
         <div id="content">
         	<p>系统消息:</p>
 			<div class="SystemMessage">

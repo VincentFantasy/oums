@@ -28,64 +28,48 @@
         <div class="cl">&nbsp;</div>
         <div id="navigation">
             <ul>
-                <li><a href="../../index-m.jsp" class="active"><span>首页</span></a></li>
-                <li><a href="#"><span>场地</span></a>
-					<ul>
-						<li><a href="addsite.jsp">添加场地</a></li>
-						<li><a href="deletesite.jsp">删除场地</a></li>
-						<li><a href="updatesite.jsp">更改场地</a></li>
-						<li><a href="mchecksite.jsp">查看场地</a></li>
-					</ul>    
+                <li><a href="../../index.jsp" class="active"><span>首页</span></a></li>
+                <li><a href="site.jsp"><span>场地</span></a>
+                    <ul>
+                        <li><a href="../site/addsite.jsp">添加场地</a></li>
+                        <li><a href="../site/deletesite.jsp">删除场地</a></li>
+                        <li><a href="../site/updatesite.jsp">更改场地</a></li>
+                        <li><a href="../site/mchecksite.jsp">查看场地</a></li>
+                    </ul>
+                </li>
                 <li><a href="#"><span>器材</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        
                     </ul>
                 </li>
                 <li><a href="#"><span>赛事</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        <li><a href="../race/findrace.jsp">查看赛事</a></li>
+
                     </ul>
                 </li>
                 <li><a href="#"><span>订单</span></a>
                     <ul>
-                        <li><a href="../order/dealordersite.jsp">场地订单</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+                        <li><a href="dealordersite.jsp">场地订单</a></li>
+
                     </ul>
                 </li>
                 <li><a href="#"><span>个人信息</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+
                     </ul>
                 </li>
                 <li><a href="#"><span>财务</span></a>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">solutions</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">partners</a></li>
-                        <li><a href="#">contact</a></li>
+
                     </ul>
                 </li>
+                <li><a href="#"><span>公告</span></a>
+						<ul>
+							<li><a href="../gonggao/addgonggao.jsp">添加公告</a></li>
+							<li><a href="../gonggao/deletegonggao.jsp">删除公告</a></li>
+						</ul>
+				</li>
             </ul>
         </div>
     </div>

@@ -29,48 +29,31 @@
 					<li><a href="index.jsp" class="active"><span>首页</span></a></li>
 					<li><a href="jsp/site/site.jsp"><span>场地</span></a>
 						<ul>
-							<li><a href="#">预约场地</a></li>
+							<li><a href="jsp/site/ordersite.jsp">预约场地</a></li>
 							<li><a href="jsp/site/checksite.jsp">查看场地</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>器材</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/equipment/equipmentFind.jsp">器材查询</a></li>
+							<li><a href="jsp/equipment/equipmentBorrow.jsp">租借请求</a></li>
+							<li><a href="jsp/equipment/equipmentOrderList.jsp">器材订单列表</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>赛事</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/race/findrace.jsp">查看场地</a></li>
 						</ul>
 					</li>
 					<li><a href="#"><span>订单</span></a>
 						<ul>
-							<li><a href="#">场地订单</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+							<li><a href="jsp/order/mysiteorder.jsp">场地订单</a></li>
+
 						</ul>
 					</li>
 					<li><a href="#"><span>财务</span></a>
 						<ul>
-							<li><a href="#">about us</a></li>
-							<li><a href="#">services</a></li>
-							<li><a href="#">solutions</a></li>
-							<li><a href="#">support</a></li>
-							<li><a href="#">partners</a></li>
-							<li><a href="#">contact</a></li>
+
 						</ul>
 					</li>
 					<li><a href="#"><span>个人信息</span></a>

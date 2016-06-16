@@ -21,6 +21,9 @@ public class EquipmentPo extends BasePo{
 	
 	/*器材ID*/
 	private Integer  equipId;
+	/*器材zhongleiID*/
+	private Integer  equipTypeId;
+	
 	/*器材名称*/
 	private String equipName;
 	/*器品牌名称*/
@@ -28,7 +31,7 @@ public class EquipmentPo extends BasePo{
 	/*器材状态*/
 	private Integer itemState;
 	/* 是否被删除 */
-	private Boolean isDelete; 
+	private Integer isDelete; 
 	/*器材收购价格*/
 	private Float equipPrice;
 	/*器材出租价格*/
@@ -61,11 +64,17 @@ public class EquipmentPo extends BasePo{
 	public String getEquipDtail() {
 		return equipDtail;
 	}
-	public Boolean getIsDelete() {
+	public Integer getIsDelete() {
 		return isDelete;
 	}
 	public Date getAddTime() {
 		return addTime;
+	}
+	public Integer getEquipTypeId() {
+		return equipTypeId;
+	}
+	public void setEquipTypeId(Integer equipTypeId) {
+		this.equipTypeId = equipTypeId;
 	}
 	public void setAddTime(Date addTime) {
 		this.addTime = addTime;
@@ -85,7 +94,7 @@ public class EquipmentPo extends BasePo{
 		this.rentPrice = rentPrice;
 	}
 	
-	public void setIsDelete(Boolean isDelete) {
+	public void setIsDelete(Integer isDelete) {
 		this.isDelete = isDelete;
 	}
 	public void setEquipId(Integer equipId) {

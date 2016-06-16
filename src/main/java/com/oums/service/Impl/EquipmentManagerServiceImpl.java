@@ -37,30 +37,37 @@ public class EquipmentManagerServiceImpl implements IEquipmentManagerService {
 	@Override
 	public ReturnMessage addEquipment(EquipmentVo vo) {
 		// TODO
-		ReturnMessage returnMessage = new ReturnMessage();
+		//ReturnMessage returnMessage = new ReturnMessage();
 		try{
-			EquipmentPo po = new EquipmentPo();
-			po.setEquipName(vo.getEquipName());
-			po.setEquipBrand(vo.getEquipBrand());
-			po.setEquipPrice(vo.getEquipPrice());
-			po.setEquipDtail(vo.getEquipDtail());
-			po.setAddTime(TimeUtil.getNowTime());
-			po.setRentPrice(vo.getRentPrice());
-			po.setIsDelete(false);
-			po.setItemState(ItemState.FREE);
-			int i=vo.getEquipNum();
 	
+			int i=vo.getEquipNum();
+			EquipmentTypePo typo = new EquipmentTypePo();
+			typo.setEquipName(vo.getEquipName());
+			typo.setEquipBrand(vo.getEquipBrand());
+			typo.setEquipPrice(vo.getEquipPrice());
+			typo.setRentPrice(vo.getRentPrice());
+			typo.setEquipNum(vo.getEquipNum());
+		
+			baseDao.add(typo);
+			int equipTypeId=equipmentDao.findEquipTypeIdByName(vo);
 			for(int j=0;j<i;j++){
+				EquipmentPo po = new EquipmentPo();
+				po.setEquipTypeId(equipTypeId);
+				po.setEquipName(vo.getEquipName());
+				po.setEquipBrand(vo.getEquipBrand());
+				po.setEquipPrice(vo.getEquipPrice());
+				po.setEquipDtail(vo.getEquipDtail());
+				po.setAddTime(TimeUtil.getNowTime());
+				po.setRentPrice(vo.getRentPrice());
+				po.setIsDelete(1);
+				po.setItemState(ItemState.FREE);
 				baseDao.add(po);
 			}
-			returnMessage.setFlat(true);
-			returnMessage.setContent("添加成功");
+
 		}catch(Exception e){
 			e.printStackTrace();
-			returnMessage.setFlat(false);
-			returnMessage.setContent("添加失败" + e);
 		}
-		return returnMessage;
+		return null;
 	}
 
 	@Override
@@ -69,8 +76,12 @@ public class EquipmentManagerServiceImpl implements IEquipmentManagerService {
 		ReturnMessage returnMessage=new ReturnMessage();
 		try{
 			EquipmentPo po= baseDao.findById(EquipmentPo.class, id);
-			po.setIsDelete(true);
+			int equipTypeId=po.getEquipTypeId();
+			EquipmentTypePo typo= baseDao.findById(EquipmentTypePo.class, equipTypeId);
+			typo.setEquipNum(typo.getEquipNum()-1);
+			po.setIsDelete(0);
 			baseDao.update(po);
+			baseDao.update(typo);
 			returnMessage.setFlat(true);
 			returnMessage.setContent("删除成功!" );
 		}catch(Exception e){

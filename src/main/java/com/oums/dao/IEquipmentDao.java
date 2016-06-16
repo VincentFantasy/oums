@@ -50,17 +50,21 @@ public interface IEquipmentDao {
 
 	/**
 	 * 查找器材,返回器材种类及数量
+	 * @param type 
+	 * @param content 
 	 * @param equipmen
 	 * @return Map
 	 */
-	List<EquipmentPo> findEquipmentTypeAndNum();
+	List<EquipmentTypePo> findEquipmentTypeAndNum(String content, String type);
 
 	/**
 	 * 查找订单
+	 * @param type 
+	 * @param content 
 	 * @param equipmen
 	 * @return Map
 	 */
-	List<OrderPo> findOrder();
+	List<OrderPo> findOrder(String content, String type);
 
 
 
@@ -69,5 +73,10 @@ public interface IEquipmentDao {
 	 * @return
 	 */
 	List<OrderPo> findWaitSureOrder();
+
+
+
+
+	int findEquipTypeIdByName(EquipmentVo vo);
 	
 }

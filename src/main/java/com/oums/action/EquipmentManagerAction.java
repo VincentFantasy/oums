@@ -14,9 +14,11 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.oums.bean.ReturnMessage;
 import com.oums.bean.po.EquipmentPo;
 import com.oums.bean.po.OrderPo;
+import com.oums.bean.vo.EquipmentTypeVo;
 import com.oums.bean.vo.EquipmentVo;
 import com.oums.service.IEquipmentManagerService;
 import com.oums.service.IEquipmentService;
@@ -29,24 +31,30 @@ import com.oums.service.IUserService;
  * 2016年6月7日
  */
 @ParentPackage("basePackage")
-@Namespace("/manager")
+@Namespace("/p_equipmentManager")
 public class EquipmentManagerAction {
-	
 	@Autowired
 	IEquipmentManagerService equipmentManagerService;
 	@Autowired
 	IEquipmentService equipmentService;
 	@Autowired
 	IUserService userService;
-	
-	private ReturnMessage returnMessage;
+	private ReturnMessage returnMessage=null;
 	private EquipmentVo equip;
-	private Integer ids[][];
-	public Integer[][] getIds() {
-		return ids;
+	private EquipmentTypeVo equipType;
+	
+	
+	public EquipmentVo getEquip() {
+		return equip;
 	}
-	public void setIds(Integer[][] ids) {
-		this.ids = ids;
+	public EquipmentTypeVo getEquipType() {
+		return equipType;
+	}
+	public void setEquip(EquipmentVo equip) {
+		this.equip = equip;
+	}
+	public void setEquipType(EquipmentTypeVo equipType) {
+		this.equipType = equipType;
 	}
 	public ReturnMessage getReturnMessage() {
 		return returnMessage;
@@ -59,20 +67,19 @@ public class EquipmentManagerAction {
 	}
 	public void setEquipment(EquipmentVo equip) {
 		this.equip = equip;
-	}
-	
-	
+	}	
 	/**
 	 * 添加器材
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/addEquipment
 	 */
-	//, results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	@Action(value="addEquipment",results={@Result(name="success",location="../../../index.jsp")})
-	public String addEquipment() {
-		
+
+	@Action(value="addEquipment1",
+		results={@Result(name="success",location="../../../jsp/equipment/equipmentList.jsp"),
+				@Result(name="input",location="../../../jsp/equipment/equipmentAdd.jsp")})
+	public String addEquipment1() {
 		//添加器材
-		returnMessage = equipmentManagerService.addEquipment(equip);
+		 equipmentManagerService.addEquipment(equip);
 
 		return "success";
 
@@ -83,9 +90,9 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
 	 */
-	@Action(value="delEquipment")
-//			, results={@Result(name="success", type="json", params={"root","returnMessage"})})
-	public String delEquipment() {
+	@Action(value="delEquipment1"
+	, results={@Result(name="success",location="../../../jsp/equipment/equipmentDel.jsp")})
+	public String delEquipment1() {
 		
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
 		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
@@ -98,12 +105,8 @@ public class EquipmentManagerAction {
 				@SuppressWarnings("unchecked")
 				List<EquipmentPo> list=(List<EquipmentPo>) returnMessage.getObject();
 				request.setAttribute("list",list );
-				request.getRequestDispatcher("../../equipmentDel.jsp").forward(request, response);
 			}
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -117,19 +120,11 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/updateEquipment
 	 */
-	@Action(value="updateEquipment", results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	@Action(value="updateEquipment",
+			results={@Result(name="success",location="../../../jsp/equipment/equipmentUpdate.jsp")})
 	public String updateEquipment() {
 		//更新器材
 		returnMessage=equipmentManagerService.updateEquipment(equip);
-		
-		try {
-			HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
-			HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
-			request.getRequestDispatcher("../../equipment/FindequipmentByType.action").forward(request, response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		return "success";
 	}
@@ -140,7 +135,8 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
 	 */
-	@Action(value="findEquipmentById")//	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	@Action(value="findEquipmentById"
+			, results={@Result(name="success",location="../../../jsp/equipment/equipmentDtail.jsp")})
 	public String findEquipmentById() {
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
 		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
@@ -150,12 +146,9 @@ public class EquipmentManagerAction {
 			if(returnMessage.isFlat()){
 				EquipmentPo list=(EquipmentPo) returnMessage.getObject();
 				request.setAttribute("list",list );
-				request.getRequestDispatcher("../../equipmentDetail.jsp").forward(request, response);
+				
 			}
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -168,7 +161,8 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
 	 */
-	@Action(value="findWaitSureOrder")//	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	@Action(value="findWaitSureOrder"
+			, results={@Result(name="success",location="../../../jsp/equipment/equipmentManagerSureOrder.jsp")})
 	public String findWaitSureOrder() {
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
 		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
@@ -178,12 +172,8 @@ public class EquipmentManagerAction {
 			if(returnMessage.isFlat()){
 				List<OrderPo> list=(List<OrderPo>) returnMessage.getObject();
 				request.setAttribute("list",list );
-				request.getRequestDispatcher("../../equipmentManagerSureOrder.jsp").forward(request, response);
 			}
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -196,7 +186,8 @@ public class EquipmentManagerAction {
 	 * @return
 	 * http://localhost:8080/OUMS/equipmentManager/delEquipment
 	 */
-	@Action(value="sureOrder")//	, results={@Result(name="success", type="json", params={"root","returnMessage"})})
+	@Action(value="sureOrder"
+			, results={@Result(name="success", location="../../../jsp/equipment/equipmentOrderList.jsp")})
 	public String sureOrder() {
 		HttpServletRequest request=ServletActionContext.getRequest();//得到request对象
 		HttpServletResponse response=ServletActionContext.getResponse();//得到response对象
@@ -207,12 +198,8 @@ public class EquipmentManagerAction {
 				returnMessage=equipmentManagerService.findWaitSureOrder();
 				EquipmentPo list=(EquipmentPo) returnMessage.getObject();
 				request.setAttribute("list",list );
-				request.getRequestDispatcher("../../equipmentManagerSureOrder.jsp").forward(request, response);
 			}
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

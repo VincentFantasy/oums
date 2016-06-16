@@ -62,7 +62,7 @@ $.ajax({
                     		id = v;
                     		break;
                         case "gonggaoTitile":
-                            $("#gonggao"+key).html("<a href='jsp/gonggao/gonggaodetail.html?gonggaoId=" + id + "'>" + v + "</a>");
+                            $("#gonggao"+key).html("<a href='jsp/gonggao/gonggaodetail.jsp?gonggaoId=" + id + "'>" + v + "</a>");
                             break;
                         default :
                             break;

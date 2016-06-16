@@ -46,9 +46,11 @@ public interface IEquipmentService {
 	
 	/**
 	 * 查找器材种类及数量
+	 * @param type 
+	 * @param content 
 	 * @return
 	 */
-	ReturnMessage findEquipmentTypeAndNum();
+	ReturnMessage findEquipmentTypeAndNum(String content, String type);
 	
 	/**
 	 * 添加器材订单
@@ -59,9 +61,11 @@ public interface IEquipmentService {
 	
 	/**
 	 * 查找所有非删除状态的订单
+	 * @param type 
+	 * @param content 
 	 * @return
 	 */
-	ReturnMessage findOrder();
+	ReturnMessage findOrder(String content, String type);
 	
 	/**
 	 * 订单支付
@@ -76,6 +80,7 @@ public interface IEquipmentService {
 	 * @return
 	 */
 	ReturnMessage delOrder(int id);
+
 
 
 
