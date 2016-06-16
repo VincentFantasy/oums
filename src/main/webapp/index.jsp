@@ -12,7 +12,7 @@
 	%>
 	<base href="<%=basePath%>">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/site/addsite.css" type="text/css" />
+	<link rel="stylesheet" href="css/index.css" type="text/css" />
 </head>
 
 <body>
@@ -83,20 +83,71 @@
 		</div>
 
 		<hr/>
+		
+		<!-- Header -->
+    <div id="header">
+        <!-- Slider -->
+        <div id="slider">
+            <div id="slider-holder">
+                <ul>
+                    <li>
+                        <div class="slide-info">
+                            <h2 class="notext txt-we-love-mondays">广东海洋大学体育馆官网</h2>
+                            <p>欢迎进入广东海洋大学体育馆管理系统，</p>
+                            <a href="#" class="button-more">更多</a>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/ty5.jpg" alt="图片失效" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slide-info">
+                            <h2 class="notext txt-we-love-mondays">坚持运动</h2>
+                            <p>每天运到一小时，健康长寿50年</p>
+                            <a href="#" class="button-more">更多</a>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/yundong.jpg" alt="图片失效" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slide-info">
+                            <h2 class="notext txt-we-love-mondays">放点图片</h2>
+                            <p>广告位招租,有意请联系XXXXXXX</p>
+                            <a href="#" class="button-more">更多</a>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/ty6.png" alt="图片失效" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slide-info">
+                            <h2 class="notext txt-we-love-mondays">广告位招租</h2>
+                            <p>广告位招租,有意请联系XXXXXXX</p>
+                            <a href="#" class="button-more">更多</a>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/chijing.jpg" alt="图片失效" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="slider-nav">
+                <a href="#" class="prev">Previous</a>
+                <a href="#" class="next">Next</a>
+            </div>
+        </div>
+        <!-- END Slider -->
+    </div>
+    <!-- END Header -->
+    
+    <hr/>
+		
 		<!-- Main 在这里编辑正文内容-->
 		<div id="main">
-		<!--  
-			<h1>正文内容</h1>
-			<a href="jsp/equipment/equipmentFind.jsp">器材查询</a>
-			<a href="jsp/equipment/equipmentAdd.jsp">添加器材</a>
-			<a href="jsp/equipment/equipmentUpdate.jsp">修改器材</a>
-			<a href="jsp/equipment/equipmentDel.jsp">删除器材</a>
-			<a href="jsp/equipment/equipmentBorrow.jsp">租借请求</a>
-			<a href="jsp/equipment/equipmentManagerSureOrder.jsp">租借请求处理</a>
-				</div>
-			<div id="title">
-		-->
-            <h2>欢迎你 </h2>
+            
+        <div>
+			<h2>欢迎你 </h2>
             <input style='border-left:0px;border-top:0px;border-right:0px;border-bottom:1px ' 
             	value="${session.userVo.getRealName()}" readOnly="true"/>
 				
@@ -107,6 +158,25 @@
 				
 			</div>
         </div>
+        
+        <div class="text"><h3 id="gonggao0"></h3></div>
+        <div class="text"><h3 id="gonggao1"></h3></div>
+        <div class="text"><h3 id="gonggao2"></h3></div>
+        <div class="text"><h3 id="gonggao3"></h3></div>
+        <div class="text"><h3 id="gonggao4"></h3></div>
+        <div class="text"><h3 id="gonggao5"></h3></div>
+        <div class="text"><h3 id="gonggao6"></h3></div>
+        <div class="text"><h3 id="gonggao7"></h3></div>
+        <div class="text"><h3 id="gonggao8"></h3></div>
+        <div class="text"><h3 id="gonggao9"></h3></div>
+
+        <!-- <div id="main-footer">
+            <input class="list-button" id="page-last" type="button" value="&lt" onclick="subpage()" />
+            <label id="pageNum">1</label>
+            <input class="list-button" id="page-next" type="button" value="&gt" onclick="addpage()" />
+        </div> -->
+        <div id="text"></div>
+        
 		</div>
 		<!-- END Main -->
 		<hr/>
@@ -133,7 +203,9 @@
 	</div>
 	
 	<!-- js -->
-	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
-
+    <script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+    <script src="js/jquery-func.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript" ></script>
 </body>
 </html>

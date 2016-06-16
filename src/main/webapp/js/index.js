@@ -60,10 +60,8 @@ $.ajax({
                     switch (i){
                     	case "gonggaoId":
                     		id = v;
-                            alert(id);
                     		break;
                         case "gonggaoTitile":
-                            alert(id);
                             $("#gonggao"+key).html("<a href='jsp/gonggao/gonggaodetail.html?gonggaoId=" + id + "'>" + v + "</a>");
                             break;
                         default :
